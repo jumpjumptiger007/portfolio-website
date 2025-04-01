@@ -240,9 +240,32 @@ function changeLanguage(lang) {
     localStorage.setItem('language', lang);
 }
 
+// Language switcher dropdown functionality
+const languageSwitcher = document.querySelector('.language-switcher');
+const languageSwitcherToggle = document.querySelector('.language-switcher-toggle');
+const currentLanguageIcon = document.getElementById('current-language-icon');
+
+languageSwitcherToggle.addEventListener('click', () => {
+    languageSwitcher.classList.toggle('active');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (!languageSwitcher.contains(e.target)) {
+        languageSwitcher.classList.remove('active');
+    }
+});
+
 document.querySelectorAll('.language-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
+        const flagImg = btn.querySelector('img').cloneNode(true);
+        
+        currentLanguageIcon.innerHTML = '';
+        currentLanguageIcon.appendChild(flagImg);
+        
+        languageSwitcher.classList.remove('active');
+        
         changeLanguage(lang);
     });
 });
@@ -251,5 +274,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language');
     if (savedLang) {
         changeLanguage(savedLang);
+        
+        // Update the current language icon based on saved language
+        const flagPath = `assets/flags/${savedLang}.svg`;
+        const flagAlt = savedLang === 'en' ? 'English' : 'Deutsch';
+        currentLanguageIcon.innerHTML = `<img src="${flagPath}" alt="${flagAlt}">`;
     }
 });

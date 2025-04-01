@@ -22,6 +22,7 @@
                 <a href="#" class="logo">
                     <img src="assets/favicon/android-chrome-512x512.png" alt="YAL Logo" class="logo-icon">
                 </a>
+                <!-- Navigation links -->
                 <div class="nav-links">
                     <a href="#home" class="nav-link active">Home</a>
                     <a href="#about" class="nav-link">About</a>
@@ -30,12 +31,20 @@
                 </div>
                 <!-- Language Switcher -->
                 <div class="language-switcher">
-                    <button class="language-btn" data-lang="en">
-                        <img src="assets/flags/en.svg" alt="English">
+                    <button class="language-switcher-toggle">
+                        <span id="current-language-icon"><img src="assets/flags/en.svg" alt="Current Language"></span>
+                        <i class="fas fa-chevron-down"></i>
                     </button>
-                    <button class="language-btn" data-lang="de">
-                        <img src="assets/flags/de.svg" alt="Deutsch">
-                    </button>
+                    <div class="language-dropdown">
+                        <button class="language-btn" data-lang="en">
+                            <img src="assets/flags/en.svg" alt="English">
+                            <span>English</span>
+                        </button>
+                        <button class="language-btn" data-lang="de">
+                            <img src="assets/flags/de.svg" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </button>
+                    </div>
                 </div>
                 <button class="hamburger">
                     <span></span>

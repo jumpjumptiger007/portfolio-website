@@ -108,8 +108,8 @@ Use this basic structure for your project's `index.html`:
 
 Study the existing project examples to understand different implementation approaches:
 
-- [Password Generator](projects/password-generator/index.html): Simple interactive JavaScript tool with local storage
-- [Pollen Alert Germany](projects/pollen-alert-germany/index.html): Data visualization with multilingual support (English, German, Chinese)
-- [QPSK Modulation](projects/qpsk-modulation/index.html): Interactive React-based visualization with dynamic components
+- [Password Generator](http://yliu.tech/projects/password-generator/index.html): Simple interactive JavaScript tool with local storage
+- [Pollen Alert Germany](http://yliu.tech/projects/pollen-alert-germany/index.html): Data visualization with multilingual support (English, German, Chinese)
+- [QPSK Modulation](http://yliu.tech/projects/qpsk-modulation/index.html): Interactive React-based visualization with dynamic components
 
 Each example demonstrates different techniques while maintaining consistent navigation and styling. Use these as reference points for creating your own project pages.

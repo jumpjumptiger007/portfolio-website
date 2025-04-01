@@ -2,7 +2,7 @@
 
 A clean, responsive static portfolio website template designed to be hosted on GitHub Pages. Showcase your projects, skills, and contact information with this easy-to-customize template.
 
-![Portfolio Preview](https://via.placeholder.com/800x450?text=Portfolio+Website+Preview)
+[![View Live Demo](https://img.shields.io/badge/View_Live_Demo-Portfolio_Website-3182CE?style=for-the-badge&logo=github)](https://yliu.tech/)
 
 ## 🚀 Getting Started
 

@@ -1,6 +1,6 @@
 # 🌟 Personal Portfolio Website Template
 
-A clean, responsive static personal portfolio website template designed to be hosted on GitHub Pages. Showcase your projects, skills, and contact information with this easy-to-customize template.
+A clean, responsive static portfolio website template designed to be hosted on GitHub Pages. Showcase your projects, skills, and contact information with this easy-to-customize template.
 
 [![View Live Demo](https://img.shields.io/badge/View_Live_Demo-Portfolio_Website-3182CE?style=for-the-badge&logo=github)](https://yliu.tech/)
 

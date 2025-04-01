@@ -5,7 +5,7 @@ const projectsData = [
     description: "An interactive digital communication demonstration tool that visualizes QPSK modulation techniques with adjustable noise levels and signal plotting.",
     preview_image: "projects/qpsk-modulation/preview.jpg",
     tags: ["C", "HTML/CSS", "JavaScript"],
-    live_demo: "projects/qpsk-modulation/index.html",
+    live_demo: "projects/qpsk-modulation",
     github_url: "https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP",
   },
   {
@@ -14,7 +14,7 @@ const projectsData = [
     description: "A secure password generator with customizable options for length, character types, and exclusion rules. Includes strength meter and password history.",
     preview_image: "projects/password-generator/preview.jpg",
     tags: ["HTML/CSS", "JavaScript"],
-    live_demo: "projects/password-generator/index.html",
+    live_demo: "projects/password-generator",
     github_url: "https://github.com/jumpjumptiger007/password-generator",
   },
   {
@@ -23,7 +23,7 @@ const projectsData = [
     description: "A multilingual pollen concentration alert system for Germany, providing real-time pollen forecasts in English, German, and Chinese with email notifications.",
     preview_image: "projects/pollen-alert-germany/preview.jpg",
     tags: ["Python", "HTML/CSS", "Web Scraping"],
-    live_demo: "projects/pollen-alert-germany/index.html",
+    live_demo: "projects/pollen-alert-germany",
     github_url: "https://github.com/jumpjumptiger007/pollen-alert-germany",
   }
 ];

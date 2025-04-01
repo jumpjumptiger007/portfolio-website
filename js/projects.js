@@ -25,7 +25,16 @@ const projectsData = [
     tags: ["Python", "HTML/CSS", "Web Scraping"],
     live_demo: "projects/pollen-alert-germany/index.html",
     github_url: "https://github.com/jumpjumptiger007/pollen-alert-germany",
-  }
+  },
+  {
+    id: 'portfolio-website', 
+    title: "Personal Portfolio Website", 
+    description: "A responsive, multilingual personal portfolio website showcasing projects, skills, and contact information. Built with modern web technologies and featuring dynamic language support.",  
+    preview_image: "projects/portfolio-website/preview.jpg",  
+    tags: ["HTML/CSS", "JavaScript", "Responsive Design"],  
+    live_demo: "https://yliu.tech",  
+    github_url: "https://github.com/jumpjumptiger007/portfolio-website",  
+  },
 ];
 
 const projectGrid = document.querySelector('.project-grid');

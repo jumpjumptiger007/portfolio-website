@@ -4,8 +4,8 @@ Add your custom favicon files to this directory for proper site identification a
 
 ## Quick Setup
 
-1. Visit [RealFaviconGenerator](https://realfavicongenerator.net/)
-2. Upload your logo/image (minimum 512x512px recommended)
+1. Visit [Favicon Generator](https://favicon.io/)
+2. Create your own Favicon
 3. Download the generated package
 4. Replace the following files in this directory:
 

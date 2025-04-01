@@ -13,7 +13,7 @@ This template is designed to be easily deployed to GitHub Pages. Here's how to s
 3. Set Source to your main branch
 4. Your site will be published at `https://yourusername.github.io/repository-name/` 
 
-(If you name your repository `yourusername.github.io`, it will be published at `https://yourusername.github.io` or you can configure your own custom domain in the settings)
+💡If you name your repository `yourusername.github.io`, it will be published at `https://yourusername.github.io` or you can configure your own custom domain in the settings
 
 ## 🎨 Customization Guide
 

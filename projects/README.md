@@ -108,20 +108,8 @@ Use this basic structure for your project's `index.html`:
 
 Study the existing project examples to understand different implementation approaches:
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
-  <a href="../projects/password-generator/index.html" style="display: inline-block; padding: 10px 15px; background-color: #3182ce; color: white; text-decoration: none; border-radius: 5px; text-align: center; min-width: 200px;">
-    Password Generator
-  </a>
-  <a href="../projects/pollen-alert-germany/index.html" style="display: inline-block; padding: 10px 15px; background-color: #3182ce; color: white; text-decoration: none; border-radius: 5px; text-align: center; min-width: 200px;">
-    Pollen Alert Germany
-  </a>
-  <a href="../projects/qpsk-modulation/index.html" style="display: inline-block; padding: 10px 15px; background-color: #3182ce; color: white; text-decoration: none; border-radius: 5px; text-align: center; min-width: 200px;">
-    QPSK Modulation
-  </a>
-</div>
-
-- **Password Generator**: Simple interactive JavaScript tool with local storage
-- **Pollen Alert Germany**: Data visualization with multilingual support (English, German, Chinese)
-- **QPSK Modulation**: Interactive React-based visualization with dynamic components
+- [Password Generator](projects/password-generator/index.html): Simple interactive JavaScript tool with local storage
+- [Pollen Alert Germany](projects/pollen-alert-germany/index.html): Data visualization with multilingual support (English, German, Chinese)
+- [QPSK Modulation](projects/qpsk-modulation/index.html): Interactive React-based visualization with dynamic components
 
 Each example demonstrates different techniques while maintaining consistent navigation and styling. Use these as reference points for creating your own project pages.

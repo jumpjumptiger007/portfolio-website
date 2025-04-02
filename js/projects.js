@@ -34,6 +34,15 @@ const projectsData = [
     tags: ["HTML/CSS", "JavaScript"],  
     live_demo: "https://yliu.tech",  
     github_url: "https://github.com/jumpjumptiger007/portfolio-website",  
+  },
+  {
+    id: 'batch-email-marketing',
+    title: "Batch Email Marketing System",
+    description: "An open-source solution for sending batch marketing emails via Google Workspace SMTP with proper unsubscribe handling, subscription tracking, and email list management.",
+    preview_image: "projects/batch-email/preview.jpg",
+    tags: ["Python", "Flask", "Email Automation"],
+    live_demo: "projects/batch-email",
+    github_url: "https://github.com/jumpjumptiger007/batch-email",
   }
 ];
 

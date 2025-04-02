@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QPSK Modulation Visualization</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="../../assets/favicon/site.webmanifest">
+    
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a5568;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a5568;
+            cursor: pointer;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .with-noise {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-6">
+        <div class="text-center mb-4">
+            <a href="../../index.html" class="inline-block px-6 py-3 bg-blue-500 text-white rounded-md text-base hover:bg-blue-600 transition-colors">
+                <span class="mr-1">&#8592;</span> Back to Home
+            </a>
+        </div>
+        
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">QPSK Modulation Visualization</h1>
+        
+        <div class="bg-blue-50 p-6 rounded-lg shadow-sm mb-8 max-w-3xl mx-auto">
+            <p class="text-center text-gray-700 text-lg">
+                An interactive digital communication demonstration tool that visualizes QPSK modulation techniques 
+                with adjustable noise levels and signal plotting. This tool helps in understanding the concepts of 
+                digital modulation and the effects of noise on digital communication systems.
+            </p>
+            
+            <div class="text-center mt-6">
+                <a href="https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP" 
+                   class="inline-block px-6 py-3 bg-blue-500 text-white rounded-md text-base hover:bg-blue-600 transition-colors">
+                   View Project on GitHub
+                </a>
+            </div>
+        </div>
+        
+        <div id="root"></div>
+        
+        <footer class="mt-12 text-center text-gray-600 text-sm">
+            <p>© 2025 <a href="https://yliu.tech/" class="text-blue-600 hover:underline">Yiqiang Adrian Liu</a>. All rights reserved. View the full project on <a href="https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP" class="text-blue-600 hover:underline">GitHub</a></p>
+        </footer>
+    </div>
+    
+    <!-- QPSK Visualization Component -->
+    <script type="text/babel">
+        const QPSKVisualization = () => {
+            const [bits, setBits] = React.useState([]);
+            const [symbols, setSymbols] = React.useState([]);
+            const [noiseLevel, setNoiseLevel] = React.useState(0.05);
+            const [showOriginal, setShowOriginal] = React.useState(true);
+            const [showNoisy, setShowNoisy] = React.useState(true);
+            
+            const BITS_COUNT = 40;
+            const SYMBOLS_COUNT = 20;
+            
+            const generateRandomBits = () => {
+                const newBits = Array.from({ length: BITS_COUNT }, () => Math.floor(Math.random() * 2));
+                setBits(newBits);
+                return newBits;
+            };
+            
+            const performQPSKModulation = (dataBits) => {
+                const newSymbols = [];
+                for (let i = 0; i < dataBits.length; i += 2) {
+                    if (i + 1 >= dataBits.length) break;
+                    
+                    const bit1 = dataBits[i];
+                    const bit2 = dataBits[i + 1];
+                    
+                    let symbolI, symbolQ;
+                    
+                    if (bit1 === 0 && bit2 === 0) {
+                        symbolI = 1 / Math.sqrt(2);
+                        symbolQ = 1 / Math.sqrt(2);
+                    } else if (bit1 === 0 && bit2 === 1) {
+                        symbolI = -1 / Math.sqrt(2);
+                        symbolQ = 1 / Math.sqrt(2);
+                    } else if (bit1 === 1 && bit2 === 0) {
+                        symbolI = 1 / Math.sqrt(2);
+                        symbolQ = -1 / Math.sqrt(2);
+                    } else if (bit1 === 1 && bit2 === 1) {
+                        symbolI = -1 / Math.sqrt(2);
+                        symbolQ = -1 / Math.sqrt(2);
+                    }
+                    
+                    newSymbols.push({
+                        original: { real: symbolI, imag: symbolQ },
+                        noisy: { 
+                            real: symbolI + (noiseLevel * (2 * Math.random() - 1)), 
+                            imag: symbolQ + (noiseLevel * (2 * Math.random() - 1))
+                        },
+                        bits: `${bit1}${bit2}`
+                    });
+                }
+                
+                setSymbols(newSymbols);
+                return newSymbols;
+            };
+            
+            const generateNewData = () => {
+                const newBits = generateRandomBits();
+                performQPSKModulation(newBits);
+            };
+            
+            const updateNoise = () => {
+                setSymbols(prevSymbols => 
+                    prevSymbols.map(symbol => ({
+                        ...symbol,
+                        noisy: { 
+                            real: symbol.original.real + (noiseLevel * (2 * Math.random() - 1)), 
+                            imag: symbol.original.imag + (noiseLevel * (2 * Math.random() - 1))
+                        }
+                    }))
+                );
+            };
+            
+            React.useEffect(() => {
+                generateNewData();
+            }, []);
+            
+            React.useEffect(() => {
+                if (symbols.length > 0) {
+                    updateNoise();
+                }
+            }, [noiseLevel]);
+
+            const canvasSize = 300;
+            const center = canvasSize / 2;
+            const scale = center * 0.8;
+            
+            return (
+                <div className="flex flex-col space-y-4">
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                            <h3 className="text-lg font-semibold text-gray-800">QPSK Modulation with Noise Visualization</h3>
+                        </div>
+                        <div className="p-6">
+                            <div className="flex flex-col md:flex-row gap-4">
+                                <div>
+                                    <svg width={canvasSize} height={canvasSize} className="border border-gray-300">
+                                        {/* Axes */}
+                                        <line x1="0" y1={center} x2={canvasSize} y2={center} stroke="black" strokeWidth="1" />
+                                        <line x1={center} y1="0" x2={center} y2={canvasSize} stroke="black" strokeWidth="1" />
+                                        
+                                        {/* Labels */}
+                                        <text x={canvasSize - 20} y={center - 10} fontSize="12">Real</text>
+                                        <text x={center + 10} y="15" fontSize="12">Imag</text>
+                                        
+                                        {/* Bit position labels */}
+                                        <text x={center + 50} y={center - 50} fontSize="12">00</text>
+                                        <text x={center - 60} y={center - 50} fontSize="12">01</text>
+                                        <text x={center + 50} y={center + 60} fontSize="12">10</text>
+                                        <text x={center - 60} y={center + 60} fontSize="12">11</text>
+                                        
+                                        {/* Original symbols */}
+                                        {showOriginal && symbols.map((symbol, idx) => (
+                                            <circle 
+                                                key={`orig-${idx}`}
+                                                cx={center + symbol.original.real * scale}
+                                                cy={center - symbol.original.imag * scale}
+                                                r="3"
+                                                fill="blue"
+                                                className="constellation-point"
+                                            />
+                                        ))}
+                                        
+                                        {/* Noisy symbols */}
+                                        {showNoisy && symbols.map((symbol, idx) => (
+                                            <g key={`noisy-${idx}`}>
+                                                <circle 
+                                                    cx={center + symbol.noisy.real * scale}
+                                                    cy={center - symbol.noisy.imag * scale}
+                                                    r="3"
+                                                    fill="red"
+                                                    className="constellation-point with-noise"
+                                                />
+                                                <text 
+                                                    x={center + symbol.noisy.real * scale + 5}
+                                                    y={center - symbol.noisy.imag * scale}
+                                                    fontSize="9"
+                                                >
+                                                    {symbol.bits}
+                                                </text>
+                                            </g>
+                                        ))}
+                                    </svg>
+                                </div>
+                                
+                                <div className="flex flex-col space-y-4 flex-1">
+                                    <div>
+                                        <h3 className="text-sm font-medium mb-2">Noise Level: {noiseLevel.toFixed(2)}</h3>
+                                        <input
+                                            type="range"
+                                            className="slider"
+                                            min="0"
+                                            max="1"
+                                            step="0.01"
+                                            value={noiseLevel}
+                                            onChange={(e) => setNoiseLevel(parseFloat(e.target.value))}
+                                        />
+                                    </div>
+                                    
+                                    <div className="flex space-x-2">
+                                        <button 
+                                            onClick={generateNewData}
+                                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        >
+                                            Generate New Data
+                                        </button>
+                                        <button 
+                                            onClick={updateNoise}
+                                            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                        >
+                                            Apply New Noise
+                                        </button>
+                                    </div>
+                                    
+                                    <div className="flex space-x-2 mt-2">
+                                        <label className="flex items-center space-x-2">
+                                            <input 
+                                                type="checkbox" 
+                                                checked={showOriginal} 
+                                                onChange={() => setShowOriginal(!showOriginal)}
+                                            />
+                                            <span>Show Original (Blue)</span>
+                                        </label>
+                                        
+                                        <label className="flex items-center space-x-2">
+                                            <input 
+                                                type="checkbox" 
+                                                checked={showNoisy} 
+                                                onChange={() => setShowNoisy(!showNoisy)}
+                                            />
+                                            <span>Show Noisy (Red)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                            <h3 className="text-lg font-semibold text-gray-800">Random Data Bits</h3>
+                        </div>
+                        <div className="p-6">
+                            <div className="grid grid-cols-10 gap-1">
+                                {bits.map((bit, index) => (
+                                    <div key={index} className="border p-1 text-center bg-gray-100">
+                                        {bit}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                            <h3 className="text-lg font-semibold text-gray-800">QPSK Symbols</h3>
+                        </div>
+                        <div className="p-6">
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full divide-y divide-gray-200">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Index</th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bits</th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Original (Real, Imag)</th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">With Noise (Real, Imag)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white divide-y divide-gray-200">
+                                        {symbols.map((symbol, index) => (
+                                            <tr key={index}>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{index}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{symbol.bits}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    ({symbol.original.real.toFixed(4)}, {symbol.original.imag.toFixed(4)})
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    ({symbol.noisy.real.toFixed(4)}, {symbol.noisy.imag.toFixed(4)})
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(
+            <QPSKVisualization />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

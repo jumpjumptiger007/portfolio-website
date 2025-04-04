@@ -35,15 +35,15 @@ const projectsData = [
     live_demo: "https://yliu.tech",  
     github_url: "https://github.com/jumpjumptiger007/portfolio-website",  
   },
-  /*{
-    id: 'batch-email-marketing',
-    title: "Batch Email Marketing System",
-    description: "An open-source solution for sending batch marketing emails via Google Workspace SMTP with proper unsubscribe handling, subscription tracking, and email list management.",
-    preview_image: "projects/batch-email/preview.jpg",
-    tags: ["Python", "Flask", "Email Automation"],
-    live_demo: "projects/batch-email",
-    github_url: "https://github.com/jumpjumptiger007/batch-email",
-  }*/
+  {
+    id: 'bulk-email-sender',
+    title: "Bulk Email Sender",
+    description: "A zero-cost, open-source, serverless system for sending personalized bulk emails using either GitHub Actions or your local machine. It uses SMTP to deliver emails and supports templated content, recipient list management via CSV, and detailed delivery reporting.",
+    preview_image: "projects/bulk-email-sender/preview.jpg",
+    tags: ["JavaScript", "GitHub Actions"],
+    live_demo: "https://bulk-email-sender.yliu.tech/",
+    github_url: "https://github.com/jumpjumptiger007/bulk-email-sender",
+  }
 ];
 
 const projectGrid = document.querySelector('.project-grid');

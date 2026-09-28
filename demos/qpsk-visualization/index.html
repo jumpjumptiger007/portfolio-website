@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>QPSK constellation explorer</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <main class="instrument" aria-labelledby="demo-title">
+    <header class="instrument-header">
+      <div>
+        <p class="eyebrow">QPSK / constellation readout</p>
+        <h1 id="demo-title">Symbol field</h1>
+      </div>
+      <p class="status" aria-live="polite"><span></span><strong id="symbol-count">20</strong> symbols</p>
+    </header>
+
+    <section class="field" aria-label="QPSK constellation plot">
+      <svg id="constellation" viewBox="0 0 600 600" role="img" aria-labelledby="plot-title plot-description">
+        <title id="plot-title">QPSK constellation</title>
+        <desc id="plot-description">Ideal QPSK symbols and independently perturbed symbols plotted on Real and Imag axes.</desc>
+        <g id="grid"></g>
+        <g id="axes"></g>
+        <g id="ideal-points"></g>
+        <g id="perturbed-points"></g>
+        <g id="axis-labels"></g>
+      </svg>
+      <div class="legend" aria-label="Plot legend">
+        <span><i class="ideal-key"></i> Ideal</span>
+        <span><i class="perturbed-key"></i> Perturbed</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Constellation controls">
+      <label class="displacement-control" for="displacement">
+        <span>Displacement <output id="displacement-value" for="displacement">0.05</output></span>
+        <input id="displacement" type="range" min="0" max="1" step="0.01" value="0.05">
+      </label>
+      <div class="actions">
+        <button id="generate-data" type="button">Generate new data</button>
+        <button id="regenerate-displacement" class="quiet" type="button">Regenerate displacement</button>
+      </div>
+      <div class="visibility" aria-label="Point visibility">
+        <label><input id="show-original" type="checkbox" checked> Show original</label>
+        <label><input id="show-perturbed" type="checkbox" checked> Show perturbed</label>
+      </div>
+    </section>
+
+    <section class="symbol-strip" aria-labelledby="sequence-title">
+      <div class="strip-heading"><h2 id="sequence-title">Current bit-pair sequence</h2><p>40 bits / 20 symbols</p></div>
+      <ol id="pair-list" aria-label="Current QPSK bit pairs"></ol>
+    </section>
+
+    <p class="method-note">Each real and imaginary coordinate receives an independent bounded displacement: level × (2 × random − 1). This is an illustrative perturbation, not an AWGN channel simulation.</p>
+  </main>
+  <script src="demo.js"></script>
+</body>
+</html>

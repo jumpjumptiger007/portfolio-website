@@ -1,283 +1,78 @@
-const header = document.querySelector('.header');
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-const navLinksItems = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('section');
-const contactForm = document.getElementById('contactForm');
-
-// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        updateActiveNavLink();
-    });
-    
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
+  const header = document.querySelector('.site-header');
+  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
 
-    navLinksItems.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-    
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetSection = document.querySelector(targetId);
-            if (!targetSection) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
 
-            const scrollPosition = targetSection.offsetTop - header.offsetHeight;
-            
-            window.scrollTo({
-                top: scrollPosition,
-                behavior: 'smooth'
-            });
-        });
-    });
-    
-// Contact Form
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); 
+  const reveal = target => target?.setAttribute('data-reveal', '');
+  document.querySelectorAll('.feature-copy, .feature-flow, .index-intro, .index-table, .now h2, .active-blocks').forEach(reveal);
 
-        const formData = new FormData(contactForm);
-        const formAction = contactForm.getAttribute('action');
+  const primary = document.querySelector('.system-primary');
+  const primaryHeading = primary?.querySelector('h3');
+  const primarySummary = primary?.querySelector(':scope > p');
+  if (primary && primaryHeading && primarySummary) {
+    const primaryCopy = document.createElement('div');
+    primaryCopy.className = 'system-primary-copy';
+    primaryCopy.setAttribute('data-reveal', '');
+    primary.insertBefore(primaryCopy, primaryHeading);
+    primaryCopy.append(primaryHeading, primarySummary);
+  }
+  reveal(primary?.querySelector('.terminal-visual'));
+  reveal(document.querySelector('.systems-stack'));
+  document.querySelectorAll('.feature-flow li').forEach((step, index) => step.style.setProperty('--step', index));
 
-        fetch(formAction, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Thank you for your message! I will get back to you soon.');
-                contactForm.reset();
-            } else {
-                alert('Oops! There was a problem submitting your form');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Oops! There was a problem submitting your form');
-        });
-    });
-}
+  document.body.classList.add('motion-ready');
+  requestAnimationFrame(() => document.body.classList.add('motion-enter'));
 
-// Navigation Link
-    updateActiveNavLink();
-    setupRevealAnimations();
-});
+  const revealTargets = [...document.querySelectorAll('[data-reveal]')];
+  if (!('IntersectionObserver' in window)) {
+    revealTargets.forEach(target => target.classList.add('is-revealed'));
+  } else {
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        currentObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -5% 0px' });
+    revealTargets.forEach(target => observer.observe(target));
+  }
 
-function updateActiveNavLink() {
-    const scrollPosition = window.scrollY + header.offsetHeight + 150;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinksItems.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-    });
-}
+  const hero = document.querySelector('.hero');
+  const ghostAdrian = document.querySelector('.ghost-adrian');
+  let parallaxFrame;
+  const updateParallax = () => {
+    parallaxFrame = undefined;
+    if (!hero) return;
+    const bounds = hero.getBoundingClientRect();
+    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
+    const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height));
+    ghostAdrian?.style.setProperty('--ghost-shift', `${-16 * progress}px`);
+  };
+  const queueParallax = () => {
+    if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
+  };
+  updateParallax();
+  window.addEventListener('scroll', queueParallax, { passive: true });
+  window.addEventListener('resize', queueParallax, { passive: true });
 
-function setupRevealAnimations() {
-    const elements = document.querySelectorAll('.fadeIn');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        
-        if (element.classList.contains('delay-1')) {
-            element.style.transitionDelay = '0.2s';
-        } else if (element.classList.contains('delay-2')) {
-            element.style.transitionDelay = '0.4s';
-        } else if (element.classList.contains('delay-3')) {
-            element.style.transitionDelay = '0.6s';
-        }
-        
-        observer.observe(element);
-    });
-}
-
-// Multilingual Feature for EN/DE
-const translations = {
-    en: {
-        home: 'Home',
-        about: 'About',
-        projects: 'Projects',
-        contact: 'Contact',
-        projectsTitle: 'My Projects',
-
-        heroIntro: 'WELCOME TO MY WEBSITE',
-        heroLead: 'A passionate developer who loves creating elegant solutions and exploring innovative technologies.',
-        heroBtnProjects: 'View My Projects',
-        heroBtnContact: 'Contact Me',
-
-        aboutTitle: 'About Me',
-        aboutSubtitle: 'Software Developer & Technology Enthusiast',
-        aboutDescription1: 'I\'m a passionate developer who loves exploring new technologies and building innovative applications. My journey in software development has equipped me with a diverse skill set and problem-solving abilities that I apply to every project I undertake.',
-        aboutDescription2: 'I\'m always excited to experiment with new technologies and contribute to meaningful projects that solve real-world problems. My approach combines technical expertise with creative thinking to develop elegant solutions.',
-
-        contactTitle: 'Contact Me',
-        contactDescription: 'I\'m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.',
-        contactFormName: 'Name',
-        contactFormEmail: 'Email',
-        contactFormSubject: 'Subject',
-        contactFormMessage: 'Message',
-        contactFormSend: 'Send Message'
-    },
-    de: {
-        home: 'Startseite',
-        about: 'Über mich',
-        projects: 'Projekte',
-        contact: 'Kontakt',
-        projectsTitle: 'Meine Projekte',
-
-        heroIntro: 'WILLKOMMEN AUF MEINER WEBSITE',
-        heroLead: 'Ein leidenschaftlicher Entwickler, der es liebt, elegante Lösungen zu erstellen und innovative Technologien zu erkunden.',
-        heroBtnProjects: 'Meine Projekte ansehen',
-        heroBtnContact: 'Kontaktieren Sie mich',
-
-        aboutTitle: 'Über mich',
-        aboutSubtitle: 'Softwareentwickler & Technologie-Enthusiast',
-        aboutDescription1: 'Ich bin ein leidenschaftlicher Entwickler, der neue Technologien erforscht und innovative Anwendungen entwickelt. Meine Reise in der Softwareentwicklung hat mich mit vielfältigen Fähigkeiten und Problemlösungskompetenz ausgestattet, die ich bei jedem Projekt einsetze.',
-        aboutDescription2: 'Ich bin immer begeistert davon, neue Technologien zu experimentieren und zu Projekten beizutragen, die reale Probleme lösen. Mein Ansatz kombiniert technische Expertise mit kreativem Denken, um elegante Lösungen zu entwickeln.',
-
-        contactTitle: 'Kontaktieren Sie mich',
-        contactDescription: 'Ich bin immer offen für neue Projekte, kreative Ideen oder Möglichkeiten, Teil Ihrer Vision zu werden.',
-        contactFormName: 'Name',
-        contactFormEmail: 'E-Mail',
-        contactFormSubject: 'Betreff',
-        contactFormMessage: 'Nachricht',
-        contactFormSend: 'Nachricht senden'
-    }
-};
-
-let currentLanguage = 'en';
-
-function changeLanguage(lang) {
-    const projectsTitle = document.querySelector('#projects .section-title');
-    if (projectsTitle) {
-        projectsTitle.textContent = translations[lang].projectsTitle;
-    }
-
-    currentLanguage = lang;
-    const navLinks = document.querySelectorAll('.nav-link');
-    const heroIntro = document.querySelector('.hero-site-intro');
-    const heroLead = document.querySelector('.hero-lead');
-    const heroBtns = document.querySelectorAll('.hero-btns .btn');
-
-    navLinks[0].textContent = translations[lang].home;
-    navLinks[1].textContent = translations[lang].about;
-    navLinks[2].textContent = translations[lang].projects;
-    navLinks[3].textContent = translations[lang].contact;
-
-    heroIntro.textContent = translations[lang].heroIntro;
-    heroLead.textContent = translations[lang].heroLead;
-    heroBtns[0].textContent = translations[lang].heroBtnProjects;
-    heroBtns[1].textContent = translations[lang].heroBtnContact;
-
-    const aboutTitle = document.querySelector('#about .section-title');
-    const aboutSubtitle = document.querySelector('.about-text h3');
-    const aboutDescriptions = document.querySelectorAll('.about-text p');
-
-    if (aboutTitle) aboutTitle.textContent = translations[lang].aboutTitle;
-    if (aboutSubtitle) aboutSubtitle.textContent = translations[lang].aboutSubtitle;
-    if (aboutDescriptions[0]) aboutDescriptions[0].textContent = translations[lang].aboutDescription1;
-    if (aboutDescriptions[1]) aboutDescriptions[1].textContent = translations[lang].aboutDescription2;
-
-    const contactTitle = document.querySelector('#contact .section-title');
-    const contactDescription = document.querySelector('.contact-info p');
-    const contactFormLabels = document.querySelectorAll('.form-label');
-    const contactFormSendBtn = document.querySelector('#contactForm button');
-
-    if (contactTitle) contactTitle.textContent = translations[lang].contactTitle;
-    if (contactDescription) contactDescription.textContent = translations[lang].contactDescription;
-    
-    if (contactFormLabels[0]) contactFormLabels[0].textContent = translations[lang].contactFormName;
-    if (contactFormLabels[1]) contactFormLabels[1].textContent = translations[lang].contactFormEmail;
-    if (contactFormLabels[2]) contactFormLabels[2].textContent = translations[lang].contactFormSubject;
-    if (contactFormLabels[3]) contactFormLabels[3].textContent = translations[lang].contactFormMessage;
-    
-    if (contactFormSendBtn) contactFormSendBtn.textContent = translations[lang].contactFormSend;
-
-    localStorage.setItem('language', lang);
-}
-
-// Language switcher dropdown functionality
-const languageSwitcher = document.querySelector('.language-switcher');
-const languageSwitcherToggle = document.querySelector('.language-switcher-toggle');
-const currentLanguageIcon = document.getElementById('current-language-icon');
-
-languageSwitcherToggle.addEventListener('click', () => {
-    languageSwitcher.classList.toggle('active');
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!languageSwitcher.contains(e.target)) {
-        languageSwitcher.classList.remove('active');
-    }
-});
-
-document.querySelectorAll('.language-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang');
-        const flagImg = btn.querySelector('img').cloneNode(true);
-        
-        currentLanguageIcon.innerHTML = '';
-        currentLanguageIcon.appendChild(flagImg);
-        
-        languageSwitcher.classList.remove('active');
-        
-        changeLanguage(lang);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language');
-    if (savedLang) {
-        changeLanguage(savedLang);
-        
-        // Update the current language icon based on saved language
-        const flagPath = `assets/flags/${savedLang}.svg`;
-        const flagAlt = savedLang === 'en' ? 'English' : 'Deutsch';
-        currentLanguageIcon.innerHTML = `<img src="${flagPath}" alt="${flagAlt}">`;
-    }
+  if (window.innerWidth <= 760 || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const signalLink = document.querySelector('.signal-link');
+  if (!signalLink) return;
+  const resetSignal = () => {
+    signalLink.style.setProperty('--magnetic-x', '0px');
+    signalLink.style.setProperty('--magnetic-y', '0px');
+  };
+  signalLink.addEventListener('pointermove', event => {
+    const bounds = signalLink.getBoundingClientRect();
+    const x = Math.max(-7, Math.min(7, ((event.clientX - (bounds.left + bounds.width / 2)) / bounds.width) * 14));
+    const y = Math.max(-7, Math.min(7, ((event.clientY - (bounds.top + bounds.height / 2)) / bounds.height) * 14));
+    signalLink.style.setProperty('--magnetic-x', `${x}px`);
+    signalLink.style.setProperty('--magnetic-y', `${y}px`);
+  });
+  signalLink.addEventListener('pointerleave', resetSignal);
+  signalLink.addEventListener('blur', resetSignal);
 });

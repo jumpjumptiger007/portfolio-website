@@ -1,204 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yiqiang Adrian Liu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yiqiang Adrian Liu — independent developer and builder of useful, sometimes strange, software.">
+  <title>Yiqiang Adrian Liu — Independent Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <img src="assets/favicon/android-chrome-512x512.png" alt="YAL Logo" class="logo-icon">
-                </a>
-                <!-- Navigation links -->
-                <div class="nav-links">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-toggle">
-                        <span id="current-language-icon"><img src="assets/flags/en.svg" alt="Current Language"></span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="language-dropdown">
-                        <button class="language-btn" data-lang="en">
-                            <img src="assets/flags/en.svg" alt="English">
-                            <span>English</span>
-                        </button>
-                        <button class="language-btn" data-lang="de">
-                            <img src="assets/flags/de.svg" alt="Deutsch">
-                            <span>Deutsch</span>
-                        </button>
-                    </div>
-                </div>
-                <button class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-digital-elements"></div>
-        <div class="container">
-            <div class="hero-content fadeIn">
-                <h1>Yiqiang Adrian Liu</h1>
-                <p class="hero-site-intro">WELCOME TO MY WEBSITE</p>
-                <p class="hero-lead">A passionate developer who loves creating elegant solutions and exploring innovative technologies.</p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn">View My Projects</a>
-                    <a href="#contact" class="btn btn-solid">Contact Me</a>
-                </div>
-            </div>
-        </div>
+  <a class="skip-link" href="#work">Skip to featured work</a>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="monogram" href="#top" aria-label="Yiqiang Adrian Liu — home"><img src="assets/brand/yal-mark.svg" alt=""></a>
+      <div class="nav-links"><a href="#work">WORK</a><a href="#project-index" aria-label="Browse the project index">ARCHIVE</a><a href="#now">ABOUT</a></div>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <p class="hero-ghost ghost-adrian" aria-hidden="true">ADRIAN</p>
+      <div class="hero-inner">
+        <h1 id="hero-title"><span class="name-yiqiang">YIQIANG</span><span class="name-adrian">ADRIAN <strong>LIU</strong></span></h1>
+        <div class="hero-statement"><p class="magazine-label">PERSONAL TECH MAGAZINE</p><p>I build useful things,<br>sometimes strange ones.</p></div>
+        <div class="hero-intro"><p class="mono-label">INDEPENDENT DEVELOPER &amp; BUILDER</p><p>Software / Tools / Experiments</p><a class="text-link" href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+      </div>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-title-container">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-image fadeIn">
-                    <img src="assets/profile.jpg" alt="Yiqiang Adrian Liu" class="profile-image">
-                </div>
-                <div class="about-text fadeIn delay-1">
-                    <h3>Software Developer & Technology Enthusiast</h3>
-                    <p>I'm a passionate developer who loves exploring new technologies and building innovative applications. My journey in software development has equipped me with a diverse skill set and problem-solving abilities that I apply to every project I undertake.</p>
-                    <p>I'm always excited to experiment with new technologies and contribute to meaningful projects that solve real-world problems. My approach combines technical expertise with creative thinking to develop elegant solutions.</p>
-                    <div class="skills">
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">SMTP</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Web Scraping</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="section-title-container">
-                <h2 class="section-title">My Projects</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="project-grid">
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-title-container">
-                <h2 class="section-title">Contact Me</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info fadeIn">
-                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <div class="contact-label">Email</div>
-                            <div class="contact-value">
-                                <a href="mailto:contact@yliu.tech">contact@yliu.tech</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="contact-text">
-                            <div class="contact-label">GitHub</div>
-                            <div class="contact-value">
-                                <a href="https://github.com/jumpjumptiger007" target="_blank">github.com/jumpjumptiger007</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form fadeIn delay-1">
-                    <form id="contactForm" action="https://formspree.io/f/xanedzzj" method="POST">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" class="form-control" required></textarea>
-                        </div>
-                        <!-- Anti-spam: redirect to homepage -->
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-logo">Yiqiang Adrian Liu</div>
-                <div class="footer-social">
-                    <a href="mailto:contact@yliu.tech" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://github.com/jumpjumptiger007" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Yiqiang Adrian Liu. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
-    <script src="js/projects.js"></script>
+    <section class="section feature" id="work" aria-labelledby="featured-title"><div class="section-tag" data-reveal><span>01</span> COVER STORY</div><div class="feature-layout" id="featured-project"></div></section>
+    <section class="section systems" aria-labelledby="systems-title"><div class="systems-heading"><div class="section-tag" data-reveal><span>02</span> SELECTED SYSTEMS</div><h2 id="systems-title">Systems for<br>making work <em>move.</em></h2></div><div id="selected-systems"></div></section>
+    <section class="section project-index" id="project-index" aria-labelledby="index-title"><div class="index-layout"><div class="index-intro" data-reveal><div class="section-tag"><span>03</span> PROJECT INDEX</div><h2 id="index-title">ALL THE WORK,<br>AT A GLANCE.</h2><p>Experiments, tools, and systems made to solve a particular problem—or make a stranger one worth exploring.</p><a class="text-link" href="#contact">START A CONVERSATION <span aria-hidden="true">↘</span></a></div><div class="index-table" data-reveal><p class="index-note">COMPLETE INDEX / 09 ENTRIES</p><div class="index-columns" aria-hidden="true"><span>NO.</span><span>PROJECT / CLASS</span><span>STATUS</span><span>YEAR</span><span></span></div><div class="project-rows" id="project-rows"></div></div></div></section>
+    <section class="section now" id="now" aria-labelledby="now-title"><div class="section-tag" data-reveal><span>04</span> NOW / CURRENT</div><div class="now-layout"><h2 id="now-title" data-reveal>WHAT’S<br><em>ACTIVE.</em></h2><div class="active-blocks" data-reveal><article><p class="mono-label">BUILDING</p><h3>Small, specific tools with useful edges.</h3><p>Building developer tools, agentic workflows, and small agent products for real use.</p></article><article><p class="mono-label">EXPLORING</p><h3>Interfaces with personality, not noise.</h3><p>Looking for better ways to make technical systems feel clear, direct, and alive.</p></article></div></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="contact-grid" aria-hidden="true"></div><div class="contact-head"><p class="section-tag"><span>05</span> CONTACT / SIGNAL</p><i aria-hidden="true"></i></div><div class="contact-copy-group" data-reveal><h2 id="contact-title">Get in <a href="mailto:contact@yliu.tech">touch.</a></h2><p class="contact-copy">I’m open to interesting projects, collaborations, or just a good conversation about technology and the internet.</p></div><a class="signal-link" href="mailto:contact@yliu.tech"><span>SEND A SIGNAL</span><b aria-hidden="true">→</b></a><div class="contact-footer"><a href="mailto:contact@yliu.tech">EMAIL</a><a href="https://github.com/jumpjumptiger007" target="_blank" rel="noopener noreferrer">GITHUB</a><span>LINKEDIN</span><p>© 2026 YIQIANG ADRIAN LIU</p></div></section>
+  </main>
+  <noscript><p class="noscript">This project index needs JavaScript enabled.</p></noscript>
+  <script type="module" src="js/projects.js"></script><script src="js/main.js"></script>
 </body>
 </html>

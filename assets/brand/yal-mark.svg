@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 233 116" role="img" aria-labelledby="title desc">
+  <title id="title">C1 editorial monogram</title>
+  <desc id="desc">A wide six-part editorial construction with isolated white and acid-green diagonals.</desc>
+
+  <!-- Broad left construction with a narrow waist. -->
+  <path fill="#F5F3ED" d="M0 1h39l-4 5 35 51-32 57H14l31-57Z"/>
+
+  <!-- Thin white diagonal visible between the left glyph and the apex. -->
+  <path fill="#F5F3ED" d="m98 0h5L73 57h-5Z"/>
+
+  <!-- Separate acid-green diagonal. -->
+  <path fill="#A6FF1A" d="m94 40 14 27-30 47H51Z"/>
+
+  <!-- Main descending diagonal. -->
+  <path fill="#F5F3ED" d="m114 0 59 113h-34L98 31Z"/>
+
+  <!-- Right bar; its sloped left edge preserves the narrow dark wedge. -->
+  <path fill="#F5F3ED" d="M149 0h26v113L149 56Z"/>
+
+  <!-- Long baseline with the small rising terminal at far right. -->
+  <path fill="#F5F3ED" d="M139 110h68l13-13 13 17v2h-94Z"/>
+</svg>

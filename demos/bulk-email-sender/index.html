@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Email task builder</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <main class="instrument" aria-labelledby="demo-title">
+    <header class="instrument-header">
+      <div>
+        <p class="eyebrow">Browser task preparation</p>
+        <h1 id="demo-title">Task builder</h1>
+      </div>
+      <p class="boundary"><strong>Prepares a task file.</strong><span>No email is sent from this demo.</span></p>
+    </header>
+
+    <div class="workflow-grid">
+      <div class="workflow-column">
+        <section class="module" aria-labelledby="message-title">
+          <div class="module-heading">
+            <span class="step" aria-hidden="true">01</span>
+            <div><h2 id="message-title">Message</h2><p>Subject and reusable text</p></div>
+          </div>
+          <label class="field-label" for="subject">Subject
+            <input id="subject" type="text" value="A note for {{name}}" autocomplete="off">
+          </label>
+          <label class="field-label" for="template">Message template
+            <textarea id="template" rows="3" spellcheck="false">Hello {{name}},
+
+A quick note from {{company}}. This is a sample task preview.</textarea>
+          </label>
+          <p class="hint">Use exact CSV headers like {{name}}. The preview displays message text; it does not render HTML.</p>
+        </section>
+
+        <section class="module recipients-module" aria-labelledby="recipients-title">
+          <div class="module-heading">
+            <span class="step" aria-hidden="true">02</span>
+            <div><h2 id="recipients-title">Recipients</h2><p>CSV stays in this frame</p></div>
+          </div>
+          <div class="file-actions">
+            <label class="file-picker" for="csv-file">Choose CSV</label>
+            <input id="csv-file" type="file" accept=".csv,text/csv" aria-label="Choose a recipient CSV file">
+            <button id="load-sample" class="quiet" type="button">Load sample data</button>
+          </div>
+          <p id="csv-message" class="status-message" role="status" aria-live="polite">Loading synthetic sample…</p>
+          <p id="recipient-count" class="recipient-count">No recipients</p>
+          <div id="recipient-preview" class="table-shell" aria-label="Recipient preview"></div>
+          <p id="more-rows" class="more-rows" hidden></p>
+        </section>
+      </div>
+
+      <div class="workflow-column">
+        <section class="module" aria-labelledby="preview-title">
+          <div class="module-heading">
+            <span class="step" aria-hidden="true">03</span>
+            <div><h2 id="preview-title">Preview</h2><p>First recipient with an email value</p></div>
+          </div>
+          <div class="preview-field">
+            <h3>Subject</h3>
+            <p id="subject-preview" class="preview-value"></p>
+          </div>
+          <div class="preview-field">
+            <h3>Message text</h3>
+            <pre id="message-preview" class="preview-value preview-body"></pre>
+          </div>
+          <p class="hint">Known placeholders are substituted. Unknown placeholders stay visible.</p>
+        </section>
+
+        <section class="module task-module" aria-labelledby="task-title">
+          <div class="module-heading">
+            <span class="step" aria-hidden="true">04</span>
+            <div><h2 id="task-title">Task JSON</h2><p>Preparation stops here</p></div>
+          </div>
+          <label class="field-label" for="task-name">Task name
+            <input id="task-name" type="text" value="sample_email_task" autocomplete="off">
+          </label>
+          <div class="task-actions">
+            <button id="generate-json" type="button" disabled>Generate task JSON</button>
+          </div>
+          <label class="sr-only" for="task-json">Generated task JSON</label>
+          <textarea id="task-json" class="json-output" rows="7" readonly spellcheck="false" placeholder="Generate task JSON to review the payload."></textarea>
+          <div class="task-actions">
+            <button id="copy-json" class="quiet" type="button" disabled>Copy JSON</button>
+          </div>
+          <p id="task-message" class="status-message" role="status" aria-live="polite">No task JSON generated.</p>
+        </section>
+      </div>
+    </div>
+
+    <p class="privacy-note">Recipient data stays in this demo and is not retained.</p>
+  </main>
+  <script src="demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,593 @@
+// Canonical project definitions shared by the browser homepage and Node generator.
+export const projectsData = [
+  {
+    slug: "interdemtv",
+    number: 1,
+    title: "InterDemTV",
+    featureHeadline: ["INTER", "DIMENSIONAL", "CABLE"],
+    type: "Web Experiment",
+    year: 2026,
+    status: "live",
+    featured: true,
+    selectedSystem: false,
+    summary: "A retro web television for wandering through strange corners of the internet.",
+    featureFlow: ["CURATED SOURCES", "RANDOM CHANNEL", "FILTER / SAVE / NEXT"],
+    tags: ["Web experiment", "Signal archive", "Internet culture"],
+    liveUrl: "https://tv.yliu.tech/",
+    githubUrl: "https://github.com/jumpjumptiger007/interdimensional-cable",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: true },
+      titleLines: ["InterDemTV", "Interdimensional Cable"],
+      modules: [
+        {
+          type: "signal",
+          label: "Receiver sequence",
+          title: "From source feeds to channel surfing",
+          stages: ["Sources", "Catalog", "Shuffle", "Tune", "Save / skip"],
+        },
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "A receiver for internet discovery",
+          paragraphs: [
+            "InterDemTV turns a refreshed catalog of internet video into a constrained, television-like mode of discovery. Instead of search or a category browser, the interface asks a viewer to surf through a shuffled sequence of channels.",
+            "A retro CRT television, signal-room scene, and physical-style remote frame the experience. Viewers move forward or backward through the receiver sequence, then save a channel or permanently skip it in their own browser.",
+          ],
+        },
+        {
+          type: "system",
+          label: "Content pipeline",
+          title: "A generated channel catalog",
+          rows: [
+            ["Reddit RSS + Arctic Shift", "Daily GitHub Action", "Unique YouTube IDs", "videos.json"],
+            ["videos.json", "Fisher–Yates shuffle", "Receiver sequence", "YouTube IFrame playback"],
+          ],
+          caption: "The browser reads the generated catalog; it does not fetch Reddit at runtime. Video files remain hosted by YouTube.",
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "A static receiver with local state",
+          paragraphs: [
+            "The application is static HTML, CSS, and JavaScript on GitHub Pages. A daily workflow collects a curated source set through Reddit RSS and Arctic Shift, produces a catalog of unique YouTube IDs, and can check that IDs are public and embeddable before the catalog is published.",
+            "At load, the receiver Fisher–Yates shuffles the catalog, then traverses that sequence forward or backward while skipping locally blocked IDs and playback failures. The RND control has a separate role: for a newly loaded video longer than five minutes, it selects a random start point while leaving at least the final minute available.",
+            "Favorites, permanent skips, and receiver settings such as channel, volume, mute state, random mode, and ambience persist in localStorage. Playback positions are held only for the current page session. A service worker caches first-party static assets; YouTube playback remains outside that cache.",
+          ],
+        },
+        {
+          type: "workflow",
+          label: "Viewer workflow",
+          title: "Tune, move, keep, or reject",
+          steps: [
+            { title: "Power on", text: "Load the shuffled receiver sequence and tune the current saved channel when one exists." },
+            { title: "Move through channels", text: "Go forward or backward through the shuffled list; blocked and failed videos are left out of the sequence." },
+            { title: "Change the signal", text: "Use RND to enter longer videos at a different point, or FILTER to turn CRT display effects on or off." },
+            { title: "Keep or reject", text: "Save a favorite or permanently skip an unwanted channel. Both choices remain local to the browser." },
+          ],
+        },
+        {
+          type: "output",
+          label: "Receiver controls",
+          title: "A small set of deliberate controls",
+          items: [
+            { title: "Channel navigation", text: "Previous and next travel through one shuffled receiver sequence." },
+            { title: "Signal controls", text: "RND changes the start point inside longer videos; FILTER changes CRT display effects only." },
+            { title: "Local memory", text: "Favorites and permanent skips are stored in the browser, without accounts or cloud sync." },
+            { title: "Receiver state", text: "Saved channel, volume, mute state, random mode, and ambience return across sessions." },
+            { title: "Viewing", text: "Fullscreen, a help modal, and keyboard shortcuts support the receiver interface." },
+          ],
+          caption: "InterDemTV keeps control intentionally narrow: it is a channel-surfing experiment, without a queue, watched-history view, or content-filtering system.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "codex-provider-switcher",
+    number: 2,
+    title: "Codex Provider Switcher",
+    type: "Developer Tool",
+    year: 2026,
+    status: "prototype",
+    featured: false,
+    selectedSystem: true,
+    summary: "A focused utility for changing Codex model providers without losing the flow of work.",
+    liveUrl: null,
+    githubUrl: null,
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Codex Provider", "Switcher"],
+      modules: [
+        {
+          type: "signal",
+          label: "Provider status",
+          title: "$ codex-provider status",
+          stages: ["provider: openai/chatgpt", "backup: exact restore available", "✓ Configuration healthy"],
+        },
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "A retained prototype",
+          paragraphs: [
+            "Codex Provider Switcher explored a small utility for changing model-provider configuration while keeping a known restore point. The earlier implementation is no longer treated as an active tool; the project is being retained here as a prototype before a future redevelopment.",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: "job-search-agent",
+    number: 3,
+    title: "Job Search Agent",
+    type: "AI System",
+    year: 2026,
+    status: "active",
+    featured: false,
+    selectedSystem: true,
+    summary: "An agentic workflow that turns a sprawling job search into a considered, trackable system.",
+    liveUrl: null,
+    githubUrl: "https://github.com/jumpjumptiger007/job-search-agent",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Job Search", "Agent"],
+      modules: [
+        {
+          type: "signal",
+          label: "The operating sequence",
+          title: "Dashboard workflow",
+          stages: ["Discovery", "Your decision", "Codex Desktop", "Generate", "Apply manually"],
+        },
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "Overview",
+          paragraphs: [
+            "Job Search Agent is a local, single-user dashboard for a Germany-focused job search. It gathers listings from configured sources, filters and deduplicates them, then places accepted roles in a review queue.",
+            "The workflow keeps discovery, personal decisions, role analysis, application materials, and follow-up in one trackable place. Codex Desktop handles explicit analysis outside the app; a person decides what to pursue and submits each application manually.",
+          ],
+        },
+        {
+          type: "workflow",
+          label: "How it works",
+          title: "From listing to follow-through",
+          steps: [
+            {
+              title: "Discover",
+              text: "Manually run discovery across configured sources. Preference filters, normalization, canonical-source selection, and deduplication happen before accepted jobs enter local state.",
+            },
+            {
+              title: "Review",
+              text: "Each accepted role waits for a human decision: mark it Interested or Skip. Discovery does not score jobs automatically.",
+            },
+            {
+              title: "Analyze",
+              text: "For an Interested role, the Dashboard provides a job-specific prompt for Codex Desktop. The returned analysis is validated against the job description and references to the factual candidate profile before it is stored.",
+            },
+            {
+              title: "Prepare",
+              text: "Material generation is a deliberate action after validation. The project builds factual resume data from the approved tailoring plan; pinned RenderCV v2.8 renders the resume PDF.",
+            },
+            {
+              title: "Apply manually",
+              text: "The user opens the employer’s posting, submits the application there, and records application status in the Dashboard. The system never submits it automatically.",
+            },
+          ],
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "State stays local",
+          paragraphs: [
+            "The Next.js Dashboard and its route handlers use SQLite as the canonical operational state for job records, source links, review and application status, and audit history. Candidate profile data and generated materials stay in the local workspace.",
+            "Codex Desktop is the external analysis orchestrator; no LLM runs inside the Dashboard or Electron shell. Validated analysis and human review gate material generation, while discovery stops at the review queue.",
+          ],
+        },
+        {
+          type: "output",
+          label: "Media / output",
+          title: "The Dashboard’s work queues",
+          items: [
+            { title: "Review", text: "New roles awaiting a decision" },
+            { title: "Analyze", text: "Interested roles awaiting Codex analysis" },
+            { title: "Materials", text: "Validated roles awaiting application documents" },
+            { title: "Ready to Apply", text: "Materials prepared; application remains manual" },
+            { title: "Active applications", text: "Submitted roles being tracked" },
+            { title: "History", text: "Skipped, rejected, or withdrawn roles retained" },
+          ],
+          caption: "The Dashboard separates new review decisions from analysis, materials, active applications, and retained history.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "local-voice-assistant",
+    number: 4,
+    title: "Local Voice Assistant",
+    type: "AI Experiment",
+    year: 2026,
+    status: "prototype",
+    featured: false,
+    selectedSystem: true,
+    summary: "A private, local-first assistant designed to make spoken computer interaction feel direct.",
+    liveUrl: null,
+    githubUrl: null,
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Local Voice", "Assistant"],
+      modules: [
+        { type: "signal", label: "Local inference loop", title: "Speech in, speech out", stages: ["Record", "Whisper", "Qwen", "Kokoro", "Playback"] },
+        {
+          type: "overview", label: "Project overview", title: "A local, turn-based voice prototype",
+          paragraphs: [
+            "Local Voice Assistant is a single-user macOS prototype that connects microphone input, local transcription, a local language model, and speech playback in one turn-based loop. Pressing Return starts recording; pressing it again ends the utterance.",
+            "The terminal prints the recognized speech and the assistant response, then plays the synthesized reply. An earlier retained browser/server experiment explored a lower-latency direction, but the current formal entrypoint is a simpler local command-line application.",
+          ],
+        },
+        {
+          type: "technical", label: "Current implementation", title: "Local model runtimes joined by a Python CLI",
+          paragraphs: [
+            "The CLI records 16 kHz mono audio with sounddevice and writes temporary audio under the project directory. mlx-whisper transcribes the recording locally with a Whisper small model. llama-cpp-python then runs a local Qwen2.5-3B GGUF model using only the system instruction and the current utterance.",
+            "MLX-Audio/Kokoro synthesizes the reply. The app selects a Mandarin voice when Chinese characters appear and an English voice otherwise, then plays the generated audio with afplay. If Kokoro fails, it falls back to macOS say.",
+            "The main inference path runs locally once model assets are available; setup may download those assets when needed. The present CLI is one-turn and does not implement conversation history, durable memory, voice activity detection, interruption handling, or realtime audio streaming.",
+          ],
+        },
+        {
+          type: "workflow", label: "One interaction turn", title: "Record, transcribe, respond, play",
+          steps: [
+            { title: "Start recording", text: "Press Return in the terminal, then speak into the microphone." },
+            { title: "Stop recording", text: "Press Return again to finish the utterance and save the temporary local audio." },
+            { title: "Transcribe and respond", text: "Local Whisper produces text, then the local Qwen model receives that current utterance and returns a concise reply." },
+            { title: "Synthesize and play", text: "Kokoro produces an English or Mandarin spoken response for macOS playback; say is available if synthesis fails." },
+          ],
+        },
+        {
+          type: "output", label: "Observable output", title: "A terminal trace and spoken reply",
+          items: [
+            { title: "Transcript", text: "Recognized speech is printed in the terminal after local transcription." },
+            { title: "Assistant reply", text: "The one-turn Qwen response is shown in the terminal before it is spoken." },
+            { title: "Spoken response", text: "Kokoro synthesis plays through macOS audio, choosing a Mandarin or English voice from the reply text." },
+            { title: "Fallback", text: "macOS say is used when Kokoro synthesis is unavailable or fails." },
+            { title: "Temporary audio", text: "Recordings and generated response audio stay in the project-local temp directory." },
+          ],
+          caption: "The current formal app is a local terminal interaction, without a public web interface or persistent conversation view.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "pollen-alert-germany",
+    number: 5,
+    title: "Pollen Alert Germany",
+    type: "Public Service",
+    year: 2025,
+    status: "live",
+    featured: false,
+    selectedSystem: false,
+    summary: "Multilingual pollen forecasts and notifications for Germany.",
+    liveUrl: null,
+    githubUrl: "https://github.com/jumpjumptiger007/pollen-alert-germany",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Pollen Alert", "Germany"],
+      modules: [
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "A forecast delivered by email",
+          paragraphs: [
+            "Pollen Alert Germany turns WetterOnline pollen forecasts into readable email alerts for a configurable German city. Berlin is the default when no city is supplied.",
+            "The scheduled workflow prepares the forecast in English, German, or Chinese and sends it by email, so recipients can check the daily report without repeatedly opening the forecast page. It presents forecast information; it does not diagnose allergies or provide medical advice.",
+          ],
+        },
+        {
+          type: "system",
+          label: "Information flow",
+          title: "From public forecast to inbox",
+          rows: [
+            ["WetterOnline", "Python scraper", "Four pollen levels", "HTML email", "SMTP delivery"],
+          ],
+          caption: "GitHub Actions schedules the Python job. It retrieves and parses the forecast, normalizes each pollen concentration, then sends the rendered email through the configured SMTP server.",
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "A small scheduled Python job",
+          paragraphs: [
+            "The scraper uses requests to retrieve the WetterOnline page and BeautifulSoup to parse its forecast. The target city is configurable through CITY_NAME, with Berlin as the default. Concentrations are mapped to four levels: 0 none, 1 low, 2 medium, and 3 high.",
+            "GitHub Actions provides the scheduled run, documented for 07:00 UTC each day once the workflow is enabled. Email settings are supplied through environment variables and GitHub Secrets; SMTP handles delivery, while the generated HTML supports English, German, and Chinese labels.",
+          ],
+        },
+        {
+          type: "output",
+          label: "Email report",
+          title: "What the forecast contains",
+          items: [
+            { title: "Location and date", text: "The selected city and the forecast date identify the report." },
+            { title: "Pollen by type", text: "The report lists pollen types with a normalized concentration from 0 to 3." },
+            { title: "Three languages", text: "HTML email templates present the forecast in English, German, or Chinese." },
+            { title: "Scheduled delivery", text: "A configured SMTP account sends the report when the GitHub Actions workflow runs." },
+          ],
+          caption: "The report organizes each pollen type into a normalized concentration level from 0 to 3.",
+        },
+        {
+          type: "image",
+          label: "Email preview",
+          title: "A readable forecast table",
+          src: "projects/pollen-alert-germany/preview.jpg",
+          alt: "A pollen forecast email table with German column headings for pollen type, English name, and concentration level; rows show pollen names and none or low indicators.",
+          caption: "Sample email output pairs pollen names with labeled concentration levels.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "bulk-email-sender",
+    number: 6,
+    title: "Bulk Email Sender",
+    type: "Automation Tool",
+    year: 2025,
+    status: "live",
+    featured: false,
+    selectedSystem: false,
+    summary: "A browser-to-automation workflow for preparing personalized email tasks.",
+    liveUrl: null,
+    githubUrl: "https://github.com/jumpjumptiger007/bulk-email-sender",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Bulk Email", "Sender"],
+      modules: [
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "Prepare once, deliver through a separate run",
+          paragraphs: [
+            "Bulk Email Sender turns a recipient CSV and reusable HTML template into a task for personalized SMTP email. The browser interface helps prepare and preview that task; it does not send messages.",
+            "The embedded V5 demo covers this preparation stage and stops at task JSON. Actual delivery runs separately, either locally with Node.js or through GitHub Actions; both paths use the same task format and SMTP configuration, then produce a results report.",
+          ],
+        },
+        {
+          type: "system",
+          label: "System flow",
+          title: "Preparation ends at the task file",
+          rows: [
+            ["CSV recipients + HTML template", "Browser task builder", "Task JSON"],
+            ["Task JSON", "Local Node.js sender", "Nodemailer / SMTP", "Results JSON"],
+            ["Task JSON in tasks/", "GitHub Actions", "SMTP delivery", "Results JSON"],
+          ],
+          caption: "The real repository workflow continues from task JSON to local Node.js or GitHub Actions delivery through SMTP. The embedded V5 demo ends at task preparation and never sends email.",
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "One task model, two execution paths",
+          paragraphs: [
+            "The repository browser UI uses Papa Parse to read recipient CSV, requires an email column, previews up to five rows, and substitutes double-curly variables such as {{name}} in the subject and HTML body. The dependency-free embedded V5 demo covers task preparation with a small local CSV parser and renders CSV and template values as text; it stops at task JSON and does not execute HTML-like input.",
+            "The local Node.js command reads a task JSON path and sends personalized messages sequentially with Nodemailer over SMTP. The GitHub Actions workflow processes task files added under tasks/ and contains its own inline sender logic. Both paths use SMTP settings from environment configuration or GitHub Secrets and write a results JSON file with success and failure counts.",
+          ],
+        },
+        {
+          type: "workflow",
+          label: "Use the workflow",
+          title: "From recipient list to delivery report",
+          steps: [
+            { title: "Compose", text: "Enter a subject and HTML template, then add double-curly variables for recipient-specific fields." },
+            { title: "Prepare recipients", text: "Upload a CSV with an email column. Other columns can supply values for the template." },
+            { title: "Preview and prepare", text: "The embedded demo previews up to five recipients, substitutes template variables, and generates task JSON." },
+            { title: "Choose execution", text: "In the real repository workflow, run the task locally with Node.js or add its JSON under tasks/ for GitHub Actions." },
+            { title: "Review results", text: "After external execution, inspect the results JSON for recipient totals, successes, failures, and recorded errors." },
+          ],
+        },
+        {
+          type: "interactive",
+          label: "Interactive demo",
+          title: "Build a task without sending",
+          src: "demos/bulk-email-sender/index.html",
+          frameTitle: "Interactive bulk email task builder",
+          caption: "Load sample recipients or a local CSV, preview template substitution, and generate task JSON. No email is sent from this demo.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "qpsk-visualization",
+    number: 7,
+    title: "QPSK Visualization",
+    type: "Technical Visualisation",
+    year: 2025,
+    status: "live",
+    featured: false,
+    selectedSystem: false,
+    summary: "An interactive view of QPSK modulation and signal noise.",
+    liveUrl: "projects/qpsk-modulation/",
+    githubUrl: "https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["QPSK", "Visualization"],
+      modules: [
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "Make the symbol mapping visible",
+          paragraphs: [
+            "This browser visualization generates 40 random bits and groups them into 20 QPSK symbols. Each pair selects one of four ideal positions in the I/Q constellation.",
+            "An adjustable random displacement moves the displayed coordinates around those ideal points. Showing the original and perturbed symbols together makes the mapping and its visual change easy to compare; the perturbation is illustrative, not a physical channel model.",
+          ],
+        },
+        {
+          type: "system",
+          label: "Signal flow",
+          title: "From bit pairs to plotted coordinates",
+          rows: [
+            ["40 random bits", "20 bit pairs", "QPSK mapping"],
+            ["Ideal I/Q coordinates", "Random I/Q displacement", "SVG constellation"],
+          ],
+          caption: "Each pair maps to one of four normalized constellation positions. The displacement control adds a separate bounded random offset to the real and imaginary coordinates before plotting the perturbed points.",
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "A small stateful browser visualization",
+          paragraphs: [
+            "The original standalone visualization used a React component; the embedded V5 demo preserves the same mapping and interaction in vanilla JavaScript and SVG. Forty random bits become twenty pairs, with each I and Q coordinate set to +1/√2 or −1/√2 according to the pair.",
+            "The displacement slider ranges from 0 to 1 in 0.01 steps. For each coordinate, the demo adds level × (2 × Math.random() − 1), then plots the ideal and displaced points in SVG. This is bounded random I/Q perturbation, not Gaussian noise or an AWGN channel simulation.",
+          ],
+        },
+        {
+          type: "output",
+          label: "QPSK mapping",
+          title: "Two bits select one of four positions",
+          items: [
+            { title: "00", text: "I = +1/√2 · Q = +1/√2" },
+            { title: "01", text: "I = −1/√2 · Q = +1/√2" },
+            { title: "10", text: "I = +1/√2 · Q = −1/√2" },
+            { title: "11", text: "I = −1/√2 · Q = −1/√2" },
+          ],
+          caption: "The constellation labels its horizontal and vertical axes Real and Imag.",
+        },
+        {
+          type: "workflow",
+          label: "Explore the visualization",
+          title: "Change the data and compare points",
+          steps: [
+            { title: "Generate data", text: "Create a new random 40-bit stream and map its 20 pairs to the ideal QPSK positions." },
+            { title: "Adjust displacement", text: "Move the 0–1 displacement slider to change the maximum random displacement applied independently to I and Q." },
+            { title: "Regenerate displacement", text: "Generate another set of random offsets around the same ideal symbol coordinates." },
+            { title: "Compare the field", text: "Show or hide ideal and perturbed points independently, then compare the constellation with the current bit-pair sequence." },
+          ],
+        },
+        {
+          type: "interactive",
+          label: "Interactive demo",
+          title: "Explore the constellation",
+          src: "demos/qpsk-visualization/index.html",
+          frameTitle: "Interactive QPSK constellation visualization",
+          caption: "Adjust the bounded displacement, regenerate the bit stream, and compare ideal and perturbed symbols.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "password-generator",
+    number: 8,
+    title: "Password Generator",
+    type: "Utility",
+    year: 2025,
+    status: "live",
+    featured: false,
+    selectedSystem: false,
+    summary: "A configurable password generator with strength guidance.",
+    liveUrl: "projects/password-generator/",
+    githubUrl: "https://github.com/jumpjumptiger007/password-generator",
+    hidden: false,
+    detail: {
+      status: "complete",
+      actions: { liveDemo: false },
+      titleLines: ["Password", "Generator"],
+      modules: [
+        {
+          type: "overview",
+          label: "Project overview",
+          title: "Configure a password in the browser",
+          paragraphs: [
+            "This browser utility generates a password from a chosen length and character groups. The embedded V5 demo uses the browser’s Web Crypto random source, supports similar-character and ambiguous-punctuation exclusions, and provides five-level heuristic strength guidance with a selectable value for copying.",
+            "Generated values are not saved by the embedded demo. The earlier standalone page used Math.random() and browser-local history; that historical implementation remains available as source context, not as the public interactive experience.",
+          ],
+        },
+        {
+          type: "system",
+          label: "Generation flow",
+          title: "From constraints to a generated value",
+          rows: [
+            ["Length + character options", "Filtered character sets", "Web Crypto selection"],
+            ["Required-group coverage", "Secure shuffle", "Generated password"],
+            ["Generated password", "Heuristic strength", "Copy"],
+          ],
+          caption: "The embedded demo selects one value from each enabled group, fills the remaining positions from the allowed pool, then securely shuffles the result.",
+        },
+        {
+          type: "technical",
+          label: "Implementation",
+          title: "A client-side utility with a heuristic meter",
+          paragraphs: [
+            "The embedded V5 demo uses HTML, CSS, and vanilla JavaScript without a backend or network requests. Length ranges from 4 to 100 characters, defaults to 16, and can include uppercase, lowercase, numbers, and symbols; all four groups start enabled. Optional filters remove similar or selected ambiguous characters.",
+            "Password randomness in the embedded demo comes from crypto.getRandomValues(). Rejection sampling selects characters without modulo bias, one character is selected from every enabled group, and an unbiased secure shuffle sets the final order. The five strength labels are heuristic guidance based on password length and the enabled character groups, not a security audit or guarantee.",
+            "The earlier standalone page used Math.random() and stored recent generated values in localStorage. The embedded V5 demo does not retain generated passwords or send them anywhere. Copy first tries the available browser API, then selects the readonly value for a browser-supported fallback or manual copy.",
+          ],
+        },
+        {
+          type: "output",
+          label: "Controls and feedback",
+          title: "Tune the character pool, then review the result",
+          items: [
+            { title: "Length", text: "Choose 4–100 characters; the initial value is 16." },
+            { title: "Character groups", text: "Include uppercase, lowercase, numbers, and symbols. Each group is enabled by default." },
+            { title: "Exclusions", text: "Optionally remove similar characters or selected ambiguous punctuation." },
+            { title: "Strength guidance", text: "See Very Weak, Weak, Moderate, Strong, or Very Strong as a heuristic estimate." },
+            { title: "Copy", text: "Copy the selectable readonly value with a browser fallback when programmatic clipboard access is unavailable." },
+            { title: "No retained history", text: "Generated values are not stored by the embedded demo and disappear on reload." },
+          ],
+        },
+        {
+          type: "workflow",
+          label: "Use the utility",
+          title: "Choose, generate, and copy",
+          steps: [
+            { title: "Set constraints", text: "Choose a length and select the character groups to include." },
+            { title: "Refine the pool", text: "Turn on the optional exclusions for similar or ambiguous characters." },
+            { title: "Generate", text: "Create a value with the browser’s Web Crypto random source, including every enabled character group." },
+            { title: "Review guidance", text: "Read the five-level strength guide as a simple configuration and length heuristic." },
+            { title: "Copy", text: "Copy the current selectable value. The embedded demo does not retain generated-password history." },
+          ],
+        },
+        {
+          type: "interactive",
+          label: "Interactive demo",
+          title: "Generate a password locally",
+          src: "demos/password-generator/index.html",
+          frameTitle: "Interactive password generator",
+          caption: "Generate with Web Crypto, review heuristic strength guidance, and copy the result. This embedded demo does not retain password history.",
+        },
+      ],
+    },
+  },
+  {
+    slug: "portfolio-v1",
+    number: 9,
+    title: "Portfolio V1",
+    type: "Personal System",
+    year: 2025,
+    status: "archived",
+    featured: false,
+    selectedSystem: false,
+    summary: "The first version of this portfolio.",
+    liveUrl: null,
+    githubUrl: "https://github.com/jumpjumptiger007/portfolio-website",
+    hidden: false,
+  },
+];
+
+export const hasCompleteDetail = (project) => project.detail?.status === "complete";
+
+export const homepageProjectUrl = (project) => hasCompleteDetail(project)
+  ? `work/${project.slug}/`
+  : project.liveUrl || project.githubUrl || "#project-index";
+
+export const projectLiveUrl = (project, { fromDetail = false } = {}) => {
+  if (!project.liveUrl) return null;
+  if (/^https?:\/\//i.test(project.liveUrl)) return project.liveUrl;
+  const localPath = project.liveUrl.replace(/^\/+/, "");
+  return fromDetail ? `../../${localPath}` : localPath;
+};

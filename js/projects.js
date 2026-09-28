@@ -1,124 +1,57 @@
-const projectsData = [
-  {
-    id: 'qpsk-modulation',
-    title: "QPSK Modulation Visualization",
-    description: "An interactive digital communication demonstration tool that visualizes QPSK modulation techniques with adjustable noise levels and signal plotting.",
-    preview_image: "projects/qpsk-modulation/preview.jpg",
-    tags: ["C", "HTML/CSS", "JavaScript"],
-    live_demo: "projects/qpsk-modulation",
-    github_url: "https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP",
-  },
-  {
-    id: 'password-generator',
-    title: "Password Generator",
-    description: "A secure password generator with customizable options for length, character types, and exclusion rules. Includes strength meter and password history.",
-    preview_image: "projects/password-generator/preview.jpg",
-    tags: ["HTML/CSS", "JavaScript"],
-    live_demo: "projects/password-generator",
-    github_url: "https://github.com/jumpjumptiger007/password-generator",
-  },
-  {
-    id: 'pollen-alert-germany',
-    title: "Pollen Alert Germany",
-    description: "A multilingual pollen concentration alert system for Germany, providing real-time pollen forecasts in English, German, and Chinese with email notifications.",
-    preview_image: "projects/pollen-alert-germany/preview.jpg",
-    tags: ["Python", "HTML/CSS", "Web Scraping"],
-    live_demo: "projects/pollen-alert-germany",
-    github_url: "https://github.com/jumpjumptiger007/pollen-alert-germany",
-  },
-  {
-    id: 'portfolio-website', 
-    title: "Personal Portfolio Website", 
-    description: "A responsive, multilingual personal portfolio website showcasing projects, skills, and contact information. Built with modern web technologies and featuring dynamic language support.",  
-    preview_image: "projects/portfolio-website/preview.jpg",  
-    tags: ["HTML/CSS", "JavaScript"],  
-    live_demo: "https://yliu.tech",  
-    github_url: "https://github.com/jumpjumptiger007/portfolio-website",  
-  },
-  {
-    id: 'bulk-email-sender',
-    title: "Bulk Email Sender",
-    description: "A zero-cost, open-source, serverless system for sending personalized bulk emails using either GitHub Actions or your local machine. It uses SMTP to deliver emails and supports templated content, recipient list management via CSV, and detailed delivery reporting.",
-    preview_image: "projects/bulk-email-sender/preview.jpg",
-    tags: ["JavaScript", "GitHub Actions"],
-    live_demo: "https://bulk-email-sender.yliu.tech/",
-    github_url: "https://github.com/jumpjumptiger007/bulk-email-sender",
-  }
-];
+import { homepageProjectUrl, projectsData } from "../data/projects.mjs";
 
-const projectGrid = document.querySelector('.project-grid');
+const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+})[character]);
 
-// Load project data
-function loadProjects() {
-  console.log('Starting to load projects...');
-  
-  if (projectGrid) {
-    projectGrid.innerHTML = '';
-    console.log('Project grid cleared');
-  } else {
-    console.warn('Project grid element not found!');
-    return;
-  }
+const externalAttributes = (url) => /^https?:\/\//i.test(url)
+  ? ' target="_blank" rel="noopener noreferrer"'
+  : "";
 
-  projectsData.forEach((project, index) => {
-    console.log(`Loading project: ${project.title}`);
-    addProjectToGrid(project, index);
-  });
-  
-  console.log('Projects loading completed.');
+const linkFor = (project, label, className) => {
+  const href = homepageProjectUrl(project);
+  return `<a class="${className}" href="${escapeHtml(href)}"${externalAttributes(href)}>${escapeHtml(label)} <span aria-hidden="true">↗</span></a>`;
+};
+
+function renderFeatured(project) {
+  const target = document.querySelector("#featured-project");
+  if (!target || !project) return;
+  const headline = project.featureHeadline.map((line, index) =>
+    `<span class="${index === 1 ? "green" : ""}">${escapeHtml(line)}</span>`).join("");
+  const tags = project.tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("");
+  const flow = project.featureFlow.map((step, index) =>
+    `<li><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(step)}</strong>${index < project.featureFlow.length - 1 ? '<i aria-hidden="true">→</i>' : ""}</li>`).join("");
+
+  target.innerHTML = `<div class="feature-copy"><p class="feature-count">${String(project.number).padStart(2, "0")}</p><h2 id="featured-title">${headline}</h2><p class="feature-summary">${escapeHtml(project.summary)}</p><ul class="project-tags">${tags}</ul><div class="feature-actions">${linkFor(project, "VIEW PROJECT", "feature-link")}</div></div><figure class="feature-flow" aria-labelledby="feature-flow-title"><figcaption id="feature-flow-title">HOW INTERDEMTV MOVES</figcaption><ol>${flow}</ol><p>Channel logic for finding a stranger next thing.</p></figure>`;
 }
 
-// Add project to grid
-function addProjectToGrid(project, index) {
-  if (!projectGrid) {
-    console.error('Cannot add project to grid: project grid element not found');
-    return;
-  }
-
-  console.log(`Adding project to grid: ${project.title}`);
-
-  const projectCard = document.createElement('div');
-  
-  const delayClass = index > 0 ? ` delay-${index}` : '';
-  
-  projectCard.className = `project-card fadeIn${delayClass}`;
-
-  // Default placeholder image
-  const defaultImage = 'https://via.placeholder.com/800x450?text=' + encodeURIComponent(project.title);
-  
-  // Use actual project image if available
-  const imageSrc = project.preview_image || defaultImage;
-  
-  projectCard.innerHTML = `
-    <img 
-      src="${imageSrc}" 
-      alt="${project.title}" 
-      class="project-image" 
-      onerror="this.src='${defaultImage}'; this.onerror=null;"
-    >
-    <div class="project-content">
-      <div class="project-tags">
-        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-      </div>
-      <h3 class="project-title">${project.title}</h3>
-      <p class="project-description">${project.description}</p>
-      <div class="project-links">
-        ${project.live_demo ? `
-          <a href="${project.live_demo}" class="project-link">
-            <i class="fas fa-external-link-alt"></i> Live Demo
-          </a>
-        ` : ''}
-        ${project.github_url ? `
-          <a href="${project.github_url}" class="project-link" target="_blank">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        ` : ''}
-      </div>
-    </div>
-  `;
-
-  projectGrid.appendChild(projectCard);
+function systemArticle(project, className) {
+  return `<article class="${className}"><p class="project-number">0${project.number} / ${escapeHtml(project.type.toUpperCase())}</p><h3>${escapeHtml(project.title)}</h3><p>${escapeHtml(project.summary)}</p>${linkFor(project, "OPEN SYSTEM", "system-link")}</article>`;
 }
 
-document.addEventListener('DOMContentLoaded', loadProjects);
+function renderSystems(projects) {
+  const target = document.querySelector("#selected-systems");
+  if (!target) return;
+  const [primary, ...secondary] = projects;
+  if (!primary) return;
+  target.innerHTML = `<div class="systems-layout"><article class="system-primary"><h3>CODEX PROVIDER <span>SWITCHER</span></h3><p>${escapeHtml(primary.summary)}</p><div class="terminal-visual" aria-label="Provider switcher terminal visual"><code><b>$ codex-provider status</b><br>provider: openai/chatgpt<br>backup: exact restore available<br><br><b>✓ CONFIGURATION HEALTHY</b></code></div></article><div class="systems-stack">${secondary.map((project) => systemArticle(project, "system-secondary")).join("")}</div></div>`;
+}
 
+function renderIndex(projects) {
+  const target = document.querySelector("#project-rows");
+  if (!target) return;
+  target.innerHTML = projects.map((project) => {
+    const href = homepageProjectUrl(project);
+    return `<a class="project-row status-${escapeHtml(project.status)}" href="${escapeHtml(href)}"${externalAttributes(href)} aria-label="Open ${escapeHtml(project.title)}"><span class="row-number">${String(project.number).padStart(2, "0")}</span><span class="row-title">${escapeHtml(project.title)}<small>${escapeHtml(project.type)}</small></span><span class="row-status">${escapeHtml(project.status)}</span><span class="row-year">${escapeHtml(project.year)}</span><span class="row-arrow" aria-hidden="true">↗</span></a>`;
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderFeatured(projectsData.find((project) => project.featured));
+  renderSystems(projectsData.filter((project) => project.selectedSystem));
+  renderIndex(projectsData.filter((project) => !project.hidden));
+});

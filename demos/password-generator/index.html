@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Password generator</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <main class="instrument" aria-labelledby="demo-title">
+    <header class="instrument-header">
+      <div>
+        <p class="eyebrow">Local password utility</p>
+        <h1 id="demo-title">Set the character field</h1>
+      </div>
+      <p class="status"><span></span> Web Crypto required</p>
+    </header>
+
+    <section id="generator-controls" class="controls" aria-labelledby="constraints-title">
+        <div class="section-heading"><h2 id="constraints-title">Constraints</h2><p>All settings stay in this frame.</p></div>
+        <label class="length-control" for="length">Length <output id="length-value" for="length">16</output>
+          <input id="length" type="range" min="4" max="100" value="16" aria-describedby="length-hint">
+        </label>
+        <p id="length-hint" class="hint">4–100 characters</p>
+        <fieldset class="group-set"><legend>Character groups</legend>
+          <label><input id="uppercase" type="checkbox" checked> Uppercase <span>A–Z</span></label>
+          <label><input id="lowercase" type="checkbox" checked> Lowercase <span>a–z</span></label>
+          <label><input id="numbers" type="checkbox" checked> Numbers <span>0–9</span></label>
+          <label><input id="symbols" type="checkbox" checked> Symbols <span>!@#$…</span></label>
+        </fieldset>
+        <fieldset class="exclusion-set"><legend>Exclusions</legend>
+          <label><input id="exclude-similar" type="checkbox"> Exclude similar characters</label>
+          <label><input id="exclude-ambiguous" type="checkbox"> Exclude ambiguous punctuation</label>
+        </fieldset>
+        <button id="generate-password" type="button" disabled>Generate password</button>
+      </section>
+
+    <section class="result" aria-labelledby="result-title">
+      <div class="section-heading"><h2 id="result-title">Generated value</h2><p>Selectable, never retained</p></div>
+      <label class="sr-only" for="password">Generated password</label>
+      <input id="password" type="text" readonly spellcheck="false" autocomplete="off" placeholder="Generate a password to begin">
+      <div class="result-footer">
+        <div class="strength" aria-label="Heuristic strength guidance"><span id="strength-label">Strength guide</span><span id="strength-value">—</span><i id="strength-bar" aria-hidden="true"></i></div>
+        <button id="copy" class="quiet" type="button">Copy</button>
+      </div>
+      <p class="method-note">Strength is a simple local heuristic based on configuration and length. Generated values are not saved by this demo.</p>
+      <p id="message" class="message" role="status" aria-live="polite">Starting the local generator…</p>
+    </section>
+  </main>
+  <script src="demo.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# Yiqiang Adrian Liu — Portfolio V5
+# Portfolio V5
 
 This repository contains a static personal technical portfolio and magazine for software, tools, systems, and experiments.
 

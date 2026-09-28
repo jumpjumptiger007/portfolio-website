@@ -1,88 +1,42 @@
-# 🌟 Personal Portfolio Website Template
+# Yiqiang Adrian Liu — Portfolio V5
 
-A clean, responsive static portfolio website template designed to be hosted on GitHub Pages. Showcase your projects, skills, and contact information with this easy-to-customize template.
+This repository contains a static personal technical portfolio and magazine for software, tools, systems, and experiments.
 
-[![View Live Demo](https://img.shields.io/badge/View_Live_Demo-Portfolio_Website-3182CE?style=for-the-badge&logo=github)](https://yliu.tech/)
+## Repository structure
 
-## 🚀 Getting Started
+- `index.html` — homepage
+- `css/styles.css` — homepage styles
+- `js/projects.js` — homepage project rendering
+- `data/projects.mjs` — canonical project data
+- `scripts/project-detail-template.mjs` — shared Project Detail renderer
+- `scripts/generate-site.mjs` — Project Detail generator
+- `work/<slug>/index.html` — generated Project Details
+- `demos/<slug>/` — embedded V5 project interactions
+- `projects/<slug>/` — legacy and historical project artifacts
+- `docs/PROJECT-DETAILS.md` — Project Detail authoring guide
+- `DESIGN.md` — visual source of truth
+- `assets/brand/yal-mark.svg` — production brand mark
 
-This template is designed to be easily deployed to GitHub Pages. Here's how to set it up:
+## Project Details
 
-1. Fork this repository
-2. Go to repository Settings > Pages
-3. Set Source to your main branch
-4. Your site will be published at `https://yourusername.github.io/repository-name/` 
+The repository has 9 canonical projects and 8 generated Project Details. Portfolio V1 remains archive/index-only. InterDemTV has a separate public Live Demo. Bulk Email Sender, QPSK Visualization, and Password Generator include embedded V5 interactions.
 
-💡If you name your repository `yourusername.github.io`, it will be published at `https://yourusername.github.io` or you can configure your own custom domain in the settings
+Generate all complete Project Details:
 
-## 🎨 Customization Guide
-
-### 🧩 Basic Information
-
-Edit the `index.html` file to update:
-
-- Your name and tagline in the hero section
-- Profile picture (replace `assets/profile.jpg`)
-- About section content and skills
-- Footer information
-
-### 📂 Projects Section
-
-The projects section is managed through the `js/projects.js` file. See the [Projects README](projects/README.md) for detailed instructions on adding and customizing projects.
-
-### 📧 Contact Form
-
-The contact form uses [Formspree](https://formspree.io/) as a backend:
-
-1. Create a free account at Formspree
-2. Create a new form and get your form endpoint
-3. Replace the form action URL in `index.html`:
-
-```html
-<form id="contactForm" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST">
+```sh
+node scripts/generate-site.mjs
 ```
 
-### 🌐 Multilingual Support
+Generate one Project Detail:
 
-The template supports English and German by default. To modify:
-
-1. Edit the translations in `js/main.js`:
-
-```javascript
-const translations = {
-    en: {
-        // English translations
-    },
-    de: {
-        // German translations
-    },
-    // Add your languages here
-};
+```sh
+node scripts/generate-site.mjs <slug>
 ```
 
-2. Add language selector buttons in `index.html`:
+Files under `work/<slug>/index.html` are generated output. Update the canonical data or shared renderer, then regenerate; do not edit generated pages manually.
 
-```html
-<button class="language-btn" data-lang="your-language-code">
-    <img src="assets/flags/your-language.svg" alt="Language Name">
-</button>
-```
+## Hosting and contact
 
-3. Add your language flag SVG files to `assets/flags/` folder. You can find flag icons at [Flag Icons](https://flagicons.lipis.dev/).
+The site is static HTML, CSS, and JavaScript and is compatible with GitHub Pages. `CNAME` contains `yliu.tech`. The publishing source branch is not specified in this repository; verify the repository's Pages settings for the active source.
 
-### 🎭 Custom Styling
-
-Modify the colors and styles in `css/styles.css`. The main color scheme is defined in the `:root` variables at the top of the file.
-
-## 🤝 Contribution
-
-If you encounter any issues or have suggestions for improvement, please open an issue or submit a pull request to help make this template better.
-
-## 📄 License
-
-This template is available under the MIT License.
-
-## 🌐 Browser Support
-
-- Chrome, Firefox, Safari, Edge (latest versions)
-- Responsive design for mobile, tablet, and desktop
+Contact: [contact@yliu.tech](mailto:contact@yliu.tech). V5 does not use a contact backend.

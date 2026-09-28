@@ -1,6 +1,6 @@
 {
-  "name": "Yiqiang Adrian Liu | Portfolio",
-  "short_name": "YAL Portfolio",
+  "name": "Yiqiang Adrian Liu",
+  "short_name": "Y/",
   "icons": [
     {
       "src": "/assets/favicon/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#3182ce",
-  "background_color": "#ffffff",
+  "theme_color": "#050706",
+  "background_color": "#050706",
   "display": "standalone"
 }

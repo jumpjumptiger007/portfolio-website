@@ -1,4 +1,4 @@
-# Yiqiang Adrian Liu — Portfolio V5
+# Portfolio V5
 
 This repository (`jumpjumptiger007/yliu-tech`) contains the current Portfolio V5 implementation, publicly presented as Personal Tech Magazine: a static personal technical magazine for software, tools, systems, and experiments. The public project name is separate from the GitHub repository name.
 

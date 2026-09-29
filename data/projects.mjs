@@ -758,6 +758,10 @@ export const projectsData = [
 
 export const hasCompleteDetail = (project) => project.detail?.status === "complete";
 
+export const isIndexableProject = (project) => hasCompleteDetail(project)
+  && project.hidden !== true
+  && project.seo?.indexable !== false;
+
 export const homepageProjectUrl = (project) => hasCompleteDetail(project)
   ? `work/${project.slug}/`
   : project.liveUrl || project.githubUrl || "#project-index";

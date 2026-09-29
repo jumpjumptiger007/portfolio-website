@@ -1,7 +1,8 @@
+import { canonicalHomeUrl, canonicalWorkUrl, canonicalProjectUrl, siteConfig } from "../data/site.mjs";
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { hasCompleteDetail, projectsData } from "../data/projects.mjs";
+import { hasCompleteDetail, isIndexableProject, projectsData } from "../data/projects.mjs";
 import { renderProjectDetail, supportedDetailModules } from "./project-detail-template.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -15,6 +16,72 @@ function requireText(value, label) {
 function requireTextList(value, label) {
   if (!Array.isArray(value) || value.length === 0) throw new Error(`${label} must contain at least one item.`);
   value.forEach((item, index) => requireText(item, `${label}[${index}]`));
+}
+
+function validateSeoImage(value, label) {
+  requireText(value, label);
+
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    url = null;
+  }
+
+  if (url) {
+    if (url.protocol !== "https:" || !url.hostname) throw new Error(`${label} must be an HTTPS URL or a site-local path.`);
+    return;
+  }
+
+  if (/^[a-z][a-z0-9+.-]*:/i.test(value) || value.startsWith("//") || value.includes("\\")) {
+    throw new Error(`${label} must be an HTTPS URL or a site-local path.`);
+  }
+
+  const rawPath = value.split(/[?#]/, 1)[0];
+  let decodedPath;
+  try {
+    decodedPath = decodeURIComponent(rawPath);
+  } catch {
+    throw new Error(`${label} must be a valid site-local path.`);
+  }
+  if (!decodedPath || decodedPath.includes("\\") || decodedPath.split("/").includes("..")) throw new Error(`${label} must be a valid site-local path.`);
+
+  const imagePath = path.resolve(root, decodedPath.replace(/^\/+/, ""));
+  const relative = path.relative(root, imagePath);
+  if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error(`${label} must stay inside the site root.`);
+}
+
+function validateProjectSeo(seo, label) {
+  if (seo === undefined) return;
+  if (!seo || typeof seo !== "object" || Array.isArray(seo)) throw new Error(`${label} must be an object.`);
+
+  const allowedProperties = new Set(["title", "description", "image", "indexable"]);
+  const unsupportedProperties = Object.keys(seo).filter((key) => !allowedProperties.has(key));
+  if (unsupportedProperties.length) throw new Error(`${label} contains unsupported properties: ${unsupportedProperties.join(", ")}.`);
+
+  for (const key of ["title", "description"]) {
+    if (seo[key] !== undefined) requireText(seo[key], `${label}.${key}`);
+  }
+  if (seo.image !== undefined) validateSeoImage(seo.image, `${label}.image`);
+  if (seo.indexable !== undefined && typeof seo.indexable !== "boolean") throw new Error(`${label}.indexable must be a boolean.`);
+}
+
+const xmlEscape = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&apos;",
+})[character]);
+
+function renderSitemap() {
+  const urls = [canonicalHomeUrl, canonicalWorkUrl, ...projectsData.filter(isIndexableProject).map((project) => canonicalProjectUrl(project.slug))];
+  const entries = urls.map((url) => `  <url><loc>${xmlEscape(url)}</loc></url>`).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
+}
+
+function renderRobots() {
+  return `User-agent: *\nAllow: /\n\nSitemap: ${siteConfig.url}/sitemap.xml\n`;
 }
 
 function validateModule(module, label) {
@@ -82,6 +149,7 @@ export function validateProjectDefinitions(projects) {
     requireText(project.status, `${label}.status`);
     if (!projectStatuses.has(project.status)) throw new Error(`${label}.status must be one of: ${[...projectStatuses].join(", ")}.`);
     requireText(project.summary, `${label}.summary`);
+    validateProjectSeo(project.seo, `${label}.seo`);
 
     for (const key of ["featured", "selectedSystem", "hidden"]) {
       if (typeof project[key] !== "boolean") throw new Error(`${label}.${key} must be a boolean.`);
@@ -172,6 +240,9 @@ async function generate(slug) {
     await writeFile(path.join(directory, "index.html"), renderProjectDetail(project), "utf8");
     console.log(`Generated work/${project.slug}/index.html`);
   }
+  await writeFile(path.join(root, "sitemap.xml"), renderSitemap(), "utf8");
+  await writeFile(path.join(root, "robots.txt"), renderRobots(), "utf8");
+  console.log("Generated sitemap.xml and robots.txt");
 }
 
 const requestedScript = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : "";

@@ -1,12 +1,15 @@
 # Yiqiang Adrian Liu — Portfolio V5
 
-This repository contains a static personal technical portfolio and magazine for software, tools, systems, and experiments.
+This repository (`jumpjumptiger007/yliu-tech`) contains the current Portfolio V5 implementation, publicly presented as Personal Tech Magazine: a static personal technical magazine for software, tools, systems, and experiments. The public project name is separate from the GitHub repository name.
 
 ## Repository structure
 
 - `index.html` — homepage
+- `work/index.html` — comprehensive public Work directory
 - `css/styles.css` — homepage styles
+- `css/work.css` — Work directory styles
 - `js/projects.js` — homepage project rendering
+- `js/work.js` — Work directory rendering
 - `data/projects.mjs` — canonical project data
 - `scripts/project-detail-template.mjs` — shared Project Detail renderer
 - `scripts/generate-site.mjs` — Project Detail generator
@@ -19,7 +22,7 @@ This repository contains a static personal technical portfolio and magazine for 
 
 ## Project Details
 
-The repository has 9 canonical projects and 8 generated Project Details. Portfolio V1 remains archive/index-only. InterDemTV has a separate public Live Demo. Bulk Email Sender, QPSK Visualization, and Password Generator include embedded V5 interactions.
+The repository has 10 canonical projects and 10 generated Project Details. `/work/` is the comprehensive directory for all public projects, including prototypes and archived work; the homepage remains the editorial entry point. InterDemTV has a separate public Live Demo. Bulk Email Sender, QPSK Visualization, and Password Generator include embedded V5 interactions.
 
 Generate all complete Project Details:
 
@@ -33,7 +36,7 @@ Generate one Project Detail:
 node scripts/generate-site.mjs <slug>
 ```
 
-Files under `work/<slug>/index.html` are generated output. Update the canonical data or shared renderer, then regenerate; do not edit generated pages manually.
+`work/index.html` is the manually authored directory page and reads the canonical data at runtime. Files under `work/<slug>/index.html` are generated Project Detail output. Update the canonical data or shared renderer, then regenerate; do not edit generated pages manually.
 
 ## Hosting and contact
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-This is the visual source of truth for Yiqiang Adrian Liu’s portfolio: Homepage, Archive, About, Project Detail, future motion and interaction, project preview assets, and live-demo visual refreshes.
+This is the visual source of truth for Yiqiang Adrian Liu’s Portfolio V5 / Personal Tech Magazine implementation: Homepage, Work directory, About, Project Detail, future motion and interaction, project preview assets, and live-demo visual refreshes.
 
 Do not reinterpret the site as a generic developer portfolio, SaaS landing page, AI startup, or hacker-themed interface. It is a personal technical magazine made by an independent developer.
 
@@ -102,11 +102,13 @@ Use IBM Plex Mono metadata, thin rules, arrows/signal lines, restrained acid-gre
 
 ## Selected systems
 
-Codex Provider Switcher is the primary system and remains largely unboxed; its terminal is the framed technical surface. Job Search Agent and Local Voice Assistant remain quieter and staggered secondary systems. Do not turn this into an equal-card grid.
+Codex Provider Switcher is the primary system and remains largely unboxed; its Provider Control surface is the framed technical surface. Job Search Agent is the quieter, staggered secondary system. Local Voice Assistant is archived and does not appear in Selected Systems. Samantha AI Assistant remains outside Selected Systems while it is a hardware prototype. Do not turn this into an equal-card grid.
 
 ## Project index
 
-The Project Index is a signature leaderboard/editorial-table component, never cards. Project name is strongest; number/status are secondary signal; class/year are metadata.
+The homepage Project Index is a compact editorial table of the public body of work, not a ranking. It is a signature table component, never cards. Project name is strongest; number/status are secondary signal; class/year are metadata. Current, prototype, and archived projects can coexist in the index without implying equal maintenance status.
+
+The `/work/` page is the comprehensive public-work directory. It uses the same editorial language in an expanded ledger so current and archived projects remain visible together. It is not a separate archive page and must not become a generic card grid.
 
 Future hover previews use meaningful real project visuals (interface, terminal state, product UI crop, visualization, or system output), not generic art. A hovered row will shift slightly, receive signal emphasis, dim peers, and show a preview above the list. Mobile removes cursor-dependent preview. Do not implement this system before its dedicated motion pass.
 

@@ -102,6 +102,24 @@ export function validateProjectDefinitions(projects) {
       }
     }
 
+    if (project.systemPreview !== undefined) {
+      const preview = project.systemPreview;
+      if (!preview || typeof preview !== "object" || Array.isArray(preview)) throw new Error(`${label}.systemPreview must be an object.`);
+      requireTextList(preview.titleLines, `${label}.systemPreview.titleLines`);
+      for (const key of ["label", "version", "platform"]) requireText(preview[key], `${label}.systemPreview.${key}`);
+      requireTextList(preview.commands, `${label}.systemPreview.commands`);
+      if (!Array.isArray(preview.providerGroups) || preview.providerGroups.length === 0) throw new Error(`${label}.systemPreview.providerGroups must contain at least one group.`);
+      preview.providerGroups.forEach((group, groupIndex) => {
+        requireText(group?.label, `${label}.systemPreview.providerGroups[${groupIndex}].label`);
+        requireTextList(group?.providers, `${label}.systemPreview.providerGroups[${groupIndex}].providers`);
+      });
+      if (!Array.isArray(preview.properties) || preview.properties.length === 0) throw new Error(`${label}.systemPreview.properties must contain at least one row.`);
+      preview.properties.forEach((row, rowIndex) => {
+        if (!Array.isArray(row) || row.length !== 2) throw new Error(`${label}.systemPreview.properties[${rowIndex}] must contain a label and value.`);
+        row.forEach((value, valueIndex) => requireText(value, `${label}.systemPreview.properties[${rowIndex}][${valueIndex}]`));
+      });
+    }
+
     if (project.featured) {
       requireTextList(project.featureHeadline, `${label}.featureHeadline`);
       requireTextList(project.featureFlow, `${label}.featureFlow`);

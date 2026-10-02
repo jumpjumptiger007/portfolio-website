@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="Multilingual pollen forecasts and notifications for Germany.">
   <title>Pollen Alert Germany — Yiqiang Adrian Liu</title>
   <link rel="canonical" href="https://yliu.tech/work/pollen-alert-germany/">
@@ -20,47 +21,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="icon" href="../../assets/favicon/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../../css/site-shell.css">
   <link rel="stylesheet" href="../../css/project-detail.css">
+  <script type="module" src="../../js/site-shell.js"></script>
 </head>
 <body class="project-detail-page">
   <a class="skip-link" href="#main">Skip to project details</a>
-  <header class="detail-header">
-    <a class="detail-brand" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-    </a>
-    <a class="back-link" href="../../index.html#project-index"><span aria-hidden="true">←</span> Return to work</a>
-  </header>
+  <site-chrome page="project"></site-chrome>
   <main id="main">
     <article>
-      <header class="project-heading">
-        <div class="project-meta-row">
-          <p class="project-class"><span class="project-number">06</span><span>Public Service</span></p>
-          <dl class="project-facts">
-            <div><dt>Status</dt><dd class="status-live"><i aria-hidden="true"></i>live</dd></div>
-            <div><dt>Year</dt><dd>2025</dd></div>
-          </dl>
-        </div>
-        <div class="project-title-layout">
-          <h1 id="project-title">Pollen Alert<br><span>Germany</span></h1>
-          <div class="project-summary-group">
-            <p class="project-summary">Multilingual pollen forecasts and notifications for Germany.</p>
-            <nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/pollen-alert-germany" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></nav>
+      <header class="project-hero">
+        <div class="project-hero-grid" data-reveal>
+          <div class="project-lead">
+            <p class="chapter-label"><b>PROJECT / 06</b> FEATURE ARTICLE</p>
+            <h1 id="project-title"><span>Pollen Alert</span><span>Germany</span></h1>
+            <div class="hero-meta"><span><b>TYPE</b> Public Service</span><span><b>STATUS</b> <i class="status-live">live</i></span></div>
           </div>
+          <div class="project-intro"><p class="hero-summary">Multilingual pollen forecasts and notifications for Germany.</p><nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/pollen-alert-germany" target="_blank" rel="noopener noreferrer"><span>SOURCE</span><span aria-hidden="true">↗</span></a></nav></div>
         </div>
       </header>
-<section class="detail-section overview-section" aria-labelledby="detail-pollen-alert-germany-0"><div class="section-label"><p>Project overview</p></div><div class="section-content"><h2 id="detail-pollen-alert-germany-0">A forecast delivered by email</h2><p class="project-copy">Pollen Alert Germany turns WetterOnline pollen forecasts into readable email alerts for a configurable German city. Berlin is the default when no city is supplied.</p><p class="project-copy">The scheduled workflow prepares the forecast in English, German, or Chinese and sends it by email, so recipients can check the daily report without repeatedly opening the forecast page. It presents forecast information; it does not diagnose allergies or provide medical advice.</p></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-pollen-alert-germany-1"><div class="section-label"><p>Information flow</p></div><div class="section-content"><h2 id="detail-pollen-alert-germany-1">From public forecast to inbox</h2><div class="system-visual"><div class="system-visual-row"><span class="system-visual-node">WetterOnline</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Python scraper</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Four pollen levels</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">HTML email</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">SMTP delivery</span></div></div><p class="system-visual-caption">GitHub Actions schedules the Python job. It retrieves and parses the forecast, normalizes each pollen concentration, then sends the rendered email through the configured SMTP server.</p></div></section>
-<section class="detail-section technical-section" aria-labelledby="detail-pollen-alert-germany-2"><div class="section-label"><p>Implementation</p></div><div class="section-content"><h2 id="detail-pollen-alert-germany-2">A small scheduled Python job</h2><p class="project-copy">The scraper uses requests to retrieve the WetterOnline page and BeautifulSoup to parse its forecast. The target city is configurable through CITY_NAME, with Berlin as the default. Concentrations are mapped to four levels: 0 none, 1 low, 2 medium, and 3 high.</p><p class="project-copy">GitHub Actions provides the scheduled run, documented for 07:00 UTC each day once the workflow is enabled. Email settings are supplied through environment variables and GitHub Secrets; SMTP handles delivery, while the generated HTML supports English, German, and Chinese labels.</p></div></section>
-<section class="detail-section media-section" aria-labelledby="detail-pollen-alert-germany-3"><div class="section-label"><p>Email report</p></div><div class="section-content"><h2 id="detail-pollen-alert-germany-3">What the forecast contains</h2><figure class="media-slot dashboard-output"><div class="queue-map"><div><span>Location and date</span><p>The selected city and the forecast date identify the report.</p></div><div><span>Pollen by type</span><p>The report lists pollen types with a normalized concentration from 0 to 3.</p></div><div><span>Three languages</span><p>HTML email templates present the forecast in English, German, or Chinese.</p></div><div><span>Scheduled delivery</span><p>A configured SMTP account sends the report when the GitHub Actions workflow runs.</p></div></div><figcaption>The report organizes each pollen type into a normalized concentration level from 0 to 3.</figcaption></figure></div></section>
-<section class="detail-section media-section" aria-labelledby="detail-pollen-alert-germany-4"><div class="section-label"><p>Email preview</p></div><div class="section-content"><h2 id="detail-pollen-alert-germany-4">A readable forecast table</h2><figure class="media-slot project-image"><img src="../../projects/pollen-alert-germany/preview.jpg" alt="A pollen forecast email table with German column headings for pollen type, English name, and concentration level; rows show pollen names and none or low indicators."><figcaption>Sample email output pairs pollen names with labeled concentration levels.</figcaption></figure></div></section>
+<section class="article-section detail-section overview-section" data-reveal aria-labelledby="detail-pollen-alert-germany-0"><div class="section-head"><div><p class="chapter-label"><b>01</b> Project overview</p><h2 id="detail-pollen-alert-germany-0">A forecast delivered by email</h2></div></div><div class="copy-stack"><p class="project-copy">Pollen Alert Germany turns WetterOnline pollen forecasts into readable email alerts for a configurable German city. Berlin is the default when no city is supplied.</p><p class="project-copy">The scheduled workflow prepares the forecast in English, German, or Chinese and sends it by email, so recipients can check the daily report without repeatedly opening the forecast page. It presents forecast information; it does not diagnose allergies or provide medical advice.</p></div></section>
+<section class="article-section module-section system-section" data-reveal aria-labelledby="detail-pollen-alert-germany-1"><div class="section-head"><div><p class="chapter-label"><b>02</b> Information flow</p><h2 id="detail-pollen-alert-germany-1">From public forecast to inbox</h2></div></div><div class="topology" aria-label="From public forecast to inbox sequence"><div class="topology-row" role="list"><div class="topology-stage" role="listitem"><strong>WetterOnline</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>Python scraper</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>Four pollen levels</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>HTML email</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>SMTP delivery</strong></div></div></div><p class="system-caption">GitHub Actions schedules the Python job. It retrieves and parses the forecast, normalizes each pollen concentration, then sends the rendered email through the configured SMTP server.</p></section>
+<section class="article-section detail-section technical-section" data-reveal aria-labelledby="detail-pollen-alert-germany-2"><div class="section-head"><div><p class="chapter-label"><b>03</b> Implementation</p><h2 id="detail-pollen-alert-germany-2">A small scheduled Python job</h2></div></div><div class="copy-stack"><p class="project-copy">The scraper uses requests to retrieve the WetterOnline page and BeautifulSoup to parse its forecast. The target city is configurable through CITY_NAME, with Berlin as the default. Concentrations are mapped to four levels: 0 none, 1 low, 2 medium, and 3 high.</p><p class="project-copy">GitHub Actions provides the scheduled run, documented for 07:00 UTC each day once the workflow is enabled. Email settings are supplied through environment variables and GitHub Secrets; SMTP handles delivery, while the generated HTML supports English, German, and Chinese labels.</p></div></section>
+<section class="article-section module-section output-section" data-reveal aria-labelledby="detail-pollen-alert-germany-3"><div class="section-head"><div><p class="chapter-label"><b>04</b> Email report</p><h2 id="detail-pollen-alert-germany-3">What the forecast contains</h2></div></div><div class="output-grid"><div><span>Location and date</span><p>The selected city and the forecast date identify the report.</p></div><div><span>Pollen by type</span><p>The report lists pollen types with a normalized concentration from 0 to 3.</p></div><div><span>Three languages</span><p>HTML email templates present the forecast in English, German, or Chinese.</p></div><div><span>Scheduled delivery</span><p>A configured SMTP account sends the report when the GitHub Actions workflow runs.</p></div></div><p class="output-caption">The report organizes each pollen type into a normalized concentration level from 0 to 3.</p></section>
+<section class="article-section detail-section report-section" data-reveal aria-labelledby="detail-pollen-alert-germany-4"><div class="section-head"><div><p class="chapter-label"><b>05</b> Email preview</p><h2 id="detail-pollen-alert-germany-4">A readable forecast table</h2></div></div><p class="report-table-note" id="detail-pollen-alert-germany-4-note">Illustrative email structure — not a live forecast.</p><div class="report-table-scroll" role="region" tabindex="0" aria-labelledby="detail-pollen-alert-germany-4"><table class="report-table" aria-labelledby="detail-pollen-alert-germany-4" aria-describedby="detail-pollen-alert-germany-4-note"><thead><tr><th scope="col">Pollentyp</th><th scope="col">English name</th><th scope="col">Concentration</th></tr></thead><tbody><tr><td>Ambrosia</td><td>Ragweed</td><td>None (0)</td></tr><tr><td>Ampfer</td><td>Sorrel</td><td>None (0)</td></tr><tr><td>Beifuß</td><td>Mugwort</td><td>None (0)</td></tr><tr><td>Birke</td><td>Birch</td><td>None (0)</td></tr><tr><td>Buche</td><td>Beech</td><td>None (0)</td></tr><tr><td>Erle</td><td>Alder</td><td><strong class="report-table-emphasis">Low (1)</strong></td></tr></tbody></table></div><p class="report-table-caption">A static reconstruction of the sample email pairs German pollen names with English names and normalized concentration labels. Levels range from 0 (none) to 3 (high).</p></section>
     </article>
+    <site-contact number="06"></site-contact>
   </main>
-  <footer class="detail-footer footer-no-next">
-    <a class="footer-return" href="../../index.html#project-index"><span aria-hidden="true">↖</span> Return to project index</a>
-    <a class="footer-identity" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-      <span>Yiqiang Adrian Liu<br>Independent Developer &amp; Builder</span>
-    </a>
-  </footer>
 </body>
 </html>

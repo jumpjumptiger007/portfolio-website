@@ -19,7 +19,7 @@ body {
 }
 button, input, textarea { font: inherit; }
 button, input, textarea { color: inherit; }
-.instrument { max-width: 1180px; margin: 0 auto; padding: clamp(17px, 3vw, 28px); }
+.instrument { max-width: 1340px; margin: 0 auto; padding: clamp(17px, 3vw, 28px); }
 .instrument-header {
   display: flex;
   align-items: end;
@@ -35,7 +35,7 @@ button, input, textarea { color: inherit; }
 .eyebrow {
   margin: 0 0 8px;
   color: var(--acid);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: .07em;
   text-transform: uppercase;
 }
@@ -49,7 +49,7 @@ h1 { margin: 0; font-size: clamp(30px, 4vw, 43px); line-height: .98; letter-spac
   border-left: 2px solid var(--acid);
   background: var(--field);
   color: var(--muted);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
 }
 .boundary strong { color: var(--text); font-weight: 500; }
@@ -58,10 +58,10 @@ h1 { margin: 0; font-size: clamp(30px, 4vw, 43px); line-height: .98; letter-spac
 .workflow-column { min-width: 0; }
 .module { min-width: 0; padding: 15px 0 17px; border-bottom: 1px solid var(--line); }
 .module-heading { display: flex; align-items: start; gap: 11px; margin-bottom: 14px; }
-.step { flex: 0 0 auto; padding-top: 2px; color: var(--acid); font-size: 9px; }
-.module-heading h2 { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: -.015em; }
-.module-heading p { margin: 4px 0 0; color: var(--muted); font-size: 8px; letter-spacing: .04em; text-transform: uppercase; }
-.field-label { display: grid; gap: 6px; margin-top: 10px; color: var(--muted); font-size: 8px; letter-spacing: .045em; text-transform: uppercase; }
+.step { flex: 0 0 auto; padding-top: 2px; color: var(--acid); font-size: 10px; }
+.module-heading h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -.015em; }
+.module-heading p { margin: 4px 0 0; color: var(--muted); font-size: 10px; letter-spacing: .04em; text-transform: uppercase; }
+.field-label { display: grid; gap: 6px; margin-top: 10px; color: var(--muted); font-size: 10px; letter-spacing: .045em; text-transform: uppercase; }
 input[type="text"], textarea {
   width: 100%;
   min-width: 0;
@@ -69,7 +69,7 @@ input[type="text"], textarea {
   border-radius: 0;
   background: var(--field);
   color: var(--text);
-  font: 12px/1.5 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  font: 14px/1.5 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   letter-spacing: normal;
   text-transform: none;
 }
@@ -80,7 +80,7 @@ button:focus-visible, .file-picker:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 2px;
 }
-.hint { margin: 7px 0 0; color: var(--muted); font-size: 8px; line-height: 1.55; }
+.hint { margin: 7px 0 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
 .file-actions, .task-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
 .file-actions { margin-top: 12px; }
 input[type="file"] { min-width: 0; max-width: 100%; color: var(--muted); font-size: 10px; }
@@ -92,7 +92,7 @@ input[type="file"]::file-selector-button {
   border-radius: 0;
   background: transparent;
   color: var(--text);
-  font: 9px "IBM Plex Mono", ui-monospace, monospace;
+  font: 10px "IBM Plex Mono", ui-monospace, monospace;
   cursor: pointer;
 }
 button, .file-picker {
@@ -105,7 +105,7 @@ button, .file-picker {
   border-radius: 0;
   background: var(--acid);
   color: #0c1606;
-  font: 600 8px/1.2 "IBM Plex Mono", ui-monospace, monospace;
+  font: 600 10px/1.2 "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: .04em;
   text-transform: uppercase;
   cursor: pointer;
@@ -118,23 +118,23 @@ button.quiet, .file-picker {
 button:disabled { opacity: .45; cursor: not-allowed; }
 button:hover:not(:disabled), .file-picker:hover { border-color: var(--text); }
 button.quiet:hover, .file-picker:hover { color: var(--acid); border-color: var(--acid); }
-.status-message { min-height: 13px; margin: 9px 0 0; color: var(--muted); font-size: 8px; line-height: 1.5; }
+.status-message { min-height: 13px; margin: 9px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
 .status-message.error { color: var(--error); }
-.recipient-count { margin: 9px 0 6px; color: var(--acid); font-size: 8px; }
+.recipient-count { margin: 9px 0 6px; color: var(--acid); font-size: 10px; }
 .table-shell { max-width: 100%; overflow-x: auto; border-top: 1px solid var(--line); }
-.recipient-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 9px; }
+.recipient-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 11px; }
 .recipient-table th, .recipient-table td { padding: 5px 6px; border-bottom: 1px solid #19251c; text-align: left; overflow-wrap: anywhere; }
 .recipient-table th {
   color: var(--muted);
-  font: 8px "IBM Plex Mono", ui-monospace, monospace;
+  font: 10px "IBM Plex Mono", ui-monospace, monospace;
   letter-spacing: .03em;
   text-transform: uppercase;
 }
 .recipient-table td { color: var(--text); line-height: 1.35; }
-.more-rows { margin: 6px 0 0; color: var(--muted); font-size: 8px; }
+.more-rows { margin: 6px 0 0; color: var(--muted); font-size: 10px; }
 .preview-field { padding: 9px 0; border-bottom: 1px solid #19251c; }
-.preview-field h3 { margin: 0 0 5px; color: var(--muted); font-size: 8px; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
-.preview-value { margin: 0; color: var(--text); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.preview-field h3 { margin: 0 0 5px; color: var(--muted); font-size: 10px; font-weight: 400; letter-spacing: .04em; text-transform: uppercase; }
+.preview-value { margin: 0; color: var(--text); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
 .preview-body { min-height: 47px; white-space: pre-wrap; font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif; }
 .task-module .field-label { margin-bottom: 11px; }
 .json-output {
@@ -142,7 +142,7 @@ button.quiet:hover, .file-picker:hover { color: var(--acid); border-color: var(-
   min-height: 114px;
   margin-top: 10px;
   color: #c5d3c7;
-  font: 9px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
   white-space: pre;
   overflow: auto;
 }
@@ -151,7 +151,7 @@ button.quiet:hover, .file-picker:hover { color: var(--acid); border-color: var(-
 .privacy-note {
   margin: 13px 0 0;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.5;
 }
 .sr-only {

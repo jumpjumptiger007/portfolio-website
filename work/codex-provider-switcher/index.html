@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="A local Rust CLI and macOS desktop app for safely switching Codex providers and models.">
   <title>Codex Provider Switcher — Yiqiang Adrian Liu</title>
   <link rel="canonical" href="https://yliu.tech/work/codex-provider-switcher/">
@@ -20,46 +21,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="icon" href="../../assets/favicon/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../../css/site-shell.css">
   <link rel="stylesheet" href="../../css/project-detail.css">
+  <script type="module" src="../../js/site-shell.js"></script>
 </head>
 <body class="project-detail-page">
   <a class="skip-link" href="#main">Skip to project details</a>
-  <header class="detail-header">
-    <a class="detail-brand" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-    </a>
-    <a class="back-link" href="../../index.html#project-index"><span aria-hidden="true">←</span> Return to work</a>
-  </header>
+  <site-chrome page="project"></site-chrome>
   <main id="main">
     <article>
-      <header class="project-heading">
-        <div class="project-meta-row">
-          <p class="project-class"><span class="project-number">02</span><span>Developer Tool</span></p>
-          <dl class="project-facts">
-            <div><dt>Status</dt><dd class="status-active"><i aria-hidden="true"></i>active</dd></div>
-            <div><dt>Year</dt><dd>2026</dd></div>
-          </dl>
-        </div>
-        <div class="project-title-layout project-title-layout-long">
-          <h1 id="project-title">Codex Provider<br><span>Switcher</span></h1>
-          <div class="project-summary-group">
-            <p class="project-summary">A local Rust CLI and macOS desktop app for safely switching Codex providers and models.</p>
-            <nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/codex-provider-switcher" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></nav>
+      <header class="project-hero">
+        <div class="project-hero-grid" data-reveal>
+          <div class="project-lead">
+            <p class="chapter-label"><b>PROJECT / 02</b> FEATURE ARTICLE</p>
+            <h1 id="project-title"><span>Codex Provider</span><span>Switcher</span></h1>
+            <div class="hero-meta"><span><b>TYPE</b> Developer Tool</span><span><b>STATUS</b> <i class="status-active">active</i></span></div>
           </div>
+          <div class="project-intro"><p class="hero-summary">A local Rust CLI and macOS desktop app for safely switching Codex providers and models.</p><nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/codex-provider-switcher" target="_blank" rel="noopener noreferrer"><span>SOURCE</span><span aria-hidden="true">↗</span></a></nav></div>
         </div>
       </header>
-<section class="signal-section" aria-labelledby="detail-signal-codex-provider-switcher-0"><div class="signal-heading"><h2 id="detail-signal-codex-provider-switcher-0">Local workflow</h2><p>Provider control on the workstation</p></div><div class="signal-terminal"><p class="terminal-command">Provider control on the workstation</p><p class="workflow-readout">list <span aria-hidden="true">→</span> auth <span aria-hidden="true">→</span> models <span aria-hidden="true">→</span> use <span aria-hidden="true">→</span> doctor <span aria-hidden="true">→</span> restore</p></div></section>
-<section class="detail-section overview-section" aria-labelledby="detail-codex-provider-switcher-1"><div class="section-label"><p>Project overview</p></div><div class="section-content"><h2 id="detail-codex-provider-switcher-1">A local configuration tool</h2><p class="project-copy">Codex Provider Switcher is a local configuration tool for switching Codex providers and models. It is available as the Rust CLI cps and a Tauri 2 macOS desktop app; it does not run as a proxy, hosted service, or always-on gateway.</p><p class="project-copy">The current public release is v0.1.0. Its universal macOS DMG supports Apple Silicon and Intel, is ad-hoc signed, and is not notarized.</p></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-codex-provider-switcher-2"><div class="section-label"><p>Provider control</p></div><div class="section-content"><h2 id="detail-codex-provider-switcher-2">Choose a provider with a recovery path</h2><div class="system-visual"><div class="system-visual-row"><span class="system-visual-node">OpenAI</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Ollama</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">LM Studio</span></div><div class="system-visual-row"><span class="system-visual-node">DeepSeek</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">xAI</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">OpenRouter</span></div><div class="system-visual-row"><span class="system-visual-node">macOS Keychain</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">CPS-managed direct-provider credentials</span></div><div class="system-visual-row"><span class="system-visual-node">Codex configuration</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Atomic update</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Conflict detection</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Recovery backup</span></div></div><p class="system-visual-caption">Doctor runs local diagnostics. Restore uses the recovery backup when a previous configuration needs to be recovered.</p></div></section>
-<section class="detail-section technical-section" aria-labelledby="detail-codex-provider-switcher-3"><div class="section-label"><p>Implementation</p></div><div class="section-content"><h2 id="detail-codex-provider-switcher-3">Transactional local changes</h2><p class="project-copy">The cps CLI is written in Rust. The macOS desktop application uses Tauri 2 and provides the same provider and model switching workflow through a native interface. Supported providers include OpenAI, Ollama, LM Studio, DeepSeek, xAI, and OpenRouter.</p><p class="project-copy">Configuration changes are written atomically, checked for conflicts, and paired with a recovery backup. CPS-managed direct-provider credentials can be stored in macOS Keychain; Doctor performs local diagnostics, and Restore recovers from the backup.</p><p class="project-copy">The v0.1.0 universal DMG targets Apple Silicon and Intel Macs. It is ad-hoc signed and has not been notarized.</p></div></section>
+<section class="article-section signal-section" data-reveal aria-labelledby="detail-signal-codex-provider-switcher-0"><div class="section-head"><div><p class="chapter-label"><b>01</b> Local workflow</p><h2 id="detail-signal-codex-provider-switcher-0">Provider control on the workstation</h2></div></div><ol class="signal-sequence"><li><span>01</span><strong>list</strong></li><li><span>02</span><strong>auth</strong></li><li><span>03</span><strong>models</strong></li><li><span>04</span><strong>use</strong></li><li><span>05</span><strong>doctor</strong></li><li><span>06</span><strong>restore</strong></li></ol></section>
+<section class="article-section detail-section overview-section" data-reveal aria-labelledby="detail-codex-provider-switcher-1"><div class="section-head"><div><p class="chapter-label"><b>02</b> Project overview</p><h2 id="detail-codex-provider-switcher-1">A local configuration tool</h2></div></div><div class="copy-stack"><p class="project-copy">Codex Provider Switcher is a local configuration tool for switching Codex providers and models. It is available as the Rust CLI cps and a Tauri 2 macOS desktop app; it does not run as a proxy, hosted service, or always-on gateway.</p><p class="project-copy">The current public release is v0.1.0. Its universal macOS DMG supports Apple Silicon and Intel, is ad-hoc signed, and is not notarized.</p></div></section>
+<section class="article-section module-section system-section" data-reveal aria-labelledby="detail-codex-provider-switcher-2"><div class="section-head"><div><p class="chapter-label"><b>03</b> Provider control</p><h2 id="detail-codex-provider-switcher-2">Choose a provider with a recovery path</h2></div></div><div class="system-groups"><ul class="system-values"><li>OpenAI</li><li>Ollama</li><li>LM Studio</li></ul><ul class="system-values"><li>DeepSeek</li><li>xAI</li><li>OpenRouter</li></ul><ul class="system-values"><li>macOS Keychain</li><li>CPS-managed direct-provider credentials</li></ul><ul class="system-values"><li>Codex configuration</li><li>Atomic update</li><li>Conflict detection</li><li>Recovery backup</li></ul></div><p class="system-caption">Doctor runs local diagnostics. Restore uses the recovery backup when a previous configuration needs to be recovered.</p></section>
+<section class="article-section detail-section technical-section" data-reveal aria-labelledby="detail-codex-provider-switcher-3"><div class="section-head"><div><p class="chapter-label"><b>04</b> Implementation</p><h2 id="detail-codex-provider-switcher-3">Transactional local changes</h2></div></div><div class="copy-stack"><p class="project-copy">The cps CLI is written in Rust. The macOS desktop application uses Tauri 2 and provides the same provider and model switching workflow through a native interface. Supported providers include OpenAI, Ollama, LM Studio, DeepSeek, xAI, and OpenRouter.</p><p class="project-copy">Configuration changes are written atomically, checked for conflicts, and paired with a recovery backup. CPS-managed direct-provider credentials can be stored in macOS Keychain; Doctor performs local diagnostics, and Restore recovers from the backup.</p><p class="project-copy">The v0.1.0 universal DMG targets Apple Silicon and Intel Macs. It is ad-hoc signed and has not been notarized.</p></div></section>
     </article>
+    <site-contact number="06"></site-contact>
   </main>
-  <footer class="detail-footer footer-no-next">
-    <a class="footer-return" href="../../index.html#project-index"><span aria-hidden="true">↖</span> Return to project index</a>
-    <a class="footer-identity" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-      <span>Yiqiang Adrian Liu<br>Independent Developer &amp; Builder</span>
-    </a>
-  </footer>
 </body>
 </html>

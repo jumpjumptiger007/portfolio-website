@@ -51,6 +51,16 @@ function validateSeoImage(value, label) {
   if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error(`${label} must stay inside the site root.`);
 }
 
+function validateStorySource(source, label) {
+  if (source === undefined) return;
+  if (!source || typeof source !== "object" || Array.isArray(source)) throw new Error(`${label} must be an object.`);
+  const unsupported = Object.keys(source).filter((key) => key !== "lastReviewedCommit");
+  if (unsupported.length) throw new Error(`${label} contains unsupported properties: ${unsupported.join(", ")}.`);
+  if (typeof source.lastReviewedCommit !== "string" || !/^[a-f0-9]{40}$/i.test(source.lastReviewedCommit)) {
+    throw new Error(`${label}.lastReviewedCommit must be a full 40-character hexadecimal commit SHA.`);
+  }
+}
+
 function validateProjectSeo(seo, label) {
   if (seo === undefined) return;
   if (!seo || typeof seo !== "object" || Array.isArray(seo)) throw new Error(`${label} must be an object.`);
@@ -106,9 +116,30 @@ function validateModule(module, label) {
       requireText(item?.title, `${label}.items[${index}].title`);
       requireText(item?.text, `${label}.items[${index}].text`);
     });
+  } else if (module.type === "report-table") {
+    requireTextList(module.headers, `${label}.headers`);
+    if (!Array.isArray(module.rows) || module.rows.length === 0) throw new Error(`${label}.rows must contain at least one row.`);
+    module.rows.forEach((row, rowIndex) => {
+      const rowLabel = `${label}.rows[${rowIndex}]`;
+      if (!Array.isArray(row) || row.length !== module.headers.length) throw new Error(`${rowLabel} must match the header column count.`);
+      row.forEach((cell, cellIndex) => {
+        const cellLabel = `${rowLabel}[${cellIndex}]`;
+        if (typeof cell === "string") return requireText(cell, cellLabel);
+        if (!cell || typeof cell !== "object" || Array.isArray(cell)) throw new Error(`${cellLabel} must be text or a { text, emphasis } object.`);
+        if (Object.keys(cell).some((key) => !["text", "emphasis"].includes(key))) throw new Error(`${cellLabel} contains unsupported properties.`);
+        requireText(cell.text, `${cellLabel}.text`);
+        if (typeof cell.emphasis !== "boolean") throw new Error(`${cellLabel}.emphasis must be a boolean.`);
+      });
+    });
+    if (module.note !== undefined) requireText(module.note, `${label}.note`);
   } else if (module.type === "image") {
     requireText(module.src, `${label}.src`);
     requireText(module.alt, `${label}.alt`);
+    for (const dimension of ["width", "height"]) {
+      if (!Number.isInteger(module[dimension]) || module[dimension] <= 0) {
+        throw new Error(`${label}.${dimension} must be a positive integer.`);
+      }
+    }
     const imagePath = path.resolve(root, module.src);
     const relative = path.relative(root, imagePath);
     if (relative.startsWith("..") || path.isAbsolute(relative)) throw new Error(`${label}.src must stay inside the site root.`);
@@ -124,6 +155,9 @@ function validateModule(module, label) {
   } else if (module.type === "system") {
     if (!Array.isArray(module.rows) || module.rows.length === 0) throw new Error(`${label}.rows must contain at least one row.`);
     module.rows.forEach((row, index) => requireTextList(row, `${label}.rows[${index}]`));
+    if (module.variant !== undefined && module.variant !== "readable-rows") {
+      throw new Error(`${label}.variant must be "readable-rows" when provided.`);
+    }
   }
 
   if (module.caption !== undefined) requireText(module.caption, `${label}.caption`);
@@ -150,6 +184,7 @@ export function validateProjectDefinitions(projects) {
     if (!projectStatuses.has(project.status)) throw new Error(`${label}.status must be one of: ${[...projectStatuses].join(", ")}.`);
     requireText(project.summary, `${label}.summary`);
     validateProjectSeo(project.seo, `${label}.seo`);
+    validateStorySource(project.storySource, `${label}.storySource`);
 
     for (const key of ["featured", "selectedSystem", "hidden"]) {
       if (typeof project[key] !== "boolean") throw new Error(`${label}.${key} must be a boolean.`);

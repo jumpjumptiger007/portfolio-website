@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InterDemTV — Frozen Project Page Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050706;
+  --field:#070A08;
+  --field2:#090D0A;
+  --panel:#0B100D;
+  --panel2:#0D120F;
+  --text:#EDF1EC;
+  --text2:#B5BEB7;
+  --muted:#758077;
+  --line:#203126;
+  --line2:#2D4632;
+  --lineHover:#456440;
+  --green:#A6FF1A;
+  --display:"Bricolage Grotesque",sans-serif;
+  --sans:"Instrument Sans",sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+  --page:max(clamp(20px,3.35vw,48px),calc((100% - 1560px)/2));
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;min-width:320px;background:#030403;color:var(--text);font-family:var(--sans)}
+html{scroll-behavior:smooth}
+body{
+  overflow-x:hidden;
+  background:
+    radial-gradient(72% 84% at 74% 18%,rgba(63,92,58,.032),transparent 58%),
+    radial-gradient(60% 72% at 18% 78%,rgba(45,66,46,.022),transparent 64%),
+    linear-gradient(180deg,#050706 0%,#071009 48%,#050706 100%);
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+
+.page-shell{width:100%;max-width:none;margin:0}
+.chapter{display:flex;align-items:center;gap:18px;margin:0;color:var(--text);font:600 10px/1 var(--mono);letter-spacing:.14em}
+.chapter b{color:var(--green);font-weight:600}
+.chapter::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.project-hero{
+  position:relative;
+  padding:136px var(--page) 74px;
+  min-height:720px;
+  display:grid;
+  align-items:end;
+}
+.project-hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(44% 58% at 78% 22%,rgba(92,128,88,.042),transparent 62%),
+    radial-gradient(34% 40% at 16% 82%,rgba(166,255,26,.016),transparent 68%);
+  pointer-events:none;
+}
+.project-hero-grid{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,.7fr);
+  gap:56px;
+  align-items:end;
+}
+.project-kicker{margin-bottom:34px}
+.project-title{margin:0;font:720 clamp(64px,7.6vw,118px)/.92 var(--display);font-variation-settings:"wdth" 96,"opsz" 64;letter-spacing:-.045em;overflow-wrap:normal;word-break:normal}
+.project-title span{display:block}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:10px 18px;margin:28px 0 0;
+  color:var(--muted);font:500 9px/1.55 var(--mono);letter-spacing:.12em;text-transform:uppercase
+}
+.hero-meta b{color:var(--green);font-weight:500}
+.hero-summary{margin:0;color:var(--text2);font-size:clamp(18px,1.65vw,22px);line-height:1.48;max-width:475px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:30px}
+.hero-link{
+  display:inline-flex;align-items:center;gap:10px;min-height:46px;
+  padding:0 2px;
+  color:var(--green);font:600 9px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase
+}
+.hero-link span:last-child{font-size:17px}
+.hero-link:hover{color:#c6ff68}
+
+.article-section{
+  padding:56px var(--page) 58px;
+  border-top:1px solid rgba(32,49,38,.72);
+}
+.article-section.section-field{background:
+  radial-gradient(62% 72% at 82% 16%,rgba(92,128,88,.024),transparent 60%),
+  radial-gradient(44% 50% at 18% 88%,rgba(166,255,26,.010),transparent 68%),
+  var(--field)}
+.article-section.section-dense{background:
+  radial-gradient(52% 60% at 18% 18%,rgba(166,255,26,.010),transparent 66%),
+  radial-gradient(44% 52% at 84% 74%,rgba(92,128,88,.022),transparent 70%),
+  var(--field2)}
+
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.66fr);gap:34px;align-items:end;margin-bottom:30px}
+.section-head h2{margin:0;font:650 clamp(34px,4vw,52px)/1 var(--display);font-variation-settings:"wdth" 94,"opsz" 48;letter-spacing:-.045em}
+.section-head p{margin:0;color:var(--text2);font-size:15px;line-height:1.55}
+
+.copy-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:34px}
+.copy-stack{display:grid;gap:18px}
+.copy-stack p{margin:0;color:var(--text2);font-size:17px;line-height:1.72}
+.side-note{
+  border:1px solid var(--line2);border-radius:16px;background:var(--panel);
+  padding:18px
+}
+.side-note h3{margin:0 0 18px;font:600 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
+.side-note ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.side-note li{display:grid;gap:5px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.side-note li:last-child{padding-bottom:0;border-bottom:0}
+.side-note strong{font:500 9px/1.3 var(--mono);letter-spacing:.1em;color:var(--green);font-weight:500}
+.side-note span{color:var(--text2);font-size:14px;line-height:1.45}
+
+.system-table{
+  border:1px solid var(--line2);
+  border-radius:16px;
+  overflow:hidden;
+  background:var(--panel);
+}
+.system-row{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  border-bottom:1px solid var(--line);
+}
+.system-row:last-child{border-bottom:0}
+.system-cell{padding:16px 16px 18px;min-height:90px}
+.system-cell small{display:block;margin-bottom:10px;color:var(--green);font:500 9px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.system-cell p{margin:0;color:var(--text2);font-size:14px;line-height:1.45}
+
+.workflow-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.workflow-card{
+  border:1px solid var(--line2);border-radius:16px;background:var(--panel);
+  padding:18px 16px 16px
+}
+.workflow-card b{display:block;margin:0 0 14px;color:var(--green);font:600 10px/1 var(--mono);letter-spacing:.1em}
+.workflow-card h3{margin:0;font:620 22px/1.05 var(--display);font-variation-settings:"wdth" 94,"opsz" 48;letter-spacing:-.035em}
+.workflow-card p{margin:14px 0 0;color:var(--text2);font-size:14px;line-height:1.5}
+
+.output-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.report-table-note,.report-table-caption{max-width:760px;color:var(--muted);font-size:12px;line-height:1.55}
+.report-table-note{margin:0 0 17px}
+.report-table-caption{margin:17px 0 0}
+.report-table-scroll{max-width:1100px;overflow-x:auto;border-top:1px solid var(--line2);background:var(--field2)}
+.report-table-scroll:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+.report-table{width:100%;min-width:480px;border-collapse:collapse;text-align:left}
+.report-table th,.report-table td{padding:14px 18px;border-bottom:1px solid var(--line)}
+.report-table th{color:var(--muted);font:500 10px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.report-table td{color:var(--text);font-size:13px;line-height:1.5}
+.report-table-emphasis{color:var(--green);font-weight:600}
+.output-card{
+  border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.01);
+  padding:16px 14px 14px
+}
+.output-card h3{margin:0;color:var(--green);font:500 9px/1.35 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.output-card p{margin:12px 0 0;color:var(--text2);font-size:13px;line-height:1.48}
+
+.pipeline-topology{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:12px 0 10px;
+}
+.topology-stage{
+  min-width:0;
+  min-height:138px;
+  padding:16px 14px 14px;
+  border:1px solid var(--line2);
+  border-radius:12px;
+  background:var(--panel);
+  display:flex;
+  flex-direction:column;
+}
+.stage-kicker{
+  display:block;
+  margin-bottom:13px;
+  color:var(--green);
+  font:600 9px/1 var(--mono);
+  letter-spacing:.12em;
+}
+.topology-stage strong{
+  display:block;
+  color:var(--text);
+  font:600 clamp(16px,1.45vw,20px)/1.14 var(--sans);
+  letter-spacing:-.02em;
+}
+.topology-stage small{
+  display:block;
+  margin-top:auto;
+  padding-top:12px;
+  color:var(--muted);
+  font:500 9px/1.45 var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.topology-connector{
+  color:var(--green);
+  font:500 17px/1 var(--mono);
+}
+.topology-caption{
+  max-width:720px;
+  margin:16px 0 0;
+  color:var(--muted);
+  font:500 9px/1.6 var(--mono);
+  letter-spacing:.07em;
+}
+
+.contact{
+  position:relative;min-height:330px;padding:66px var(--page) 32px;background:
+  radial-gradient(58% 68% at 74% 22%,rgba(166,255,26,.016),transparent 68%),var(--bg);
+  border-top:1px solid rgba(32,49,38,.88)
+}
+.contact-head{display:flex;align-items:center;gap:18px}
+.contact-head .section-tag{flex:none}
+.section-tag{display:flex;align-items:center;gap:18px;margin:0;color:var(--text);font:600 10px/1 var(--mono);letter-spacing:.14em}
+.section-tag span{color:var(--green)}
+.contact-head>i{flex:1;height:1px;background:var(--line)}
+.contact h1{margin:46px 0 0;font:700 92px/.9 var(--display);font-variation-settings:"wdth" 94,"opsz" 48;letter-spacing:-.065em}
+.contact h1 a{color:var(--green)}
+.contact-copy{max-width:650px;margin:24px 0 0;color:var(--text2);font-size:16px;font-weight:500;line-height:1.55}
+.signal-link{
+  position:absolute;top:108px;right:max(74px,var(--page));display:flex;gap:2rem;align-items:center;padding:21px 33px;
+  border-radius:12px;background:var(--green);color:#071005;font:600 13px/1 var(--mono);letter-spacing:.11em
+}
+.signal-link b{font-size:1.25rem}
+.contact-footer{position:absolute;top:196px;right:max(74px,var(--page));display:grid;gap:8px;color:var(--text2);font:500 10px/1 var(--mono);letter-spacing:.11em}
+.contact-footer a:hover{color:var(--green)}
+.contact-footer p{position:absolute;top:58px;right:0;width:max-content;margin:0;color:var(--muted);font-size:9px;white-space:nowrap}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1100px){
+  .workflow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .output-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+@media(max-width:900px){
+  .project-hero-grid,.section-head,.copy-grid{grid-template-columns:1fr;gap:26px}
+  .pipeline-topology{grid-template-columns:1fr;gap:10px;padding:0}
+  .topology-stage{min-height:0;padding:16px 14px}
+  .topology-connector{display:none}
+}
+@media(max-width:760px){
+  .project-hero{padding-top:112px;padding-bottom:54px;min-height:0}
+  .project-title{font-size:clamp(38px,12.4vw,64px);line-height:.94}
+  .hero-link{min-height:44px;font-size:9px}
+  .hero-link span:last-child{font-size:15px}
+  .article-section{padding-top:44px;padding-bottom:46px}
+  .system-row{grid-template-columns:1fr}
+  .workflow-grid,.output-grid{grid-template-columns:1fr}
+  .contact{min-height:0;padding:54px var(--page) 28px}
+  .contact h1{margin-top:38px;font-size:64px}
+  .contact-copy{max-width:300px;font-size:15px}
+  .signal-link{position:static;display:inline-flex;margin-top:28px;padding:15px 19px;border-radius:10px;font-size:10px}
+  .contact-footer{position:static;display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin-top:32px;font-size:9px}
+  .contact-footer p{position:static;flex-basis:100%;width:auto;margin-top:6px;white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* Accepted production shared chrome; standalone frozen snapshot. */
+.brand-anchor {
+  position: fixed;
+  z-index: 90;
+  top: 15px;
+  left: 18px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(72,82,75,.08);
+  border-radius: 50%;
+  background: rgba(72,82,75,.11);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.brand-anchor img { display: block; width: 31px; height: auto; }
+.site-header {
+  position: fixed;
+  z-index: 80;
+  top: 14px;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+.nav-wrap { position: relative; width: min(92vw, 455px); margin: 0 auto; pointer-events: auto; }
+.nav {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 14px;
+  border: 1px solid rgba(72,82,75,.11);
+  border-radius: 18px;
+  background: rgba(72,82,75,.16);
+  -webkit-backdrop-filter: blur(28px) saturate(152%);
+  backdrop-filter: blur(28px) saturate(152%);
+}
+.nav a {
+  display: grid;
+  min-width: 0;
+  min-height: 44px;
+  flex: 1;
+  place-items: center;
+  padding: 12px 8px;
+  color: #e8ede9;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: .12em;
+  text-align: center;
+}
+.nav a[aria-current] { color: #f5f7f5; }
+.nav a:hover, .nav a:focus-visible { color: var(--green); }
+.progress-outline {
+  position: absolute;
+  inset: -1px -1px -4px;
+  width: calc(100% + 2px);
+  height: 63px;
+  overflow: visible;
+  pointer-events: none;
+}
+.progress-outline path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 5px rgba(166,255,26,.25));
+}
+.progress-outline .active { stroke-dasharray: 100 100; stroke-dashoffset: 100; opacity: 0; }
+
+
+@media (max-width:760px) {
+.brand-anchor { top:12px;left:12px;width:40px;height:40px; }
+.brand-anchor img { width:28px; }
+.nav-wrap { width:calc(100% - 108px);min-width:205px;max-width:455px; }
+.nav { height:54px;gap:4px;padding:0 8px;border-radius:16px; }
+.nav a { padding:10px 6px;font-size:10px; }
+.progress-outline { height:59px;bottom:-4px; }
+}
+@media (max-width:380px) {
+.nav-wrap { width:calc(100% - 108px);min-width:205px; }
+.nav { gap:0;padding:0 5px; }
+.nav a { padding-right:3px;padding-left:3px;font-size:9px;letter-spacing:.08em; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+html { scroll-behavior:auto; }
+.progress-outline path { transition:none !important; }
+}
+
+@media(max-width:900px){.project-hero{min-height:0}.project-hero-grid{grid-template-columns:minmax(0,1fr);gap:26px}.project-title{font-size:clamp(58px,8.5vw,90px);line-height:.92}}
+@media(max-width:760px){.section-head h2{line-height:1.08;letter-spacing:-.035em}}
+@media(max-width:680px){.project-title{font-size:clamp(38px,12.4vw,64px);line-height:.94}.hero-summary{font-size:18px}}
+@media(max-width:680px){.copy-stack p{font-size:16px;line-height:1.65}}
+</style>
+</head>
+<body>
+<a class="brand-anchor" href="/index.html#top" aria-label="Yiqiang Adrian Liu"><img src="/assets/brand/yal-mark.svg" alt=""></a>
+
+<header class="site-header" aria-label="Primary navigation">
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Primary navigation"><a href="/index.html#top">HOME</a><a href="/work/" aria-current="location">WORK</a><a href="#contact">CONTACT</a></nav>
+    <svg class="progress-outline" viewBox="0 0 455 63" preserveAspectRatio="none" aria-hidden="true">
+      <path class="active" d="M 1 38 Q 1 58 20 58 L 435 58 Q 454 58 454 38" pathLength="100"></path>
+    </svg>
+  </div>
+</header>
+
+<div class="page-shell">
+  <main>
+    <section class="project-hero">
+      <div class="project-hero-grid">
+        <div class="reveal">
+          <p class="chapter project-kicker"><b>PROJECT / 01</b> FEATURE ARTICLE</p>
+          <h1 class="project-title"><span>InterDemTV</span><span>Interdimensional Cable</span></h1>
+          <div class="hero-meta">
+            <span><b>TYPE</b> WEB EXPERIMENT</span>
+            <span><b>STATUS</b> LIVE</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="hero-summary">A retro-futurist web television for random signal hunting and internet wandering. Instead of search or a category browser, the interface invites the viewer to surf a shuffled sequence of channels.</p>
+          <div class="hero-actions">
+            <a class="hero-link" href="#"><span>LIVE DEMO</span><span aria-hidden="true">↗</span></a>
+            <a class="hero-link" href="#"><span>SOURCE</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section section-field">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>01</b> PROJECT OVERVIEW</p>
+          <h2>A receiver for internet discovery.</h2>
+        </div>
+        <p>InterDemTV is structured as a project article: project context first, followed by the system, implementation, workflow, and observable controls.</p>
+      </div>
+
+      <div class="copy-grid">
+        <div class="copy-stack reveal">
+          <p>InterDemTV turns a refreshed catalog of internet video into a constrained, television-like mode of discovery. Instead of search or a category browser, the interface asks a viewer to surf through a shuffled sequence of channels.</p>
+          <p>A retro CRT television, signal-room scene, and physical-style remote frame the experience. Viewers move forward or backward through the receiver sequence, then save a channel or permanently skip it in their own browser. Its core remains channel surfing and internet discovery.</p>
+        </div>
+        <aside class="side-note reveal">
+          <h3>At a glance</h3>
+          <ul>
+            <li><strong>Format</strong><span>Static web experiment with a generated media catalog.</span></li>
+            <li><strong>Interaction</strong><span>Shuffle, tune, save, skip — a small but deliberate set of controls.</span></li>
+            <li><strong>Role</strong><span>A web experiment focused on constrained internet discovery and channel surfing.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>02</b> CONTENT PIPELINE</p>
+          <h2>A generated channel catalog.</h2>
+        </div>
+        <p>The content pipeline moves from curated source feeds to a generated catalog, shuffled receiver sequence, and browser playback.</p>
+      </div>
+
+      <div class="pipeline-topology reveal" aria-label="InterDemTV content pipeline topology">
+        <div class="topology-stage">
+          <span class="stage-kicker">SOURCE</span>
+          <strong>Reddit RSS<br>+ Arctic Shift</strong>
+          <small>Curated inputs</small>
+        </div>
+        <span class="topology-connector" aria-hidden="true">→</span>
+        <div class="topology-stage">
+          <span class="stage-kicker">AUTOMATION</span>
+          <strong>Daily GitHub<br>Action</strong>
+          <small>Refresh + validate</small>
+        </div>
+        <span class="topology-connector" aria-hidden="true">→</span>
+        <div class="topology-stage">
+          <span class="stage-kicker">CATALOG</span>
+          <strong>Unique IDs<br>→ videos.json</strong>
+          <small>Generated artifact</small>
+        </div>
+        <span class="topology-connector" aria-hidden="true">→</span>
+        <div class="topology-stage">
+          <span class="stage-kicker">SEQUENCE</span>
+          <strong>Fisher–Yates<br>shuffle</strong>
+          <small>Receiver order</small>
+        </div>
+        <span class="topology-connector" aria-hidden="true">→</span>
+        <div class="topology-stage">
+          <span class="stage-kicker">PLAYBACK</span>
+          <strong>Receiver<br>sequence</strong>
+          <small>YouTube IFrame</small>
+        </div>
+      </div>
+      <p class="topology-caption reveal">The browser reads the generated catalog; it does not fetch Reddit at runtime. Video playback remains hosted by YouTube.</p>
+    </section>
+
+    <section class="article-section section-dense">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>03</b> IMPLEMENTATION</p>
+          <h2>A static receiver with local state.</h2>
+        </div>
+        <p>The receiver remains a static web application with generated catalog data, local browser state, and lightweight client-side behavior.</p>
+      </div>
+
+      <div class="copy-grid">
+        <div class="copy-stack reveal">
+          <p>The application is static HTML, CSS, and JavaScript on GitHub Pages. A daily workflow collects a curated source set through Reddit RSS and Arctic Shift, produces a catalog of unique YouTube IDs, and can check that IDs are public and embeddable before the catalog is published.</p>
+          <p>At load, the receiver Fisher–Yates shuffles the catalog, then traverses that sequence forward or backward while skipping locally blocked IDs and playback failures. Favorites, permanent skips, and receiver settings persist in <code>localStorage</code>.</p>
+          <p>Playback positions are held only for the current page session. A service worker caches first-party static assets; YouTube playback remains outside that cache.</p>
+        </div>
+        <aside class="side-note reveal">
+          <h3>Implementation notes</h3>
+          <ul>
+            <li><strong>Deployment</strong><span>Static site / GitHub Pages compatible.</span></li>
+            <li><strong>State</strong><span>Favorites, skips, and interface state stored locally.</span></li>
+            <li><strong>Non-goal</strong><span>No account system, no cloud sync, no recommendation engine.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>04</b> VIEWER WORKFLOW</p>
+          <h2>Tune, move, keep, or reject.</h2>
+        </div>
+        <p>The viewer workflow is intentionally small: power on, move through channels, change signal behavior, then keep or reject a channel.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="workflow-card reveal">
+          <b>01</b>
+          <h3>Power on</h3>
+          <p>Load the shuffled receiver sequence and tune the current saved channel when one exists.</p>
+        </article>
+        <article class="workflow-card reveal">
+          <b>02</b>
+          <h3>Move</h3>
+          <p>Go forward or backward through the shuffled list; blocked and failed videos are left out of the sequence.</p>
+        </article>
+        <article class="workflow-card reveal">
+          <b>03</b>
+          <h3>Change</h3>
+          <p>Use RND to enter longer videos at a different point, or FILTER to turn CRT display effects on or off.</p>
+        </article>
+        <article class="workflow-card reveal">
+          <b>04</b>
+          <h3>Keep / reject</h3>
+          <p>Save a favorite or permanently skip an unwanted channel. Both choices remain local to the browser.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="article-section section-field">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>05</b> RECEIVER CONTROLS</p>
+          <h2>A small set of deliberate controls.</h2>
+        </div>
+        <p>The receiver exposes a compact set of controls for navigation, signal behavior, local memory, state restoration, and viewing.</p>
+      </div>
+
+      <div class="output-grid">
+        <article class="output-card reveal"><h3>Channel navigation</h3><p>Previous and next travel through one shuffled receiver sequence.</p></article>
+        <article class="output-card reveal"><h3>Signal controls</h3><p>RND changes the start point inside longer videos; FILTER changes CRT display effects only.</p></article>
+        <article class="output-card reveal"><h3>Local memory</h3><p>Favorites and permanent skips are stored in the browser, without accounts or cloud sync.</p></article>
+        <article class="output-card reveal"><h3>Receiver state</h3><p>Saved channel, volume, mute state, random mode, and ambience return across sessions.</p></article>
+        <article class="output-card reveal"><h3>Viewing</h3><p>Fullscreen, a help modal, and keyboard shortcuts support the receiver interface.</p></article>
+      </div>
+    </section>
+
+    <section class="article-section report-table-sample" aria-labelledby="report-sample-title">
+      <div class="section-head reveal">
+        <div>
+          <p class="chapter"><b>MODULE / SAMPLE</b> STRUCTURED OUTPUT</p>
+          <h2 id="report-sample-title">A native editorial report table.</h2>
+        </div>
+        <p>A reusable Project Detail module for compact public output and status data.</p>
+      </div>
+      <p class="report-table-note" id="report-sample-note">Illustrative sample — not live data.</p>
+      <div class="report-table-scroll" role="region" tabindex="0" aria-labelledby="report-sample-title">
+        <table class="report-table" aria-labelledby="report-sample-title" aria-describedby="report-sample-note">
+          <thead><tr><th scope="col">Signal</th><th scope="col">Reading</th><th scope="col">Level</th></tr></thead>
+          <tbody>
+            <tr><td>Birch</td><td>Sample reading</td><td><strong class="report-table-emphasis">Low · 1</strong></td></tr>
+            <tr><td>Grass</td><td>No sample value</td><td>—</td></tr>
+            <tr><td>Feed status</td><td>Illustrative output</td><td>Example</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="report-table-caption">A dark, structured alternative to a screenshot when a Project Story needs to explain tabular output.</p>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-head">
+        <p class="section-tag"><span>06</span> CONTACT / SIGNAL</p>
+        <i aria-hidden="true"></i>
+      </div>
+      <div class="contact-copy-group">
+        <h1>Get in <a href="mailto:contact@yliu.tech">touch.</a></h1>
+        <p class="contact-copy">I’m open to interesting projects, collaborations, or just a good conversation about technology and the internet.</p>
+      </div>
+      <a class="signal-link" href="mailto:contact@yliu.tech"><span>SEND A SIGNAL</span><b>→</b></a>
+      <div class="contact-footer">
+        <a href="mailto:contact@yliu.tech">EMAIL</a>
+        <a href="https://github.com/jumpjumptiger007">GITHUB</a>
+        <p>© 2026 YIQIANG ADRIAN LIU</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const active = document.querySelector('.progress-outline .active');
+  function updateProgress() {
+    if (!active) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max <= 0 ? 0 : Math.min(1, Math.max(0, window.scrollY / max));
+    active.style.strokeDashoffset = String(100 - p * 100);
+    active.style.opacity = p <= 0.0005 ? '0' : '1';
+  }
+  updateProgress();
+  addEventListener('scroll', updateProgress, {passive:true});
+  addEventListener('resize', updateProgress);
+})();
+
+(() => {
+  const items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(x=>x.classList.add('in'));return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  items.forEach(x=>io.observe(x));
+})();
+</script>
+</body>
+</html>

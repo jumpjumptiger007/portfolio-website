@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="Yiqiang Adrian Liu — independent developer and builder of useful, sometimes strange, software.">
   <title>Yiqiang Adrian Liu — Independent Developer</title>
   <link rel="canonical" href="https://yliu.tech/">
@@ -20,28 +21,8 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@id": "https://yliu.tech/#website",
-        "@type": "WebSite",
-        "url": "https://yliu.tech/",
-        "name": "Yiqiang Adrian Liu",
-        "description": "Yiqiang Adrian Liu — independent developer and builder of useful, sometimes strange, software.",
-        "about": { "@id": "https://yliu.tech/#person" },
-        "publisher": { "@id": "https://yliu.tech/#person" }
-      },
-      {
-        "@id": "https://yliu.tech/#person",
-        "@type": "Person",
-        "name": "Yiqiang Adrian Liu",
-        "alternateName": "Adrian Liu",
-        "url": "https://yliu.tech/",
-        "image": "https://yliu.tech/assets/profile.jpg",
-        "jobTitle": "Independent Developer & Builder",
-        "sameAs": [
-          "https://github.com/jumpjumptiger007"
-        ],
-        "mainEntityOfPage": { "@id": "https://yliu.tech/#website" }
-      }
+      {"@id":"https://yliu.tech/#website","@type":"WebSite","url":"https://yliu.tech/","name":"Yiqiang Adrian Liu","description":"Yiqiang Adrian Liu — independent developer and builder of useful, sometimes strange, software.","about":{"@id":"https://yliu.tech/#person"},"publisher":{"@id":"https://yliu.tech/#person"}},
+      {"@id":"https://yliu.tech/#person","@type":"Person","name":"Yiqiang Adrian Liu","alternateName":"Adrian Liu","url":"https://yliu.tech/","image":"https://yliu.tech/assets/profile.jpg","jobTitle":"Independent Developer & Builder","sameAs":["https://github.com/jumpjumptiger007"],"mainEntityOfPage":{"@id":"https://yliu.tech/#website"}}
     ]
   }
   </script>
@@ -52,33 +33,77 @@
   <link rel="icon" type="image/png" href="assets/favicon/favicon-32x32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="css/site-shell.css">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/site-shell.js"></script>
 </head>
-<body>
-  <a class="skip-link" href="#work">Skip to featured work</a>
-  <header class="site-header">
-    <nav class="nav-shell" aria-label="Primary navigation">
-      <a class="monogram" href="#top" aria-label="Yiqiang Adrian Liu — home"><img src="assets/brand/yal-mark.svg" alt=""></a>
-      <div class="nav-links"><a href="#work">WORK</a><a href="work/" aria-label="Browse all work">ALL WORK</a><a href="#now">ABOUT</a></div>
-    </nav>
-  </header>
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <p class="hero-ghost ghost-adrian" aria-hidden="true">ADRIAN</p>
-      <div class="hero-inner">
-        <h1 id="hero-title"><span class="name-yiqiang">YIQIANG</span><span class="name-adrian">ADRIAN <strong>LIU</strong></span></h1>
-        <div class="hero-statement"><p class="magazine-label">PERSONAL TECH MAGAZINE</p><p>I build useful things,<br>sometimes strange ones.</p></div>
-        <div class="hero-intro"><p class="mono-label">INDEPENDENT DEVELOPER &amp; BUILDER</p><p>Software / Tools / Experiments</p><a class="text-link" href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <site-chrome page="home"></site-chrome>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <p class="hero-ghost" aria-hidden="true">ADRIAN</p>
+      <div class="hero-grid">
+        <div class="identity">
+          <h1 id="hero-title"><span class="yiqiang">YIQIANG</span><span>ADRIAN <strong>LIU</strong></span></h1>
+          <p class="meta"><b>INDEPENDENT DEVELOPER &amp; BUILDER</b><br>SYSTEMS / TOOLS / EXPERIMENTS</p>
+          <a class="hero-cta" href="#work">EXPLORE WORK <i aria-hidden="true">↘</i></a>
+        </div>
+        <div class="statement">
+          <p class="line">I build useful things, sometimes strange ones.</p>
+          <p class="sub">Software, developer tools, agentic systems, interfaces, and experiments.</p>
+        </div>
+        <div class="ticker-wrap" role="group" aria-label="Homepage ticker: Building small, specific tools; exploring interfaces with personality; systems for developer tools, agents, and workflows.">
+          <div class="ticker-window">
+            <div class="ticker-track" id="home-ticker-track" aria-hidden="true">
+              <div class="ticker-group"><span><b>BUILDING</b> SMALL, SPECIFIC TOOLS</span><span><b>EXPLORING</b> INTERFACES WITH PERSONALITY</span><span><b>SYSTEMS</b> DEV TOOLS / AGENTS / WORKFLOWS</span></div>
+              <div class="ticker-group"><span><b>BUILDING</b> SMALL, SPECIFIC TOOLS</span><span><b>EXPLORING</b> INTERFACES WITH PERSONALITY</span><span><b>SYSTEMS</b> DEV TOOLS / AGENTS / WORKFLOWS</span></div>
+              <div class="ticker-group"><span><b>BUILDING</b> SMALL, SPECIFIC TOOLS</span><span><b>EXPLORING</b> INTERFACES WITH PERSONALITY</span><span><b>SYSTEMS</b> DEV TOOLS / AGENTS / WORKFLOWS</span></div>
+            </div>
+          </div>
+          <button class="ticker-control" type="button" aria-controls="home-ticker-track" aria-pressed="false" aria-label="Pause homepage ticker">PAUSE</button>
+        </div>
       </div>
     </section>
-    <section class="section feature" id="work" aria-labelledby="featured-title"><div class="section-tag" data-reveal><span>01</span> COVER STORY</div><div class="feature-layout" id="featured-project"></div></section>
-    <section class="section systems" aria-labelledby="systems-title"><div class="systems-heading"><div class="section-tag" data-reveal><span>02</span> SELECTED SYSTEMS</div><h2 id="systems-title">Systems for<br>making work <em>move.</em></h2></div><div id="selected-systems"></div></section>
-    <section class="section project-index" id="project-index" aria-labelledby="index-title"><div class="index-layout"><div class="index-intro" data-reveal><div class="section-tag"><span>03</span> PROJECT INDEX</div><h2 id="index-title">WORK INDEX</h2><p>A compact index of software, tools, systems, and experiments at different stages of use.</p><a class="text-link" href="work/">BROWSE ALL WORK <span aria-hidden="true">↘</span></a></div><div class="index-table" data-reveal><p class="index-note">COMPLETE INDEX / 10 ENTRIES</p><div class="index-columns" aria-hidden="true"><span>NO.</span><span>PROJECT / CLASS</span><span>STATUS</span><span>YEAR</span><span></span></div><div class="project-rows" id="project-rows"></div></div></div></section>
-    <section class="section now" id="now" aria-labelledby="now-title"><div class="section-tag" data-reveal><span>04</span> NOW / CURRENT</div><div class="now-layout"><h2 id="now-title" data-reveal>WHAT’S<br><em>ACTIVE.</em></h2><div class="active-blocks" data-reveal><article><p class="mono-label">BUILDING</p><h3>Small, specific tools with useful edges.</h3><p>Building developer tools, agentic workflows, and small agent products for real use.</p></article><article><p class="mono-label">EXPLORING</p><h3>Interfaces with personality, not noise.</h3><p>Looking for better ways to make technical systems feel clear, direct, and alive.</p></article></div></div></section>
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="contact-grid" aria-hidden="true"></div><div class="contact-head"><p class="section-tag"><span>05</span> CONTACT / SIGNAL</p><i aria-hidden="true"></i></div><div class="contact-copy-group" data-reveal><h2 id="contact-title">Get in <a href="mailto:contact@yliu.tech">touch.</a></h2><p class="contact-copy">I’m open to interesting projects, collaborations, or just a good conversation about technology and the internet.</p></div><a class="signal-link" href="mailto:contact@yliu.tech"><span>SEND A SIGNAL</span><b aria-hidden="true">→</b></a><div class="contact-footer"><a href="mailto:contact@yliu.tech">EMAIL</a><a href="https://github.com/jumpjumptiger007" target="_blank" rel="noopener noreferrer">GITHUB</a><span>LINKEDIN</span><p>© 2026 YIQIANG ADRIAN LIU</p></div></section>
+
+    <section class="cover-section" id="work" aria-labelledby="featured-title">
+      <div class="section-tag"><span>01</span> COVER STORY</div>
+      <div class="cover-content" id="featured-project"></div>
+    </section>
+
+    <section class="systems-section" aria-labelledby="systems-title">
+      <div class="section-tag"><span>02</span> SELECTED SYSTEMS</div>
+      <h2 class="visually-hidden" id="systems-title">Selected Systems</h2>
+      <div id="selected-systems"></div>
+    </section>
+
+    <section class="index-section" id="project-index" aria-labelledby="index-title">
+      <div class="index-layout">
+        <div class="index-intro" data-reveal>
+          <div class="section-tag"><span>03</span> PROJECT INDEX</div>
+          <h2 id="index-title">WORK INDEX</h2>
+          <p>A compact index of software, tools, systems, and experiments at different stages of use.</p>
+          <a class="text-link" href="work/">BROWSE ALL WORK <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="index-table" data-reveal>
+          <p class="index-note">COMPLETE INDEX / 10 ENTRIES</p>
+          <div class="project-rows" id="project-rows"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="now-section" id="now" aria-labelledby="now-title">
+      <div class="section-tag"><span>04</span> NOW / CURRENT</div>
+      <div class="now-layout">
+        <h2 id="now-title">WHAT’S<br><em>ACTIVE.</em></h2>
+        <article class="active-block" data-reveal><p class="mono-label">BUILDING</p><h3>Small, specific tools with useful edges.</h3><p>Building developer tools, agentic workflows, and small agent products for real use.</p></article>
+        <article class="active-block" data-reveal><p class="mono-label">EXPLORING</p><h3>Interfaces with personality, not noise.</h3><p>Looking for better ways to make technical systems feel clear, direct, and alive.</p></article>
+      </div>
+    </section>
+    <site-contact number="05"></site-contact>
   </main>
   <noscript><p class="noscript">This project index needs JavaScript enabled.</p></noscript>
-  <script type="module" src="js/projects.js"></script><script src="js/main.js"></script>
+  <script type="module" src="js/projects.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

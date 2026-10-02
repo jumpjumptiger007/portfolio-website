@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="An interactive view of QPSK modulation and signal noise.">
   <title>QPSK Visualization — Yiqiang Adrian Liu</title>
   <link rel="canonical" href="https://yliu.tech/work/qpsk-visualization/">
@@ -20,48 +21,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="icon" href="../../assets/favicon/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../../css/site-shell.css">
   <link rel="stylesheet" href="../../css/project-detail.css">
+  <script type="module" src="../../js/site-shell.js"></script>
 </head>
 <body class="project-detail-page">
   <a class="skip-link" href="#main">Skip to project details</a>
-  <header class="detail-header">
-    <a class="detail-brand" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-    </a>
-    <a class="back-link" href="../../index.html#project-index"><span aria-hidden="true">←</span> Return to work</a>
-  </header>
+  <site-chrome page="project"></site-chrome>
   <main id="main">
     <article>
-      <header class="project-heading">
-        <div class="project-meta-row">
-          <p class="project-class"><span class="project-number">08</span><span>Technical Visualisation</span></p>
-          <dl class="project-facts">
-            <div><dt>Status</dt><dd class="status-live"><i aria-hidden="true"></i>live</dd></div>
-            <div><dt>Year</dt><dd>2025</dd></div>
-          </dl>
-        </div>
-        <div class="project-title-layout project-title-layout-long">
-          <h1 id="project-title">QPSK<br><span>Visualization</span></h1>
-          <div class="project-summary-group">
-            <p class="project-summary">An interactive view of QPSK modulation and signal noise.</p>
-            <nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></nav>
+      <header class="project-hero">
+        <div class="project-hero-grid" data-reveal>
+          <div class="project-lead">
+            <p class="chapter-label"><b>PROJECT / 08</b> FEATURE ARTICLE</p>
+            <h1 id="project-title"><span>QPSK</span><span>Visualization</span></h1>
+            <div class="hero-meta"><span><b>TYPE</b> Technical Visualisation</span><span><b>STATUS</b> <i class="status-live">live</i></span></div>
           </div>
+          <div class="project-intro"><p class="hero-summary">An interactive view of QPSK modulation and signal noise.</p><nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/DigitalComm-QPSK-UDP" target="_blank" rel="noopener noreferrer"><span>SOURCE</span><span aria-hidden="true">↗</span></a></nav></div>
         </div>
       </header>
-<section class="detail-section overview-section" aria-labelledby="detail-qpsk-visualization-0"><div class="section-label"><p>Project overview</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-0">Make the symbol mapping visible</h2><p class="project-copy">This browser visualization generates 40 random bits and groups them into 20 QPSK symbols. Each pair selects one of four ideal positions in the I/Q constellation.</p><p class="project-copy">An adjustable random displacement moves the displayed coordinates around those ideal points. Showing the original and perturbed symbols together makes the mapping and its visual change easy to compare; the perturbation is illustrative, not a physical channel model.</p></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-qpsk-visualization-1"><div class="section-label"><p>Signal flow</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-1">From bit pairs to plotted coordinates</h2><div class="system-visual"><div class="system-visual-row"><span class="system-visual-node">40 random bits</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">20 bit pairs</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">QPSK mapping</span></div><div class="system-visual-row"><span class="system-visual-node">Ideal I/Q coordinates</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">Random I/Q displacement</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">SVG constellation</span></div></div><p class="system-visual-caption">Each pair maps to one of four normalized constellation positions. The displacement control adds a separate bounded random offset to the real and imaginary coordinates before plotting the perturbed points.</p></div></section>
-<section class="detail-section technical-section" aria-labelledby="detail-qpsk-visualization-2"><div class="section-label"><p>Implementation</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-2">A small stateful browser visualization</h2><p class="project-copy">The original standalone visualization used a React component; the embedded V5 demo preserves the same mapping and interaction in vanilla JavaScript and SVG. Forty random bits become twenty pairs, with each I and Q coordinate set to +1/√2 or −1/√2 according to the pair.</p><p class="project-copy">The displacement slider ranges from 0 to 1 in 0.01 steps. For each coordinate, the demo adds level × (2 × Math.random() − 1), then plots the ideal and displaced points in SVG. This is bounded random I/Q perturbation, not Gaussian noise or an AWGN channel simulation.</p></div></section>
-<section class="detail-section media-section" aria-labelledby="detail-qpsk-visualization-3"><div class="section-label"><p>QPSK mapping</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-3">Two bits select one of four positions</h2><figure class="media-slot dashboard-output"><div class="queue-map"><div><span>00</span><p>I = +1/√2 · Q = +1/√2</p></div><div><span>01</span><p>I = −1/√2 · Q = +1/√2</p></div><div><span>10</span><p>I = +1/√2 · Q = −1/√2</p></div><div><span>11</span><p>I = −1/√2 · Q = −1/√2</p></div></div><figcaption>The constellation labels its horizontal and vertical axes Real and Imag.</figcaption></figure></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-qpsk-visualization-4"><div class="section-label"><p>Explore the visualization</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-4">Change the data and compare points</h2><ol class="workflow-list"><li><span class="flow-index">01</span><h3>Generate data</h3><p>Create a new random 40-bit stream and map its 20 pairs to the ideal QPSK positions.</p></li><li><span class="flow-index">02</span><h3>Adjust displacement</h3><p>Move the 0–1 displacement slider to change the maximum random displacement applied independently to I and Q.</p></li><li><span class="flow-index">03</span><h3>Regenerate displacement</h3><p>Generate another set of random offsets around the same ideal symbol coordinates.</p></li><li><span class="flow-index">04</span><h3>Compare the field</h3><p>Show or hide ideal and perturbed points independently, then compare the constellation with the current bit-pair sequence.</p></li></ol></div></section>
-<section class="detail-section media-section" aria-labelledby="detail-qpsk-visualization-5"><div class="section-label"><p>Interactive demo</p></div><div class="section-content"><h2 id="detail-qpsk-visualization-5">Explore the constellation</h2><figure class="interactive-frame"><iframe src="../../demos/qpsk-visualization/index.html" title="Interactive QPSK constellation visualization" loading="lazy" sandbox="allow-scripts"></iframe><figcaption class="interactive-caption">Adjust the bounded displacement, regenerate the bit stream, and compare ideal and perturbed symbols.</figcaption></figure></div></section>
+<section class="article-section detail-section overview-section" data-reveal aria-labelledby="detail-qpsk-visualization-0"><div class="section-head"><div><p class="chapter-label"><b>01</b> Project overview</p><h2 id="detail-qpsk-visualization-0">Make the symbol mapping visible</h2></div></div><div class="copy-stack"><p class="project-copy">This browser visualization generates 40 random bits and groups them into 20 QPSK symbols. Each pair selects one of four ideal positions in the I/Q constellation.</p><p class="project-copy">An adjustable random displacement moves the displayed coordinates around those ideal points. Showing the original and perturbed symbols together makes the mapping and its visual change easy to compare; the perturbation is illustrative, not a physical channel model.</p></div></section>
+<section class="article-section module-section system-section" data-reveal aria-labelledby="detail-qpsk-visualization-1"><div class="section-head"><div><p class="chapter-label"><b>02</b> Signal flow</p><h2 id="detail-qpsk-visualization-1">From bit pairs to plotted coordinates</h2></div></div><div class="topology" aria-label="From bit pairs to plotted coordinates sequence"><div class="topology-row" role="list"><div class="topology-stage" role="listitem"><strong>40 random bits</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>20 bit pairs</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>QPSK mapping</strong></div></div><div class="topology-row" role="list"><div class="topology-stage" role="listitem"><strong>Ideal I/Q coordinates</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>Random I/Q displacement</strong></div><span class="topology-connector" aria-hidden="true">→</span><div class="topology-stage" role="listitem"><strong>SVG constellation</strong></div></div></div><p class="system-caption">Each pair maps to one of four normalized constellation positions. The displacement control adds a separate bounded random offset to the real and imaginary coordinates before plotting the perturbed points.</p></section>
+<section class="article-section detail-section technical-section" data-reveal aria-labelledby="detail-qpsk-visualization-2"><div class="section-head"><div><p class="chapter-label"><b>03</b> Implementation</p><h2 id="detail-qpsk-visualization-2">A small stateful browser visualization</h2></div></div><div class="copy-stack"><p class="project-copy">The original standalone visualization used a React component; the embedded V5 demo preserves the same mapping and interaction in vanilla JavaScript and SVG. Forty random bits become twenty pairs, with each I and Q coordinate set to +1/√2 or −1/√2 according to the pair.</p><p class="project-copy">The displacement slider ranges from 0 to 1 in 0.01 steps. For each coordinate, the demo adds level × (2 × Math.random() − 1), then plots the ideal and displaced points in SVG. This is bounded random I/Q perturbation, not Gaussian noise or an AWGN channel simulation.</p></div></section>
+<section class="article-section module-section output-section" data-reveal aria-labelledby="detail-qpsk-visualization-3"><div class="section-head"><div><p class="chapter-label"><b>04</b> QPSK mapping</p><h2 id="detail-qpsk-visualization-3">Two bits select one of four positions</h2></div></div><div class="output-grid"><div><span>00</span><p>I = +1/√2 · Q = +1/√2</p></div><div><span>01</span><p>I = −1/√2 · Q = +1/√2</p></div><div><span>10</span><p>I = +1/√2 · Q = −1/√2</p></div><div><span>11</span><p>I = −1/√2 · Q = −1/√2</p></div></div><p class="output-caption">The constellation labels its horizontal and vertical axes Real and Imag.</p></section>
+<section class="article-section module-section workflow-section" data-reveal aria-labelledby="detail-qpsk-visualization-4"><div class="section-head"><div><p class="chapter-label"><b>05</b> Explore the visualization</p><h2 id="detail-qpsk-visualization-4">Change the data and compare points</h2></div></div><ol class="workflow-list"><li><span class="flow-index">01</span><h3>Generate data</h3><p>Create a new random 40-bit stream and map its 20 pairs to the ideal QPSK positions.</p></li><li><span class="flow-index">02</span><h3>Adjust displacement</h3><p>Move the 0–1 displacement slider to change the maximum random displacement applied independently to I and Q.</p></li><li><span class="flow-index">03</span><h3>Regenerate displacement</h3><p>Generate another set of random offsets around the same ideal symbol coordinates.</p></li><li><span class="flow-index">04</span><h3>Compare the field</h3><p>Show or hide ideal and perturbed points independently, then compare the constellation with the current bit-pair sequence.</p></li></ol></section>
+<section class="article-section detail-section media-section" data-reveal aria-labelledby="detail-qpsk-visualization-5"><div class="section-head"><div><p class="chapter-label"><b>06</b> Interactive demo</p><h2 id="detail-qpsk-visualization-5">Explore the constellation</h2></div></div><figure class="interactive-frame"><iframe src="../../demos/qpsk-visualization/index.html" title="Interactive QPSK constellation visualization" loading="lazy" sandbox="allow-scripts"></iframe><figcaption class="interactive-caption">Adjust the bounded displacement, regenerate the bit stream, and compare ideal and perturbed symbols.</figcaption></figure></section>
     </article>
+    <site-contact number="06"></site-contact>
   </main>
-  <footer class="detail-footer footer-no-next">
-    <a class="footer-return" href="../../index.html#project-index"><span aria-hidden="true">↖</span> Return to project index</a>
-    <a class="footer-identity" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-      <span>Yiqiang Adrian Liu<br>Independent Developer &amp; Builder</span>
-    </a>
-  </footer>
 </body>
 </html>

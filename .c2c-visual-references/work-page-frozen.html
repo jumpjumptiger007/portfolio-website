@@ -1,0 +1,394 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Work — Frozen Reference</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet"><style>
+:root{
+  --bg:#050706;--field:#070A08;--field2:#090D0A;--panel:#0B100D;--panel2:#0D120F;
+  --text:#EDF1EC;--text2:#B5BEB7;--muted:#758077;--line:#203126;--line2:#2D4632;
+  --lineHover:#456440;--green:#A6FF1A;--display:"Bricolage Grotesque",sans-serif;
+  --sans:"Instrument Sans",sans-serif;--mono:"IBM Plex Mono",monospace;
+  --page:max(clamp(20px,3.35vw,48px),calc((100% - 1560px)/2))
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-width:320px;background:#030403;color:var(--text);font-family:var(--sans)}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;background:
+  radial-gradient(72% 84% at 74% 18%,rgba(63,92,58,.032),transparent 58%),
+  radial-gradient(60% 72% at 18% 78%,rgba(45,66,46,.022),transparent 64%),
+  linear-gradient(180deg,#050706 0%,#071009 48%,#050706 100%)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+
+.page-shell{width:100%;max-width:none;margin:0}
+.work-hero{position:relative;padding:136px var(--page) 62px;min-height:420px}
+.work-hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(45% 56% at 82% 20%,rgba(92,128,88,.04),transparent 62%),
+  radial-gradient(36% 42% at 16% 86%,rgba(166,255,26,.014),transparent 66%);pointer-events:none}
+.work-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.68fr);gap:54px;align-items:end}
+.kicker{display:flex;align-items:center;gap:18px;margin:0 0 30px;color:var(--text);font:600 10px/1 var(--mono);letter-spacing:.14em}
+.kicker b{color:var(--green);font-weight:600}.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+.work-hero h1{margin:0;font:720 clamp(88px,13.2vw,182px)/.90 var(--display);font-variation-settings:"wdth" 92,"opsz" 56;letter-spacing:-.05em}
+.intro-copy p:first-child{margin:0;color:var(--text2);font-size:clamp(18px,1.8vw,23px);font-weight:500;line-height:1.36;letter-spacing:-.025em}
+.intro-copy p:last-child{margin:20px 0 0;color:var(--muted);font:500 9px/1.55 var(--mono);letter-spacing:.12em}
+.intro-copy p:last-child b{color:var(--green)}
+
+.cards-section{padding:0 var(--page) 84px}
+.section-top{display:block;margin-bottom:28px}
+.section-top h2{margin:0;font:650 clamp(32px,4.1vw,54px)/.94 var(--display);font-variation-settings:"wdth" 94,"opsz" 48;letter-spacing:-.055em}
+
+.project-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+
+.card-head,.card-meta{
+  color:var(--muted);font:500 9px/1.45 var(--mono);letter-spacing:.1em;text-transform:uppercase
+}
+.card-head{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px 12px;text-align:right}
+.card-head b{font-weight:500;color:var(--muted)}
+.status-live .card-head b,.status-active .card-head b{color:var(--green)}
+.card-no{margin:0;color:var(--green);font:500 11px/1.2 var(--mono);letter-spacing:.1em}
+.card-title{margin:0;font-family:var(--display);font-variation-settings:"wdth" 94,"opsz" 48}
+.card-summary{margin:0;color:var(--text2);font-size:13px;line-height:1.5}
+.card-meta{display:flex;justify-content:space-between;gap:12px}
+.card-cta{
+  min-height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  width:max-content;
+  padding:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--green);
+  font:600 9px/1 var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  transition:color .18s ease, transform .22s cubic-bezier(.22,1,.36,1), opacity .18s ease;
+}
+.card-cta span:last-child{font-size:14px}
+.card-cta:hover,
+.card-cta:focus-visible{
+  color:#c6ff68;
+  transform:translateX(3px);
+}
+.project-card{transition:transform .34s cubic-bezier(.22,1,.36,1),border-color .2s ease,background .2s ease}
+.project-card:hover{transform:translateY(-4px);border-color:var(--lineHover)}
+
+.contact{
+  position:relative;min-height:330px;padding:66px var(--page) 32px;background:
+  radial-gradient(58% 68% at 74% 22%,rgba(166,255,26,.016),transparent 68%),var(--bg);
+  border-top:1px solid rgba(32,49,38,.88)
+}
+.contact-head{display:flex;align-items:center;gap:18px}
+.section-tag{display:flex;align-items:center;gap:18px;margin:0;color:var(--text);font:600 10px/1 var(--mono);letter-spacing:.14em}
+.section-tag span{color:var(--green)}
+.contact-head .section-tag{flex:none}.contact-head>i{flex:1;height:1px;background:var(--line)}
+.contact h1{margin:46px 0 0;font:700 92px/.9 var(--display);font-variation-settings:"wdth" 94,"opsz" 48;letter-spacing:-.065em}
+.contact h1 a{color:var(--green)}
+.contact-copy{max-width:650px;margin:24px 0 0;color:var(--text2);font-size:16px;font-weight:500;line-height:1.55}
+.signal-link{
+  position:absolute;top:108px;right:max(74px,var(--page));display:flex;gap:2rem;align-items:center;padding:21px 33px;
+  border-radius:12px;background:var(--green);color:#071005;font:600 13px/1 var(--mono);letter-spacing:.11em;
+  transition:transform 180ms cubic-bezier(.22,1,.36,1),box-shadow 180ms ease
+}
+.signal-link b{font-size:1.25rem}
+.contact-footer{position:absolute;top:196px;right:max(74px,var(--page));display:grid;gap:8px;color:var(--text2);font:500 10px/1 var(--mono);letter-spacing:.11em}
+.contact-footer a:hover{color:var(--green)}
+.contact-footer p{position:absolute;top:58px;right:0;width:max-content;margin:0;color:var(--muted);font-size:9px;white-space:nowrap}
+@media(hover:hover) and (pointer:fine){.signal-link:hover,.signal-link:focus-visible{transform:translateY(-3px);box-shadow:0 10px 34px rgba(166,255,26,.12)}}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1180px){.project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.work-hero-grid,.section-top{grid-template-columns:1fr;gap:26px}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+  .card-cta{min-height:44px}
+  .work-hero{padding-top:112px;padding-bottom:50px;min-height:0}.work-hero h1{font-size:clamp(74px,22vw,130px)}
+  .cards-section{padding-bottom:64px}.project-grid{grid-template-columns:1fr;gap:14px}
+  .contact{min-height:0;padding:54px var(--page) 28px}.contact h1{margin-top:38px;font-size:64px}
+  .contact-copy{max-width:300px;font-size:15px}.signal-link{position:static;display:inline-flex;margin-top:28px;padding:15px 19px;border-radius:10px;font-size:10px}
+  .contact-footer{position:static;display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin-top:32px;font-size:9px}
+  .contact-footer p{position:static;flex-basis:100%;width:auto;margin-top:6px;white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.project-card{transition:none}
+}
+
+.index-card{
+  min-height:300px;padding:16px;border:1px solid var(--line2);border-radius:16px;
+  background:var(--panel);display:flex;flex-direction:column
+}
+.index-card:hover{background:var(--panel2)}
+.index-card .card-main{display:flex;flex:1;flex-direction:column}
+.index-meta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start}
+.index-meta .card-no{padding-top:1px}.index-meta .card-head{min-width:0}.index-copy{margin-top:30px}
+.index-card .card-title{font-weight:650;max-width:14ch;font-size:clamp(25px,1.9vw,31px);line-height:.94;letter-spacing:-.04em;overflow-wrap:anywhere}
+.index-card .card-summary{margin-top:14px}
+
+.index-card .card-cta{margin-top:12px}
+
+/* Accepted production shared chrome; standalone frozen snapshot. */
+.brand-anchor {
+  position: fixed;
+  z-index: 90;
+  top: 15px;
+  left: 18px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(72,82,75,.08);
+  border-radius: 50%;
+  background: rgba(72,82,75,.11);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.brand-anchor img { display: block; width: 31px; height: auto; }
+.site-header {
+  position: fixed;
+  z-index: 80;
+  top: 14px;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+.nav-wrap { position: relative; width: min(92vw, 455px); margin: 0 auto; pointer-events: auto; }
+.nav {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 14px;
+  border: 1px solid rgba(72,82,75,.11);
+  border-radius: 18px;
+  background: rgba(72,82,75,.16);
+  -webkit-backdrop-filter: blur(28px) saturate(152%);
+  backdrop-filter: blur(28px) saturate(152%);
+}
+.nav a {
+  display: grid;
+  min-width: 0;
+  min-height: 44px;
+  flex: 1;
+  place-items: center;
+  padding: 12px 8px;
+  color: #e8ede9;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: .12em;
+  text-align: center;
+}
+.nav a[aria-current] { color: #f5f7f5; }
+.nav a:hover, .nav a:focus-visible { color: var(--green); }
+.progress-outline {
+  position: absolute;
+  inset: -1px -1px -4px;
+  width: calc(100% + 2px);
+  height: 63px;
+  overflow: visible;
+  pointer-events: none;
+}
+.progress-outline path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 5px rgba(166,255,26,.25));
+}
+.progress-outline .active { stroke-dasharray: 100 100; stroke-dashoffset: 100; opacity: 0; }
+
+
+@media (max-width:760px) {
+.brand-anchor { top:12px;left:12px;width:40px;height:40px; }
+.brand-anchor img { width:28px; }
+.nav-wrap { width:calc(100% - 108px);min-width:205px;max-width:455px; }
+.nav { height:54px;gap:4px;padding:0 8px;border-radius:16px; }
+.nav a { padding:10px 6px;font-size:10px; }
+.progress-outline { height:59px;bottom:-4px; }
+}
+@media (max-width:380px) {
+.nav-wrap { width:calc(100% - 108px);min-width:205px; }
+.nav { gap:0;padding:0 5px; }
+.nav a { padding-right:3px;padding-left:3px;font-size:9px;letter-spacing:.08em; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+html { scroll-behavior:auto; }
+.progress-outline path { transition:none !important; }
+}
+</style></head><body>
+<a class="brand-anchor" href="/index.html#top" aria-label="Yiqiang Adrian Liu"><img src="/assets/brand/yal-mark.svg" alt=""></a>
+<header class="site-header" aria-label="Primary navigation">
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Primary navigation"><a href="/index.html#top">HOME</a><a href="/work/" aria-current="page">WORK</a><a href="#contact">CONTACT</a></nav>
+    <svg class="progress-outline" viewBox="0 0 455 63" preserveAspectRatio="none" aria-hidden="true">
+      <path class="active" d="M 1 38 Q 1 58 20 58 L 435 58 Q 454 58 454 38" pathLength="100"></path>
+    </svg>
+  </div>
+</header>
+
+<div class="page-shell"><main>
+<section class="work-hero">
+  <div class="work-hero-grid">
+    <div>
+      <p class="kicker"><b>INDEX / 2026</b> WORK DIRECTORY</p>
+      <h1>WORK</h1>
+    </div>
+    <div class="intro-copy">
+      <p>Software, tools, systems, and experiments — each project opens as its own article.</p>
+      <p><b>10</b> PUBLIC PROJECTS / PERSONAL TECH MAGAZINE</p>
+    </div>
+  </div>
+</section>
+
+<section class="cards-section">
+  <div class="section-top">
+    <h2>PROJECT STORIES.</h2>
+  </div>
+  <div class="project-grid">
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/interdemtv/">
+        <div class="index-meta"><p class="card-no">01</p><div class="card-head"><span>WEB EXPERIMENT</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">InterDemTV</h3>
+          <p class="card-summary">A retro-futurist web television for random signal hunting and internet wandering.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/interdemtv/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-active">
+      <a class="card-main" href="/work/codex-provider-switcher/">
+        <div class="index-meta"><p class="card-no">02</p><div class="card-head"><span>DEVELOPER TOOL</span><b>ACTIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Codex Provider Switcher</h3>
+          <p class="card-summary">A local Rust CLI and macOS desktop app for safely switching Codex providers and models.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/codex-provider-switcher/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-active">
+      <a class="card-main" href="/work/job-search-agent/">
+        <div class="index-meta"><p class="card-no">03</p><div class="card-head"><span>AI SYSTEM</span><b>ACTIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Job Search Agent</h3>
+          <p class="card-summary">A local-first Germany-focused job-search system with a macOS desktop app, Codex-assisted analysis, and SQLite tracking.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/job-search-agent/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-prototype">
+      <a class="card-main" href="/work/samantha-ai-assistant/">
+        <div class="index-meta"><p class="card-no">04</p><div class="card-head"><span>EMBEDDED AI</span><b>PROTOTYPE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Samantha AI Assistant</h3>
+          <p class="card-summary">A Samantha-inspired voice assistant for the FoloToy AI Passport, with an OS1-style interface and real-time voice interaction.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/samantha-ai-assistant/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/personal-tech-magazine/">
+        <div class="index-meta"><p class="card-no">05</p><div class="card-head"><span>PERSONAL SYSTEM</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Personal Tech Magazine</h3>
+          <p class="card-summary">A personal technical magazine for software, tools, systems, and experiments.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/personal-tech-magazine/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/pollen-alert-germany/">
+        <div class="index-meta"><p class="card-no">06</p><div class="card-head"><span>PUBLIC SERVICE</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Pollen Alert Germany</h3>
+          <p class="card-summary">Multilingual pollen forecasts and notifications for Germany.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/pollen-alert-germany/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/bulk-email-sender/">
+        <div class="index-meta"><p class="card-no">07</p><div class="card-head"><span>AUTOMATION TOOL</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Bulk Email Sender</h3>
+          <p class="card-summary">A browser-to-automation workflow for preparing personalized email tasks.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/bulk-email-sender/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/qpsk-visualization/">
+        <div class="index-meta"><p class="card-no">08</p><div class="card-head"><span>TECHNICAL VISUALISATION</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">QPSK Visualization</h3>
+          <p class="card-summary">An interactive view of QPSK modulation and signal noise.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/qpsk-visualization/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-live">
+      <a class="card-main" href="/work/password-generator/">
+        <div class="index-meta"><p class="card-no">09</p><div class="card-head"><span>UTILITY</span><b>LIVE</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Password Generator</h3>
+          <p class="card-summary">A configurable password generator with strength guidance.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/password-generator/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card index-card reveal status-archived">
+      <a class="card-main" href="/work/local-voice-assistant/">
+        <div class="index-meta"><p class="card-no">10</p><div class="card-head"><span>AI EXPERIMENT</span><b>ARCHIVED</b></div></div>
+        <div class="index-copy">
+          <h3 class="card-title">Local Voice Assistant</h3>
+          <p class="card-summary">A completed local voice experiment built around a single turn-based speech loop.</p>
+        </div>
+      </a>
+      <a class="card-cta" href="/work/local-voice-assistant/"><span>READ ARTICLE</span><span aria-hidden="true">↗</span></a>
+    </article></div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-head">
+    <p class="section-tag"><span>05</span> CONTACT / SIGNAL</p>
+    <i aria-hidden="true"></i>
+  </div>
+  <div class="contact-copy-group">
+    <h1>Get in <a href="mailto:contact@yliu.tech">touch.</a></h1>
+    <p class="contact-copy">I’m open to interesting projects, collaborations, or just a good conversation about technology and the internet.</p>
+  </div>
+  <a class="signal-link" href="mailto:contact@yliu.tech"><span>SEND A SIGNAL</span><b>→</b></a>
+  <div class="contact-footer">
+    <a href="mailto:contact@yliu.tech">EMAIL</a>
+    <a href="https://github.com/jumpjumptiger007">GITHUB</a>
+    <p>© 2026 YIQIANG ADRIAN LIU</p>
+  </div>
+</section>
+
+</main></div>
+<script>
+(() => {
+  const active = document.querySelector('.progress-outline .active');
+  function updateProgress() {
+    if (!active) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max <= 0 ? 0 : Math.min(1, Math.max(0, window.scrollY / max));
+    active.style.strokeDashoffset = String(100 - p * 100);
+    active.style.opacity = p <= 0.0005 ? '0' : '1';
+  }
+  updateProgress();
+  addEventListener('scroll', updateProgress, {passive:true});
+  addEventListener('resize', updateProgress);
+})();
+(() => {
+  const items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(x=>x.classList.add('in'));return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  items.forEach(x=>io.observe(x));
+})();
+</script>
+</body></html>

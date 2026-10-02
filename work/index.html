@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="The complete work directory: software, tools, systems, and experiments by Yiqiang Adrian Liu.">
   <title>Work — Yiqiang Adrian Liu</title>
   <link rel="canonical" href="https://yliu.tech/work/">
@@ -19,54 +20,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/site-shell.css">
   <link rel="stylesheet" href="../css/work.css">
+  <script type="module" src="../js/site-shell.js"></script>
 </head>
 <body class="work-page">
-  <a class="skip-link" href="#work-ledger">Skip to the work directory</a>
-  <header class="site-header">
-    <nav class="nav-shell" aria-label="Primary navigation">
-      <a class="monogram" href="../index.html#top" aria-label="Yiqiang Adrian Liu — home"><img src="../assets/brand/yal-mark.svg" alt=""></a>
-      <div class="nav-links">
-        <a href="../index.html#top">HOME</a>
-        <a href="../index.html#work">COVER STORY</a>
-        <a href="./" aria-current="page">ALL WORK</a>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <header class="work-intro">
-      <p class="section-tag"><span>INDEX / 2026</span> PUBLIC WORK</p>
-      <div class="work-intro-layout">
-        <h1>WORK</h1>
-        <div class="work-intro-copy">
-          <p>Software, tools, systems, and experiments — current and archived.</p>
-          <p class="work-count"><span id="work-count">10</span> PUBLIC PROJECTS</p>
-        </div>
+  <a class="skip-link" href="#main">Skip to the work directory</a>
+  <site-chrome page="work"></site-chrome>
+  <main id="main">
+    <header class="work-hero">
+      <div class="work-hero-grid">
+        <div><p class="work-kicker"><b>INDEX / 2026</b> WORK DIRECTORY</p><h1>WORK</h1></div>
+        <div class="intro-copy"><p>Software, tools, systems, and experiments — each project opens as its own article.</p>
+          <p><b id="work-count">10</b> PUBLIC PROJECTS / PERSONAL TECH MAGAZINE</p></div>
       </div>
     </header>
-    <section class="work-ledger-section" aria-labelledby="ledger-title">
-      <div class="work-ledger-topline">
-        <h2 id="ledger-title">COMPLETE DIRECTORY</h2>
-        <p>ORDERED BY EDITORIAL SEQUENCE</p>
-      </div>
-      <div class="work-ledger" id="work-ledger">
-        <div class="work-ledger-columns" aria-hidden="true">
-          <span>NO.</span><span>PROJECT</span><span>CLASS</span><span>YEAR</span><span>STATUS</span><span>LINKS</span>
-        </div>
-        <div class="work-rows" id="work-rows"></div>
-      </div>
+    <section class="cards-section" aria-labelledby="stories-title">
+      <div class="section-top"><h2 id="stories-title">PROJECT STORIES.</h2></div>
+      <div class="project-grid" id="work-cards"></div>
     </section>
+    <site-contact number="05"></site-contact>
   </main>
-  <footer class="work-footer">
-    <a href="../index.html#top">YIQIANG ADRIAN LIU</a>
-    <nav aria-label="Footer navigation">
-      <a href="../index.html#work">COVER STORY</a>
-      <a href="../index.html#project-index">WORK INDEX</a>
-      <a href="../index.html#contact">CONTACT</a>
-    </nav>
-    <p>© 2026 / PERSONAL TECH MAGAZINE</p>
-  </footer>
   <noscript><p class="noscript">The complete project directory needs JavaScript enabled.</p></noscript>
   <script type="module" src="../js/work.js"></script>
 </body>

@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050706">
   <meta name="description" content="A Samantha-inspired voice assistant for the FoloToy AI Passport, with an OS1-style interface and real-time voice interaction.">
   <title>Samantha AI Assistant — Yiqiang Adrian Liu</title>
   <link rel="canonical" href="https://yliu.tech/work/samantha-ai-assistant/">
@@ -20,47 +21,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap" rel="stylesheet">
   <link rel="icon" href="../../assets/favicon/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../../css/site-shell.css">
   <link rel="stylesheet" href="../../css/project-detail.css">
+  <script type="module" src="../../js/site-shell.js"></script>
 </head>
 <body class="project-detail-page">
   <a class="skip-link" href="#main">Skip to project details</a>
-  <header class="detail-header">
-    <a class="detail-brand" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-    </a>
-    <a class="back-link" href="../../index.html#project-index"><span aria-hidden="true">←</span> Return to work</a>
-  </header>
+  <site-chrome page="project"></site-chrome>
   <main id="main">
     <article>
-      <header class="project-heading">
-        <div class="project-meta-row">
-          <p class="project-class"><span class="project-number">04</span><span>Embedded AI</span></p>
-          <dl class="project-facts">
-            <div><dt>Status</dt><dd class="status-prototype"><i aria-hidden="true"></i>prototype</dd></div>
-            <div><dt>Year</dt><dd>2026</dd></div>
-          </dl>
-        </div>
-        <div class="project-title-layout">
-          <h1 id="project-title">Samantha AI<br><span>Assistant</span></h1>
-          <div class="project-summary-group">
-            <p class="project-summary">A Samantha-inspired voice assistant for the FoloToy AI Passport, with an OS1-style interface and real-time voice interaction.</p>
-            <nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/samantha-ai-assistant" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></nav>
+      <header class="project-hero">
+        <div class="project-hero-grid" data-reveal>
+          <div class="project-lead">
+            <p class="chapter-label"><b>PROJECT / 04</b> FEATURE ARTICLE</p>
+            <h1 id="project-title"><span>Samantha AI</span><span>Assistant</span></h1>
+            <div class="hero-meta"><span><b>TYPE</b> Embedded AI</span><span><b>STATUS</b> <i class="status-prototype">prototype</i></span></div>
           </div>
+          <div class="project-intro"><p class="hero-summary">A Samantha-inspired voice assistant for the FoloToy AI Passport, with an OS1-style interface and real-time voice interaction.</p><nav class="project-actions" aria-label="Project actions"><a class="project-action" href="https://github.com/jumpjumptiger007/samantha-ai-assistant" target="_blank" rel="noopener noreferrer"><span>SOURCE</span><span aria-hidden="true">↗</span></a></nav></div>
         </div>
       </header>
-<section class="signal-section" aria-labelledby="detail-signal-samantha-ai-assistant-0"><div class="signal-heading"><h2 id="detail-signal-samantha-ai-assistant-0">Voice interaction</h2><p>A voice-first Samantha-inspired interface</p></div><div class="signal-terminal"><p class="terminal-command">A voice-first Samantha-inspired interface</p><p class="workflow-readout">Idle <span aria-hidden="true">→</span> Listening <span aria-hidden="true">→</span> Thinking <span aria-hidden="true">→</span> Speaking <span aria-hidden="true">→</span> Listening / Idle</p></div></section>
-<section class="detail-section overview-section" aria-labelledby="detail-samantha-ai-assistant-1"><div class="section-label"><p>Project overview</p></div><div class="section-content"><h2 id="detail-samantha-ai-assistant-1">An embedded assistant for the AI Passport</h2><p class="project-copy">Samantha AI Assistant is a voice-first, Samantha-inspired interface for the FoloToy AI Passport. Its OS1-style visual layer presents the assistant response as subtitles while keeping the screen focused on the live interaction.</p><p class="project-copy">User speech transcripts are intentionally hidden. The project builds on the device&#39;s existing XiaoZhi voice pipeline and cloud/device MCP foundation; physical Passport runtime validation is still pending.</p></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-samantha-ai-assistant-2"><div class="section-label"><p>Target hardware</p></div><div class="section-content"><h2 id="detail-samantha-ai-assistant-2">A constrained embedded display and audio system</h2><div class="system-visual"><div class="system-visual-row"><span class="system-visual-node">FoloToy AI Passport</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">ESP32-C3</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">8 MB flash</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">No PSRAM</span></div><div class="system-visual-row"><span class="system-visual-node">ST7789 / ST7789P3</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">240×320 display</span></div><div class="system-visual-row"><span class="system-visual-node">ES8311 audio codec</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">CW2017 fuel gauge</span></div><div class="system-visual-row"><span class="system-visual-node">Pre-rendered firmware animations</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">128×128</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">20 FPS</span></div><div class="system-visual-row"><span class="system-visual-node">Assistant response subtitles</span><span class="system-visual-arrow" aria-hidden="true">→</span><span class="system-visual-node">User speech transcripts hidden</span></div></div></div></section>
-<section class="detail-section technical-section" aria-labelledby="detail-samantha-ai-assistant-3"><div class="section-label"><p>Implementation</p></div><div class="section-content"><h2 id="detail-samantha-ai-assistant-3">A project-specific interaction and visual layer</h2><p class="project-copy">The repository derives from XiaoZhi ESP32 v2.5.0. XiaoZhi provides the underlying voice, network, protocol, application, and MCP foundation, including the existing voice pipeline and device/cloud MCP support.</p><p class="project-copy">The Samantha interaction and visual layer is the project-specific implementation. Firmware animations are pre-rendered at 128×128 pixels and 20 FPS; assistant response subtitles are shown, while user speech transcripts are intentionally hidden.</p><p class="project-copy">The canonical software build has been validated with ESP-IDF 6.1. Runtime validation on the physical Passport is still pending, so this page makes no claim of successful hardware validation.</p></div></section>
-<section class="detail-section system-section" aria-labelledby="detail-samantha-ai-assistant-4"><div class="section-label"><p>Interaction states</p></div><div class="section-content"><h2 id="detail-samantha-ai-assistant-4">The assistant returns to listening</h2><ol class="workflow-list"><li><span class="flow-index">01</span><h3>Idle</h3><p>The embedded interface waits for the next voice interaction.</p></li><li><span class="flow-index">02</span><h3>Listening</h3><p>The existing XiaoZhi voice pipeline handles the incoming voice interaction; user speech transcripts remain hidden.</p></li><li><span class="flow-index">03</span><h3>Thinking</h3><p>The device and cloud voice/MCP foundation carries the assistant request and response.</p></li><li><span class="flow-index">04</span><h3>Speaking</h3><p>A pre-rendered firmware animation accompanies the response subtitle.</p></li><li><span class="flow-index">05</span><h3>Return</h3><p>After speaking, the interface returns to Listening or Idle.</p></li></ol></div></section>
+<section class="article-section signal-section" data-reveal aria-labelledby="detail-signal-samantha-ai-assistant-0"><div class="section-head"><div><p class="chapter-label"><b>01</b> Voice interaction</p><h2 id="detail-signal-samantha-ai-assistant-0">A voice-first Samantha-inspired interface</h2></div></div><ol class="signal-sequence"><li><span>01</span><strong>Idle</strong></li><li><span>02</span><strong>Listening</strong></li><li><span>03</span><strong>Thinking</strong></li><li><span>04</span><strong>Speaking</strong></li><li><span>05</span><strong>Listening / Idle</strong></li></ol></section>
+<section class="article-section detail-section overview-section" data-reveal aria-labelledby="detail-samantha-ai-assistant-1"><div class="section-head"><div><p class="chapter-label"><b>02</b> Project overview</p><h2 id="detail-samantha-ai-assistant-1">An embedded assistant for the AI Passport</h2></div></div><div class="copy-stack"><p class="project-copy">Samantha AI Assistant is a voice-first, Samantha-inspired interface for the FoloToy AI Passport. Its OS1-style visual layer presents the assistant response as subtitles while keeping the screen focused on the live interaction.</p><p class="project-copy">User speech transcripts are intentionally hidden. The project builds on the device&#39;s existing XiaoZhi voice pipeline and cloud/device MCP foundation; physical Passport runtime validation is still pending.</p></div></section>
+<section class="article-section module-section system-section" data-reveal aria-labelledby="detail-samantha-ai-assistant-2"><div class="section-head"><div><p class="chapter-label"><b>03</b> Target hardware</p><h2 id="detail-samantha-ai-assistant-2">A constrained embedded display and audio system</h2></div></div><div class="system-groups"><ul class="system-values"><li>FoloToy AI Passport</li><li>ESP32-C3</li><li>8 MB flash</li><li>No PSRAM</li></ul><ul class="system-values"><li>ST7789 / ST7789P3</li><li>240×320 display</li></ul><ul class="system-values"><li>ES8311 audio codec</li><li>CW2017 fuel gauge</li></ul><ul class="system-values"><li>Pre-rendered firmware animations</li><li>128×128</li><li>20 FPS</li></ul><ul class="system-values"><li>Assistant response subtitles</li><li>User speech transcripts hidden</li></ul></div></section>
+<section class="article-section detail-section technical-section" data-reveal aria-labelledby="detail-samantha-ai-assistant-3"><div class="section-head"><div><p class="chapter-label"><b>04</b> Implementation</p><h2 id="detail-samantha-ai-assistant-3">A project-specific interaction and visual layer</h2></div></div><div class="copy-stack"><p class="project-copy">The repository derives from XiaoZhi ESP32 v2.5.0. XiaoZhi provides the underlying voice, network, protocol, application, and MCP foundation, including the existing voice pipeline and device/cloud MCP support.</p><p class="project-copy">The Samantha interaction and visual layer is the project-specific implementation. Firmware animations are pre-rendered at 128×128 pixels and 20 FPS; assistant response subtitles are shown, while user speech transcripts are intentionally hidden.</p><p class="project-copy">The canonical software build has been validated with ESP-IDF 6.1. Runtime validation on the physical Passport is still pending, so this page makes no claim of successful hardware validation.</p></div></section>
+<section class="article-section module-section workflow-section" data-reveal aria-labelledby="detail-samantha-ai-assistant-4"><div class="section-head"><div><p class="chapter-label"><b>05</b> Interaction states</p><h2 id="detail-samantha-ai-assistant-4">The assistant returns to listening</h2></div></div><ol class="workflow-list"><li><span class="flow-index">01</span><h3>Idle</h3><p>The embedded interface waits for the next voice interaction.</p></li><li><span class="flow-index">02</span><h3>Listening</h3><p>The existing XiaoZhi voice pipeline handles the incoming voice interaction; user speech transcripts remain hidden.</p></li><li><span class="flow-index">03</span><h3>Thinking</h3><p>The device and cloud voice/MCP foundation carries the assistant request and response.</p></li><li><span class="flow-index">04</span><h3>Speaking</h3><p>A pre-rendered firmware animation accompanies the response subtitle.</p></li><li><span class="flow-index">05</span><h3>Return</h3><p>After speaking, the interface returns to Listening or Idle.</p></li></ol></section>
     </article>
+    <site-contact number="06"></site-contact>
   </main>
-  <footer class="detail-footer footer-no-next">
-    <a class="footer-return" href="../../index.html#project-index"><span aria-hidden="true">↖</span> Return to project index</a>
-    <a class="footer-identity" href="../../index.html#top" aria-label="Yiqiang Adrian Liu — home">
-      <img src="../../assets/brand/yal-mark.svg" alt="">
-      <span>Yiqiang Adrian Liu<br>Independent Developer &amp; Builder</span>
-    </a>
-  </footer>
 </body>
 </html>

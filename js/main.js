@@ -1,78 +1,77 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('.site-header');
-  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+document.addEventListener("DOMContentLoaded", () => {
+  const tickerTrack = document.querySelector("#home-ticker-track");
+  const tickerControl = document.querySelector(".ticker-control");
+  if (tickerTrack && tickerControl) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const storageKey = "home-ticker-paused";
+    let userPaused = false;
+    try {
+      userPaused = window.sessionStorage.getItem(storageKey) === "true";
+    } catch {
+      // The in-memory state still keeps an explicit pause until this page unloads.
+    }
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+    const updateTicker = () => {
+      tickerTrack.classList.toggle("is-paused", userPaused);
+      tickerControl.hidden = reducedMotion.matches;
+      tickerControl.textContent = userPaused ? "RESUME" : "PAUSE";
+      tickerControl.setAttribute("aria-pressed", String(userPaused));
+      tickerControl.setAttribute("aria-label", `${userPaused ? "Resume" : "Pause"} homepage ticker`);
+    };
 
-  const reveal = target => target?.setAttribute('data-reveal', '');
-  document.querySelectorAll('.feature-copy, .feature-flow, .index-intro, .index-table, .now h2, .active-blocks').forEach(reveal);
-
-  const primary = document.querySelector('.system-primary');
-  const primaryHeading = primary?.querySelector('h3');
-  const primarySummary = primary?.querySelector(':scope > p');
-  if (primary && primaryHeading && primarySummary) {
-    const primaryCopy = document.createElement('div');
-    primaryCopy.className = 'system-primary-copy';
-    primaryCopy.setAttribute('data-reveal', '');
-    primary.insertBefore(primaryCopy, primaryHeading);
-    primaryCopy.append(primaryHeading, primarySummary);
-  }
-  reveal(primary?.querySelector('.terminal-visual'));
-  reveal(document.querySelector('.systems-stack'));
-  document.querySelectorAll('.feature-flow li').forEach((step, index) => step.style.setProperty('--step', index));
-
-  document.body.classList.add('motion-ready');
-  requestAnimationFrame(() => document.body.classList.add('motion-enter'));
-
-  const revealTargets = [...document.querySelectorAll('[data-reveal]')];
-  if (!('IntersectionObserver' in window)) {
-    revealTargets.forEach(target => target.classList.add('is-revealed'));
-  } else {
-    const observer = new IntersectionObserver((entries, currentObserver) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-revealed');
-        currentObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.14, rootMargin: '0px 0px -5% 0px' });
-    revealTargets.forEach(target => observer.observe(target));
+    updateTicker();
+    tickerControl.addEventListener("click", () => {
+      if (reducedMotion.matches) return;
+      userPaused = !userPaused;
+      try {
+        if (userPaused) window.sessionStorage.setItem(storageKey, "true");
+        else window.sessionStorage.removeItem(storageKey);
+      } catch {
+        // Keep the current page's in-memory state if session storage is unavailable.
+      }
+      updateTicker();
+    });
+    reducedMotion.addEventListener?.("change", updateTicker);
   }
 
-  const hero = document.querySelector('.hero');
-  const ghostAdrian = document.querySelector('.ghost-adrian');
-  let parallaxFrame;
-  const updateParallax = () => {
-    parallaxFrame = undefined;
-    if (!hero) return;
+  const hero = document.querySelector(".hero");
+  const ghost = document.querySelector(".hero-ghost");
+  if (!hero || !ghost || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  let frame = 0;
+  let pointerX = 0.5;
+  let pointerY = 0.45;
+  let pointerInside = false;
+  const updateGhost = () => {
+    frame = 0;
+    if (!pointerInside) {
+      ghost.style.setProperty("--ghost-wdth", "92");
+      ghost.style.setProperty("--ghost-scale", "1");
+      ghost.style.setProperty("--ghost-x", "0vw");
+      ghost.style.color = "rgba(166,255,26,.058)";
+      return;
+    }
+    const squeeze = 64 + pointerX * 34;
+    const scale = 0.93 + (1 - Math.abs(pointerX - 0.5) * 2) * 0.1;
+    const shift = (pointerX - 0.5) * 2.4;
+    const alpha = 0.05 + (1 - Math.abs(pointerY - 0.45)) * 0.02;
+    ghost.style.setProperty("--ghost-wdth", squeeze.toFixed(1));
+    ghost.style.setProperty("--ghost-scale", scale.toFixed(3));
+    ghost.style.setProperty("--ghost-x", `${shift.toFixed(2)}vw`);
+    ghost.style.color = `rgba(166,255,26,${Math.min(0.078, alpha).toFixed(3)})`;
+  };
+  hero.addEventListener("pointermove", (event) => {
     const bounds = hero.getBoundingClientRect();
-    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-    const progress = Math.min(1, Math.max(0, -bounds.top / bounds.height));
-    ghostAdrian?.style.setProperty('--ghost-shift', `${-16 * progress}px`);
-  };
-  const queueParallax = () => {
-    if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
-  };
-  updateParallax();
-  window.addEventListener('scroll', queueParallax, { passive: true });
-  window.addEventListener('resize', queueParallax, { passive: true });
-
-  if (window.innerWidth <= 760 || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  const signalLink = document.querySelector('.signal-link');
-  if (!signalLink) return;
-  const resetSignal = () => {
-    signalLink.style.setProperty('--magnetic-x', '0px');
-    signalLink.style.setProperty('--magnetic-y', '0px');
-  };
-  signalLink.addEventListener('pointermove', event => {
-    const bounds = signalLink.getBoundingClientRect();
-    const x = Math.max(-7, Math.min(7, ((event.clientX - (bounds.left + bounds.width / 2)) / bounds.width) * 14));
-    const y = Math.max(-7, Math.min(7, ((event.clientY - (bounds.top + bounds.height / 2)) / bounds.height) * 14));
-    signalLink.style.setProperty('--magnetic-x', `${x}px`);
-    signalLink.style.setProperty('--magnetic-y', `${y}px`);
+    pointerInside = true;
+    pointerX = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
+    pointerY = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height));
+    if (!frame) frame = window.requestAnimationFrame(updateGhost);
   });
-  signalLink.addEventListener('pointerleave', resetSignal);
-  signalLink.addEventListener('blur', resetSignal);
+  hero.addEventListener("pointerleave", () => {
+    pointerInside = false;
+    pointerX = 0.5;
+    pointerY = 0.45;
+    if (!frame) frame = window.requestAnimationFrame(updateGhost);
+  });
 });
